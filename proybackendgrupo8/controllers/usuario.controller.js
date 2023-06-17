@@ -51,5 +51,45 @@ usuarioCtrl.loginUsuario = async (req, res) => {
     })
 }
 
+usuarioCtrl.getUsuarios = async (req, res) => {
+    var usuarios = await Usuario.find().populate("rol");
+    res.json(usuarios);
+}
+
+usuarioCtrl.getUsuario = async (req, res) => {
+    const usuario = await Usuario.findById(req.params.id).populate("rol");
+    res.json(usuario);
+}
+
+usuarioCtrl.editUsuario = async (req, res) => {
+    const vusuario = new Usuario(req.body);
+    try {
+        await Usuario.updateOne({ _id: req.body._id }, vusuario);
+        res.json({
+            'status': '1',
+            'msg': 'Usuario updated'
+        })
+    } catch (error) {
+        res.status(400).json({
+            'status': '0',
+            'msg': 'Error procesando la operacion'
+        })
+    }
+}
+usuarioCtrl.deleteUsuario = async (req, res) => {
+    try {
+        await Usuario.deleteOne({ _id: req.params.id });
+        res.json({
+            status: '1',
+            msg: 'Usuario removed'
+        })
+    } catch (error) {
+        res.status(400).json({
+            'status': '0',
+            'msg': 'Error procesando la operacion'
+        })
+    }
+}
+
 //exportacion del modulo controlador
 module.exports = usuarioCtrl;
