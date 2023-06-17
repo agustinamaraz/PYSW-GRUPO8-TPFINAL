@@ -9,6 +9,7 @@ import { LoginService } from './services/login.service';
 import { LoginComponent } from './components/login/login.component'; //usado para el login
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AppComponent,
     LoginComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
