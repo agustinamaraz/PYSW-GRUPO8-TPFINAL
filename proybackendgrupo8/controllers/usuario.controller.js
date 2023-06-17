@@ -25,16 +25,11 @@ usuarioCtrl.loginUsuario = async (req, res) => {
         username: req.body.username,
         password: req.body.password
     }
-    //el método findOne retorna un objeto que cumpla con los criterios de busqueda
-    Usuario.findOne(criteria, function (err, user) {
-        //el método findOne retorna un objeto que cumpla con los criterios de busqueda
-        if (err) {
-            res.json({
-                status: 0,
-                msg: 'error'
-            })
-        };
-        if (!user) {
+
+    try {
+        const data = await Usuario.findOne(criteria).populate("rol");
+
+        if (!data) {
             res.json({
                 status: 0,
                 msg: "not found"
@@ -43,12 +38,16 @@ usuarioCtrl.loginUsuario = async (req, res) => {
             res.json({
                 status: 1,
                 msg: "success",
-                username: user.username, //retorno información útil para el frontend
-                perfil: user.perfil, //retorno información útil para el frontend
-                userid: user._id //retorno información útil para el frontend
+                username: data.username, //retorno información útil para el frontend
+                rol: data.rol, //retorno información útil para el frontend
+                userid: data._id //retorno información útil para el frontend
             })
         }
-    })
+    } catch (error) {
+        console.log(error);
+    }
+    //el método findOne retorna un objeto que cumpla con los criterios de busqueda
+
 }
 
 usuarioCtrl.getUsuarios = async (req, res) => {

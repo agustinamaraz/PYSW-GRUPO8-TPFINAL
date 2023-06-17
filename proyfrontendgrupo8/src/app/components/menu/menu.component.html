@@ -10,13 +10,6 @@
         <!-- <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#" routerLinkActive="active">Home</a>
         </li> -->
-        <div>
-          <a *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">(Login)</a>
-          <a *ngIf="loginService.userLoggedIn()" [routerLink]="['login']" (click)="logout()">
-            {{loginService.userLogged()}} (logout)
-          </a>
-        </div>
-
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,6 +44,12 @@
           </ul>
         </li> -->
 
+        <div class="">
+          <a *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">(Login)</a>
+          <a *ngIf="loginService.userLoggedIn()" [routerLink]="['login']" (click)="logout()">
+            {{loginService.userLogged()}} (logout)
+          </a>
+        </div>
 
       </ul>
     </div>
