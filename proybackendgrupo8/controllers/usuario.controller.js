@@ -2,6 +2,7 @@ const Usuario = require('./../models/usuario')
 const usuarioCtrl = {}
 
 usuarioCtrl.createUsuario = async (req, res) => {
+    console.log("create usuario");
     //en req.body se espera que vengan los datos de usuario a crear
     const usuario = new Usuario(req.body);
     try {

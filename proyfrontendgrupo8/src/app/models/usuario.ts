@@ -10,6 +10,6 @@ export class Usuario {
         this._id = id;
         this.username = username;
         this.password = password;
-        this.rol = rol
+        this.rol = rol;
     }
 }

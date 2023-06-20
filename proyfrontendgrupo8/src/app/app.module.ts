@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component'; //usado par
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { PacienteComponent } from './components/paciente/paciente.component';
+import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { HomeComponent } from './components/home/home.component';
     LoginComponent,
     MenuComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    PacienteComponent,
+    PacienteFormComponent
   ],
   imports: [
     BrowserModule,

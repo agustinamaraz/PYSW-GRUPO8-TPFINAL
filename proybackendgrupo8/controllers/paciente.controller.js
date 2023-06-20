@@ -7,6 +7,14 @@ pacienteCtrl.getPacientes = async (req, res) => {
        var pacientes = await Paciente.find(); 
     res.json(pacientes);
  }
+
+ //get one
+pacienteCtrl.getPacientebyId = async (req, res) => {
+    console.log("Entrando a get by id")
+    const paciente = await Paciente.findById(req.params.id);
+    res.json(paciente);
+}
+
 //create
 pacienteCtrl.createPaciente = async (req, res) => {
     console.log("Entrando a create")
@@ -25,12 +33,7 @@ pacienteCtrl.createPaciente = async (req, res) => {
         })
     }
 }
-//get one
-pacienteCtrl.getPaciente = async (req, res) => {
-    console.log("Entrando a get by id")
-    const paciente = await Paciente.findById(req.params.id);
-    res.json(paciente);
-}
+
 //edit
 pacienteCtrl.editPaciente = async (req, res) => {
     console.log("Entrando a edit")
