@@ -1,4 +1,5 @@
 const Usuario = require('./../models/usuario')
+const jwt = require('jsonwebtoken');
 const usuarioCtrl = {}
 
 usuarioCtrl.createUsuario = async (req, res) => {
@@ -35,12 +36,14 @@ usuarioCtrl.loginUsuario = async (req, res) => {
                 msg: "not found"
             })
         } else {
+            const unToken = jwt.sign({id: user._id}, "secretkey");
             res.json({
                 status: 1,
                 msg: "success",
                 username: data.username, //retorno información útil para el frontend
                 rol: data.rol, //retorno información útil para el frontend
-                userid: data._id //retorno información útil para el frontend
+                userid: data._id, //retorno información útil para el frontend
+                token: unToken
             })
         }
     } catch (error) {
