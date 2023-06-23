@@ -10,9 +10,12 @@ import { PacienteService } from 'src/app/services/paciente.service';
 })
 export class PacienteComponent implements OnInit {
   pacientes:Array<Paciente>;
+  pacienteDni:Array<Paciente>;
+  dni!:string;
   constructor(private pacienteService: PacienteService, private activatedRoute: ActivatedRoute, 
     private router: Router) { 
       this.pacientes = new Array<Paciente>();
+      this.pacienteDni= new Array<Paciente>();
       this.obtenerPacientes();
     }
 
@@ -37,6 +40,25 @@ export class PacienteComponent implements OnInit {
     )
   }
 
+  
+  obtenerPacienteDni(){
+    console.log("ENTRANDO A PACIENTE POR DNI");
+    this.pacientes=new Array<Paciente>();
+    this.pacienteService.getPacienteDni(this.dni).subscribe(
+      result=>{
+        this.pacienteDni=result;
+        let unPaciente = new Paciente();
+        result.forEach((element:any) => {
+          Object.assign(unPaciente,element);
+          this.pacientes.push(unPaciente);
+          unPaciente = new Paciente();
+        });
+      },
+      error=>{
+        alert(error);
+      }
+    )
+  }
 
   eliminarPaciente(paciente:Paciente){
     this.pacienteService.deletePaciente(paciente._id).subscribe(

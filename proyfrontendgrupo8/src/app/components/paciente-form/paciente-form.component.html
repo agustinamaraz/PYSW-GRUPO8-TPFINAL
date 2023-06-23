@@ -48,6 +48,22 @@
             </div>
         </div>
 
+        <div class="mb-3">
+          <label for="dni" class="form-label">DNI</label>
+          <input type="number" class="form-control" id="dni" name="dni" required
+              placeholder="Ingrese numero de dni" [(ngModel)]="paciente.dni" required #dni="ngModel">
+
+              <div *ngIf="dni.invalid && (dni.dirty || dni.touched)"
+              class="row alert alert-danger">
+                <div *ngIf=" dni.errors?.['required']">
+                  Numero de DNI requerido
+                </div>
+                <div *ngIf=" dni.errors?.['minlength']">
+                  DNI no puede tener menos de 4 numeros
+                </div>
+          </div>
+      </div>
+
           
         <button *ngIf="accion=='new'" type="submit" class="btn btn-success" (click)="guardarPaciente()">Registrar Paciente</button>
           <button *ngIf="accion=='update'" type="submit" class="btn btn-warning" (click)="modificarPaciente()">Modificar Paciente</button>  
