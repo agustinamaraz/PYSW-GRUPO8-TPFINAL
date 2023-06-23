@@ -14,11 +14,6 @@ const routes: Routes = [
     path:'home',
     component: HomeComponent
   },
-  {
-    path:'',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
   { 
     path:'paciente',
     component:PacienteComponent
@@ -26,6 +21,12 @@ const routes: Routes = [
   {
     path:'paciente-form/:id',
     component:PacienteFormComponent
+  },
+  //lo siguiente siempre va al final
+  {
+    path:'**',
+    redirectTo: '/home',
+    pathMatch: 'full'
   }
 ];
 
