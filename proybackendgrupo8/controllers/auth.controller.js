@@ -6,6 +6,7 @@ authCtrl.verifyToken = async (req, res, next) => {
     if (!req.headers.authorization) {
         res.json({ 'status': '0', 'msg': 'Unauthorized request.' })
     } else {
+        
         //se espera formato -> Bearer XXX, interesa el token en pos(1) del arrayTexto
         var arrayTexto = req.headers.authorization.split(' ');
         var token = null;
