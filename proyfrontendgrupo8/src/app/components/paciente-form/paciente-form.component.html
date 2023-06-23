@@ -1,5 +1,5 @@
 
-<div>
+<div class="mt-5">
     <div style="padding-left:30%; padding-top: 2%;padding-bottom: 2%;">
      
       <form #pacienteForm="ngForm" class="formstyle" style="padding: 5%;">
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
             <label for="idfecha" class="form-label">Fecha de Nacimiento:</label>
-            <input type="text" class="form-control" id="idfecha" name="fechaNac" required
+            <input type="date" class="form-control" id="idfecha" name="fechaNac" required
                 placeholder="Ingrese fecha de nacimiento" [(ngModel)]="paciente.fechaNac" required #fechaNac="ngModel">
 
                 <div *ngIf="fechaNac.invalid && (fechaNac.dirty || fechaNac.touched)"
