@@ -3,7 +3,7 @@ const datosMedicosCtrl = {}
 
 //Recoger todos los datos Medicos
 datosMedicosCtrl.getDatosMedicos = async (req,res) =>{
-    var datosMedicos = await DatosMedicos.find();
+    var datosMedicos = await DatosMedicos.find().populate('paciente');
     res.json(datosMedicos);
 }
 //Crear datos medicos
@@ -25,13 +25,13 @@ datosMedicosCtrl.createDatosMedicos = async (req, res) => {
 }
 //Get data by id
 datosMedicosCtrl.getDatosMedicosById = async (req,res)=>{
-    const datosMedicos = await DatosMedicos.findById(req.params.id);
+    const datosMedicos = await DatosMedicos.findById(req.params.id).populate('paciente');
     res.json(datosMedicos);
 }
 //Get data by dni
 datosMedicosCtrl.getAllDatosMedicosDni = async (req,res)=>{
     try{
-    const datosMedicos = await DatosMedicos.find({dni:req.params.dni});
+    const datosMedicos = await DatosMedicos.find({dni:req.params.dni}).populate('paciente');
     res.json(datosMedicos)
     }catch(error){
         res.status(500).json({
