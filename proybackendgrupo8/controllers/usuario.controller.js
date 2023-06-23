@@ -28,21 +28,22 @@ usuarioCtrl.loginUsuario = async (req, res) => {
     }
 
     try {
-        const data = await Usuario.findOne(criteria).populate("rol");
+        const user = await Usuario.findOne(criteria).populate("rol");
 
-        if (!data) {
+        if (!user) {
             res.json({
                 status: 0,
                 msg: "not found"
             })
         } else {
             const unToken = jwt.sign({id: user._id}, "secretkey");
+
             res.json({
                 status: 1,
                 msg: "success",
-                username: data.username, //retorno información útil para el frontend
-                rol: data.rol, //retorno información útil para el frontend
-                userid: data._id, //retorno información útil para el frontend
+                username: user.username, //retorno información útil para el frontend
+                rol: user.rol, //retorno información útil para el frontend
+                userid: user._id, //retorno información útil para el frontend
                 token: unToken
             })
         }
