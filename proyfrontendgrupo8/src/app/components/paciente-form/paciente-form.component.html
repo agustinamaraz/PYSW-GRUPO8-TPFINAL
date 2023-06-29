@@ -6,8 +6,8 @@
         <h1>Formulario para cargar un paciente</h1>
   
         <div class="mb-3">
-            <label for="idnombre" class="form-label">Nombre</label>
-            <input name="nombre" type="text" class="form-control" id="idnombre"[(ngModel)]="paciente.nombre"
+            <label for="nombre" class="form-label">Nombre</label>
+            <input name="nombre" type="text" class="form-control" id="nombre"[(ngModel)]="paciente.nombre"
             placeholder="Ingrese nombre" required #nombre="ngModel" >
                     <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
                         class="row alert alert-danger">

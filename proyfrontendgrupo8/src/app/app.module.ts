@@ -16,6 +16,11 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
 
+//toast
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -32,7 +37,10 @@ import { PacienteFormComponent } from './components/paciente-form/paciente-form.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot()// ToastrModule added
   ],
   providers:
     [LoginService,
