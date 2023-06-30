@@ -18,6 +18,12 @@ import { PacienteFormComponent } from './components/paciente-form/paciente-form.
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
+//toast
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +49,9 @@ import { CalendarComponent } from './components/calendar/calendar.component';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot()// ToastrModule added
   ],
   bootstrap: [AppComponent],
 })

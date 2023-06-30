@@ -3,4 +3,5 @@ export class Paciente {
     nombre!: string;
     apellido!: string;
     fechaNac!: string;
+    dni!: string;
 }

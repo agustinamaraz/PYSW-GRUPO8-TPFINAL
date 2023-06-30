@@ -1,4 +1,4 @@
-
+<br>
 <div class="mt-5">
     <div style="padding-left:30%; padding-top: 2%;padding-bottom: 2%;">
      
@@ -6,8 +6,8 @@
         <h1>Formulario para cargar un paciente</h1>
   
         <div class="mb-3">
-            <label for="idnombre" class="form-label">Nombre</label>
-            <input name="nombre" type="text" class="form-control" id="idnombre"[(ngModel)]="paciente.nombre"
+            <label for="nombre" class="form-label">Nombre</label>
+            <input name="nombre" type="text" class="form-control" id="nombre"[(ngModel)]="paciente.nombre"
             placeholder="Ingrese nombre" required #nombre="ngModel" >
                     <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
                         class="row alert alert-danger">
@@ -47,6 +47,22 @@
                   </div>
             </div>
         </div>
+
+        <div class="mb-3">
+          <label for="dni" class="form-label">DNI</label>
+          <input type="number" class="form-control" id="dni" name="dni" required
+              placeholder="Ingrese numero de dni" [(ngModel)]="paciente.dni" required #dni="ngModel">
+
+              <div *ngIf="dni.invalid && (dni.dirty || dni.touched)"
+              class="row alert alert-danger">
+                <div *ngIf=" dni.errors?.['required']">
+                  Numero de DNI requerido
+                </div>
+                <div *ngIf=" dni.errors?.['minlength']">
+                  DNI no puede tener menos de 7 numeros
+                </div>
+          </div>
+      </div>
 
           
         <button *ngIf="accion=='new'" type="submit" class="btn btn-success" (click)="guardarPaciente()">Registrar Paciente</button>
