@@ -41,6 +41,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     OAuthModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [
     LoginService,
@@ -51,7 +52,7 @@ import { ToastrModule } from 'ngx-toastr';
     },
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot()// ToastrModule added
+    // ToastrModule added
   ],
   bootstrap: [AppComponent],
 })

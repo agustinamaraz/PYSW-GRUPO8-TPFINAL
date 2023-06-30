@@ -1,42 +1,44 @@
-<button type="button" (click)="login()">01 login</button>
-<button type="button" (click)="token()">02 Token</button>
-<button type="button" (click)="verEventos()">03 Eventos</button>
-<form class="border border-1 m-3">
-  <div class="form-group">
-    <label for="my-input">Event Title</label>
-    <input
-      id="sumary"
-      class="form-control"
-      type="text"
-      [(ngModel)]="event.summary"
-      name="sumary"
-    />
-    <label for="my-input">Event From</label>
-    <input
-      id="from"
-      class="form-control"
-      type="datetime-local"
-      [(ngModel)]="fromDate"
-      name="from"
-    />
-    <label for="my-input">Event to</label>
-    <input
-      id="to"
-      class="form-control"
-      type="datetime-local"
-      [(ngModel)]="toDate"
-      name="to"
-    />
-  </div>
-  <button type="button" (click)="crearEvento()">04 Crear Evento</button>
-</form>
-<button type="button" (click)="logout()">05 logout</button>
-<iframe
-  src="https://calendar.google.com/calendar/embed?src=c_q26mptnlohvd84qnt9q6u9cs0o%40grou
-p.calendar.google.com&ctz=America%2FArgentina%2FJujuy"
-  style="border: 0"
-  width="800"
-  height="600"
-  frameborder="0"
-  scrolling="no"
-></iframe>
+<section>
+  <button type="button" (click)="login()">01 login</button>
+  <button type="button" (click)="token()">02 Token</button>
+  <button type="button" (click)="verEventos()">03 Eventos</button>
+  <form class="border border-1 m-3">
+    <div class="form-group">
+      <label for="my-input">Event Title</label>
+      <input
+        id="sumary"
+        class="form-control"
+        type="text"
+        [(ngModel)]="event.summary"
+        name="sumary"
+      />
+      <label for="my-input">Event From</label>
+      <input
+        id="from"
+        class="form-control"
+        type="datetime-local"
+        [(ngModel)]="fromDate"
+        name="from"
+      />
+      <label for="my-input">Event to</label>
+      <input
+        id="to"
+        class="form-control"
+        type="datetime-local"
+        [(ngModel)]="toDate"
+        name="to"
+      />
+    </div>
+    <button type="button" (click)="crearEvento()">04 Crear Evento</button>
+  </form>
+  <button type="button" (click)="logout()">05 logout</button>
+  <iframe
+    src="https://calendar.google.com/calendar/embed?src=c_q26mptnlohvd84qnt9q6u9cs0o%40grou
+  p.calendar.google.com&ctz=America%2FArgentina%2FJujuy"
+    style="border: 0"
+    width="800"
+    height="600"
+    frameborder="0"
+    scrolling="no"
+  ></iframe>
+</section>

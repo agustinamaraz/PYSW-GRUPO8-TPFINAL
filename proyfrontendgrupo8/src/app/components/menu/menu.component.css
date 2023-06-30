@@ -12,6 +12,25 @@ nav{
   transition: all .6s;
   background:#2B3035;
 }
+ul{
+  margin-bottom:0;
+}
+ul li ul.dropdown li {
+  margin-top: 20px;
+  height: 30px;
+  display: block;
+}
+
+ul li ul.dropdown {
+  width: 300px;
+  background: #2B3035;
+  position: absolute;
+  z-index: 999;
+  display: none;
+}
+ul li:hover ul.dropdown {
+  display: block;
+}
 .logo {
   color: #fff;
   text-decoration: none;
@@ -69,6 +88,17 @@ nav.sticky{
 }
 nav.sticky a{
   color:#2B3035;
+}
+
+nav.sticky ul li ul.dropdown {
+  width: 300px;
+  background: #fff;
+  position: absolute;
+  z-index: 999;
+  display: none;
+}
+nav.sticky ul li:hover ul.dropdown {
+  display: block;
 }
 @media(max-width:890px){
   nav{
