@@ -15,12 +15,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
 
 
 @NgModule({
@@ -31,25 +32,27 @@ import { ToastrModule } from 'ngx-toastr';
     FooterComponent,
     HomeComponent,
     PacienteComponent,
-    PacienteFormComponent
+    PacienteFormComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    OAuthModule.forRoot(),
+  ],
+  providers: [
+    LoginService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot()// ToastrModule added
   ],
-  providers:
-    [LoginService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptorService,
-        multi: true
-      }
-    ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
