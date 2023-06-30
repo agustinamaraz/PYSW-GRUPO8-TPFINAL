@@ -7,7 +7,11 @@ pacienteCtrl.getPacientes = async (req, res) => {
        var pacientes = await Paciente.find(); 
     res.json(pacientes);
  }
-
+ //get id
+ pacienteCtrl.getPacientebyId = async (req, res) => {//siempre cunado las solicitudes vienen por http se reciben obetos el req y el res
+    const paciente = await Paciente.findById(req.params.id);
+  res.json(paciente);
+ }
 
 //get paciente por dni(agregado 23/06)
 pacienteCtrl.getPacienteDni = async (req, res) => {
@@ -73,10 +77,4 @@ pacienteCtrl.deletePaciente = async (req, res) => {
         })
     }
 }
-/*get por dni
-pacienteCtrl.getPacientebyDni = async (req, res) => {
-    console.log("ENTRANDO A Paciente po dni");
-    const registro = await Paciente.find({dni: req.params.dni}); 
-    res.json(registro);
-}*/
 module.exports = pacienteCtrl; 

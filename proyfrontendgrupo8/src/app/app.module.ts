@@ -41,6 +41,10 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     OAuthModule.forRoot(),
+    //toast
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    // ToastrModule added
     ToastrModule.forRoot()
   ],
   providers: [
@@ -49,10 +53,7 @@ import { ToastrModule } from 'ngx-toastr';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
-    },
-    CommonModule,
-    BrowserAnimationsModule, // required animations module
-    // ToastrModule added
+    }
   ],
   bootstrap: [AppComponent],
 })
