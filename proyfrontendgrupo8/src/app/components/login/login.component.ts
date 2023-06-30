@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
           var user = result;
           if (user.status == 1) {
             //guardamos el user en cookies en el cliente
+            sessionStorage.setItem("token", user.token);
             sessionStorage.setItem("user", user.username);
             sessionStorage.setItem("userid", user.userid);
             sessionStorage.setItem("rol", JSON.stringify(user.rol));
