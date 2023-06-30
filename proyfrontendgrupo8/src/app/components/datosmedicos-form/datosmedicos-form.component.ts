@@ -46,7 +46,7 @@ export class DatosmedicosFormComponent implements OnInit{
     )
   }
   addMedicalData(){
-    this.datoMedico.imc=(this.datoMedico.peso*1000)/(this.datoMedico.talla*this.datoMedico.talla)
+    this.datoMedico.imc = +(this.datoMedico.peso / ((this.datoMedico.talla / 100) ** 2)).toFixed(3);
     console.log(this.datoMedico.paciente)
     this.datosMedicosService.addDatosMedicos(this.datoMedico).subscribe(
       result=>{
