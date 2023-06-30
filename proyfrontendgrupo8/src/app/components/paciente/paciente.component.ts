@@ -41,7 +41,7 @@ export class PacienteComponent implements OnInit {
     )
   }
 
-  
+
   obtenerPacienteDni(){
     console.log("ENTRANDO A PACIENTE POR DNI");
     this.pacientes=new Array<Paciente>();

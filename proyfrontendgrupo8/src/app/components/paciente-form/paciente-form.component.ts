@@ -54,7 +54,7 @@ export class PacienteFormComponent implements OnInit {
         }
       },
       error => {
-        alert(error.msg);
+        this.toastr.error(error.msg)
       }
     )
 
@@ -63,6 +63,7 @@ export class PacienteFormComponent implements OnInit {
 
 
   modificarPaciente() {
+    console.log("Entrando a modificar paciente")
     this.pacienteService.editPaciente(this.paciente).subscribe(
       result => {
         if (result.status == 1) {
@@ -71,7 +72,7 @@ export class PacienteFormComponent implements OnInit {
         }
       },
       error => {
-        alert(error.msg);
+        this.toastr.error(error.msg)
       }
     )
   }

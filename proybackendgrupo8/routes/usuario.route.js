@@ -7,7 +7,7 @@ const autCtrl = require('./../controllers/auth.controller');
 // definiendo rutas
 router.post('/login', usuarioCtrl.loginUsuario);
 router.post('/', usuarioCtrl.createUsuario);
-router.put('/:id', autCtrl.verifyToken, usuarioCtrl.editUsuario);
+router.put('/:id', autCtrl.verifyToken, usuarioCtrl.editUsuario); 
 router.delete('/:id', autCtrl.verifyToken, usuarioCtrl.deleteUsuario);
 router.get('/:id', autCtrl.verifyToken, usuarioCtrl.getUsuario);
 router.get('/', autCtrl.verifyToken, usuarioCtrl.getUsuarios);

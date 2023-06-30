@@ -42,10 +42,12 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     OAuthModule.forRoot(),
 
+
     //toast
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot()// ToastrModule added
+
   ],
   providers: [
     LoginService,
