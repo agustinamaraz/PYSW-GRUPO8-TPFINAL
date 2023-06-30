@@ -1,15 +1,13 @@
 <nav [class.sticky]="stickyHeader">
   <a href="#" class="logo">Centro de Salud <br> "Los Huaicos"</a>
   <ul class="navMenu" #navmenu>
-    <li><a routerLink="/inicio">Inicio</a></li>
-    <li><a routerLink="/shop">Productos</a></li>
-    <li class="nav-item dropdown bg-dark">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Paciente
-      </a>
-      <ul class="dropdown-menu bg-dark">
-        <li><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
-        <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
+    <li><a routerLink="/home">Inicio</a></li>
+    <li><a routerLink="/calendar">Calendario</a></li>
+    <li>
+      <a href="#">Paciente ▾</a>
+      <ul class="dropdown">
+          <li><a [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
+          <li><a [routerLink]="'paciente'">Listado de Pacientes</a></li>
       </ul>
     </li>
   </ul>
