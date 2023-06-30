@@ -22,7 +22,17 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
+import { DatosmedicosLisComponent } from './components/datosmedicos-lis/datosmedicos-lis.component';
 
+//fecha
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
+
+
+
+registerLocaleData(localeEsAr);
 
 @NgModule({
   declarations: [
@@ -33,9 +43,11 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     PacienteComponent,
     PacienteFormComponent,
-    CalendarComponent,
+    DatosmedicosFormComponent,
+    DatosmedicosLisComponent,
+    CalendarComponent
   ],
-  imports: [
+  imports:[
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -55,6 +67,15 @@ import { ToastrModule } from 'ngx-toastr';
       multi: true,
     }
   ],
-  bootstrap: [AppComponent],
+  providers:
+    [LoginService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptorService,
+        multi: true
+      },
+      { provide: LOCALE_ID, useValue: 'es-AR' }
+    ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
