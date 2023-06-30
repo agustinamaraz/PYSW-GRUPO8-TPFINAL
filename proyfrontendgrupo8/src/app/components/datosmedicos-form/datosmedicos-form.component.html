@@ -1,0 +1,113 @@
+<body>
+<p>datosmedicos-form works!</p>
+<br><br><br>
+<form #datosMedicosForm="ngForm" (ngSubmit)="addMedicalData()">
+    <div class="mb-3 ms-2">
+        <label for="paciente" class="form-label">Elija un  paciente</label>
+            <select name="paciente" id="" aria-label="select pacient" [(ngModel)]="datoMedico.paciente" class="form-select" required>
+                <option *ngFor="let item of pacientes" [value]="item._id" >{{item.nombre + '  ' + item.apellido}}  dni {{item.dni}}</option>
+            </select>
+            <!--<div *ngIf="datosMedicosForm.controls['paciente'].invalid && (datosMedicosForm.controls['dni'].dirty ||datosMedicosForm.controls['dni'].touched)" class="alert alert-danger my-1 p-1">
+                <div *ngIf="datosMedicosForm.controls['paciente'].errors?.['required']">
+                    El paciente es requerido
+                </div>
+            </div>-->
+    </div>
+        <div class="mb-3 ms-2">
+            <label for="peso" class="form-label">Ingrese el peso</label>
+            <input type="number" class="form-control form" [(ngModel)]="datoMedico.peso" id="peso" min="0" name="peso" required #pesoInput="ngModel">
+            <div *ngIf="pesoInput.invalid" class="alert alert-danger my-1 p-1">
+                <div *ngIf="pesoInput.errors?.['required']">
+                    El peso es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 ms-2">
+            <label for="talla" class="form-label">Ingrese la altura</label>
+            <input type="number" class="form-control form" [(ngModel)]="datoMedico.talla" id="talla" min="0" name="talla" required #tallaInput="ngModel">
+            <div *ngIf="tallaInput.invalid" class="alert alert-danger my-1 p-1">
+                <div *ngIf="tallaInput.errors?.['required']">
+                    La altura es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 ms-2">
+            <label for="tension_arterial" class="form-label">Ingrese la tension arterial</label>
+            <input type="number" class="form-control form" [(ngModel)]="datoMedico.tension_arterial" id="tension_arterial" min="0" name="tension_arterial" required #tension_arterialInput="ngModel">
+            <div *ngIf="tension_arterialInput.invalid" class="alert alert-danger my-1 p-1">
+                <div *ngIf="tension_arterialInput.errors?.['required']">
+                    La tension arterial es requerida
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 ms-2">
+            <label for="diagnostico" class="form-label">Ingrese el diagnostico</label>
+            <input type="text" class="form-control form" [(ngModel)]="datoMedico.diagnostico" id="diagnostico" min="0" name="diagnostico" required #diagnosticoInput="ngModel">
+            <div *ngIf="diagnosticoInput.invalid" class="alert alert-danger my-1 p-1">
+                <div *ngIf="diagnosticoInput.errors?.['required']">
+                    El diagnostico es requerido
+                </div>
+            </div>
+        </div>
+    <div class="mb-3 ms-2">
+        <label for="fecha" class="form-label">Fecha del dato medico</label>
+        <label class="form-control">{{datoMedico.fecha}}</label>
+    </div>
+    <button type="submit" [disabled]="datosMedicosForm.invalid" class="btn btn-primary ms-2">enviar</button>
+</form>
+<br>
+
+
+
+</body>
+<!-- 
+<body>
+    <br>
+<form *ngIf="!modify" #datosmedicosdatosMedicosForm="ngForm" (ngSubmit)="addTicket()">
+    <div class="mb-3 ms-2">
+        <label for="" class="form-label">Elija el espectador</label>
+        <select class="form-select" aria-label="select spectator" [(ngModel)]="dni" name="dni" required>
+            <option *ngFor="let item of espectadores" [value]="item.dni" (click)="findEspectador(item.dni)">{{item.nombre}} {{item.apellido}} (dni: {{item.dni}})</option>
+        </select>
+        <div *ngIf="datosmedicosdatosMedicosForm.controls['dni'].invalid && (datosmedicosdatosMedicosForm.controls['dni'].dirty ||datosMedicosForm.controls['dni'].touched)" class="alert alert-danger my-1 p-1">
+            <div *ngIf="datosmedicosdatosMedicosForm.controls['dni'].errors?.['required']">
+                El espectador es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 ms-2">
+        <label for="categoria" class="form-label">Categoria Espectador</label>
+        <select class="form-select" aria-label="select category" id="categoria" name="categoria" [(ngModel)]="categoria" required>
+            <option value="extranjero">extranjero</option>
+            <option value="local">local</option>
+        </select>
+        <div *ngIf="datosmedicosdatosMedicosForm.controls['categoria'].invalid && (datosmedicosdatosMedicosForm.controls['categoria'].dirty ||datosMedicosForm.controls['categoria'].touched)" class="alert alert-danger my-1 p-1">
+            <div *ngIf="datosmedicosdatosMedicosForm.controls['categoria'].errors?.['required']">
+                La categoría es requerida
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 ms-2">
+        <label for="precio" class="form-label">Precio Producto</label>
+        <input type="number" class="form-control form" [(ngModel)]="precio" id="precio" min="0" name="precio" required #pesoInput="ngModel">
+        <div *ngIf="pesoInput.invalid" class="alert alert-danger my-1 p-1">
+            <div *ngIf="pesoInput.errors?.['required']">
+                El precio es requerido
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 ms-2">
+        <label for="fecha" class="form-label">Fecha Compra</label>
+        <input type="date" class="form-control form" [(ngModel)]="fecha" id="fecha" name="fecha" required #fechaInput="ngModel">
+        <div *ngIf="fechaInput.invalid" class="alert alert-danger my-1 p-1">
+            <div *ngIf="fechaInput.errors?.['required']">
+                La fecha es requerida
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="datosmedicosdatosMedicosForm.invalid" class="btn btn-primary ms-2">Enviar</button>
+</form>
+    
+
+-->

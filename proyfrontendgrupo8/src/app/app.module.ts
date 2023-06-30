@@ -20,8 +20,17 @@ import { PacienteFormComponent } from './components/paciente-form/paciente-form.
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
+import { DatosmedicosLisComponent } from './components/datosmedicos-lis/datosmedicos-lis.component';
+
+//fecha
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
 
 
+
+registerLocaleData(localeEsAr);
 
 @NgModule({
   declarations: [
@@ -31,7 +40,9 @@ import { ToastrModule } from 'ngx-toastr';
     FooterComponent,
     HomeComponent,
     PacienteComponent,
-    PacienteFormComponent
+    PacienteFormComponent,
+    DatosmedicosFormComponent,
+    DatosmedicosLisComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +59,8 @@ import { ToastrModule } from 'ngx-toastr';
         provide: HTTP_INTERCEPTORS,
         useClass: TokenInterceptorService,
         multi: true
-      }
+      },
+      { provide: LOCALE_ID, useValue: 'es-AR' }
     ],
   bootstrap: [AppComponent]
 })
