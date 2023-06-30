@@ -61,26 +61,4 @@ export class DatosmedicosFormComponent implements OnInit{
       }
     )
   }
-  /*
-    public guardarTicket() {
-    if (this.validar()) {
-      console.log("Guardando Ticket...");
-      this.ticket.fechaCompra = String(new Date().toLocaleDateString('es-ar'));
-      this.ticketService.addTicket(this.ticket).subscribe(
-        result => {
-          console.log(result);
-          if (result.status == 1) {
-            alert(result.msg);
-            this.irLista();
-          }
-        },
-        error => {
-          console.log(error);
-          alert(error.msg);
-        }
-      );
-    }
-  }
-  */
-
 }
