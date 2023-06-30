@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'paciente-form/:id',
     component:PacienteFormComponent
+  },
+  {
+    path:'calendar',
+    component:CalendarComponent
   },
   //lo siguiente siempre va al final
   {

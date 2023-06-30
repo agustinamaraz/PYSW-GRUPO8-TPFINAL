@@ -15,8 +15,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
-
-
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -26,22 +26,24 @@ import { PacienteFormComponent } from './components/paciente-form/paciente-form.
     FooterComponent,
     HomeComponent,
     PacienteComponent,
-    PacienteFormComponent
+    PacienteFormComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot(),
   ],
-  providers:
-    [LoginService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptorService,
-        multi: true
-      }
-    ],
-  bootstrap: [AppComponent]
+  providers: [
+    LoginService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
