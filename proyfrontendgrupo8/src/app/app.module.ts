@@ -15,6 +15,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
 import { CommonModule } from '@angular/common';
@@ -42,16 +44,27 @@ registerLocaleData(localeEsAr);
     PacienteComponent,
     PacienteFormComponent,
     DatosmedicosFormComponent,
-    DatosmedicosLisComponent
+    DatosmedicosLisComponent,
+    CalendarComponent
   ],
-  imports: [
+  imports:[
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    OAuthModule.forRoot(),
+    ToastrModule.forRoot()
+  ],
+  providers: [
+    LoginService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot()// ToastrModule added
+    // ToastrModule added
   ],
   providers:
     [LoginService,
@@ -64,4 +77,4 @@ registerLocaleData(localeEsAr);
     ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
