@@ -31,7 +31,7 @@ datosMedicosCtrl.getDatosMedicosById = async (req,res)=>{
 //Get data by dni
 datosMedicosCtrl.getAllDatosMedicosDni = async (req,res)=>{
     try{
-    const datosMedicos = await DatosMedicos.find({dni:req.params.dni}).populate('paciente');
+    const datosMedicos = await DatosMedicos.find({paciente:{dni:req.params.dni}}).populate('paciente');
     res.json(datosMedicos)
     }catch(error){
         res.status(500).json({
@@ -42,20 +42,28 @@ datosMedicosCtrl.getAllDatosMedicosDni = async (req,res)=>{
 }
 //Edit object data
 datosMedicosCtrl.editDatosMedicos = async (req, res)=>{
-    const vdatosMedicos = new DatosMedicos(req.body);
     try{
-        await DatosMedicos.updateOne({_id:req.body._id}, vdatosMedicos)
-        res.json({
-            'status': '1',
-            'msg': 'Datos Medicos updated'
-        })
+        const datosmMedicosId = req.params.id;
+        const vdatosMedicos = req.body;
+        const result = await DatosMedicos.findByIdAndUpdate(datosmMedicosId, vdatosMedicos)
+        if (result){
+            res.json({
+                'status': '1',
+                'msg': 'Datos Medicos updated'
+            });
+        }else{
+            res.json({
+                'status':'0',
+                'msg': 'Datos Medicos not Found'
+            });
+        }
     }catch (error){
         res.status(400).json({
             'status': '0',
             'msg': 'Error procesando la operacion'
-        })
+        });
     }
-}
+};
 // Delete data by Id
 datosMedicosCtrl.deleteDatosMedicos = async (req,res)=>{
         try {

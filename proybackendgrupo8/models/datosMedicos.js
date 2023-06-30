@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 const Paciente = require('./paciente');
 const DatosMedicosSchema = new Schema({
     paciente: {type: Schema.Types.ObjectId, ref: Paciente, required:true },
-    dni:    {type: String, required: true},
     fecha: { type: String, required: true },
     peso: { type: Number, required: true },
     imc: {type: Number, required: true },
