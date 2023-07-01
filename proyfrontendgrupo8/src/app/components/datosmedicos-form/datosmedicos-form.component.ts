@@ -10,53 +10,53 @@ import { PacienteService } from 'src/app/services/paciente.service';
   styleUrls: ['./datosmedicos-form.component.css']
 })
 
-export class DatosmedicosFormComponent implements OnInit{
-  datoMedico!:DatosMedicos;
+export class DatosmedicosFormComponent implements OnInit {
+  datoMedico!: DatosMedicos;
   datosMedicos!: Array<DatosMedicos>;
   pacientes!: Array<Paciente>;
-  constructor(private pacienteService:PacienteService, private datosMedicosService: DatosMedicosServiceService){
-  this.datosMedicos = new Array<DatosMedicos>()
-  this.pacientes = new Array<Paciente>()
-  this.datoMedico = new DatosMedicos()
+  constructor(private pacienteService: PacienteService, private datosMedicosService: DatosMedicosServiceService) {
+    this.datosMedicos = new Array<DatosMedicos>()
+    this.pacientes = new Array<Paciente>()
+    this.datoMedico = new DatosMedicos()
     this.getAllPacientes();
-    console.log(this.pacientes.length + 'longitud');
+    //console.log(this.pacientes.length + 'longitud');
     this.datoMedico.fecha = String(new Date().toLocaleDateString('es-ar'));
-    console.log(this.datoMedico.fecha);
+    //console.log(this.datoMedico.fecha);
   }
 
   ngOnInit(): void {
-    console.log(this.pacientes[0].dni + ' dni pacientes constructor')
+    //console.log(this.pacientes[0].dni + ' dni pacientes constructor')
   }
-  getAllPacientes(){
+  getAllPacientes() {
     console.log("AAAAAAAAAAAAAAAAAAAA")
     this.pacienteService.getPacientes().subscribe(
       result => {
         let unPaciente = new Paciente();
-        result.forEach((element:any) => {
-          Object.assign(unPaciente,element);
+        result.forEach((element: any) => {
+          Object.assign(unPaciente, element);
           console.log(unPaciente.dni + ' a ' + element.dni)
           this.pacientes.push(unPaciente);
           console.log(this.pacientes[0].dni + ' dni pacientes')
           unPaciente = new Paciente();
         });
       },
-      error=>{
+      error => {
         console.log(error);
       }
     )
   }
-  addMedicalData(){
+  addMedicalData() {
     this.datoMedico.imc = +(this.datoMedico.peso / ((this.datoMedico.talla / 100) ** 2)).toFixed(3);
     console.log(this.datoMedico.paciente)
     this.datosMedicosService.addDatosMedicos(this.datoMedico).subscribe(
-      result=>{
-        if(result.status == 1){
+      result => {
+        if (result.status == 1) {
           alert('Guardado correctamente')
-        }else{
+        } else {
           alert(result)
         }
       },
-      error=>{
+      error => {
         alert(error)
       }
     )
