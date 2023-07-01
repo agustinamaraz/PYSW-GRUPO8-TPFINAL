@@ -61,14 +61,6 @@ registerLocaleData(localeEsAr);
     ToastrModule.forRoot()// ToastrModule added
 
   ],
-  providers: [
-    LoginService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    }
-  ],
   providers:
     [LoginService,
       {

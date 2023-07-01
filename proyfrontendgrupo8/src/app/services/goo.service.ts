@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import { authCodeFlowConfig } from './../sso.config';
+import { Console } from 'console';
 @Injectable({
   providedIn: 'root',
 })
@@ -40,25 +41,25 @@ export class GooService {
       httpOptions
     );
   }
+
   createEvent(idCalendario: string, event: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + this.getToken(),
-        Accept: 'application/json',
+        Accept: 'application/ecmascript',
         'Content-Type': 'application/json',
       }),
       params: new HttpParams({}),
     };
+
     let body = JSON.stringify(event);
-    console.log(body);
-    return this._http.post(
-      'https://www.googleapis.com/calendar/v3/calendars/' +
-        idCalendario +
-        '/events',
-      body,
-      httpOptions
-    );
+
+    console.log("consumiento createEventCalendariooooo: "+body+"\n");
+
+    //https://www.googleapis.com/calendar/v3/calendars/calendarId/events
+    return this._http.post('https://www.googleapis.com/calendar/v3/calendars/' + idCalendario +'/events',body,httpOptions);
   }
+
   getToken(): string {
     return this.oAuthService.getAccessToken();
   }
