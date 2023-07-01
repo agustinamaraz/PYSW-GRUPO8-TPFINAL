@@ -14,7 +14,7 @@ export class CalendarComponent implements OnInit {
   event: any = {
     kind: 'calendar@event',
     status: 'confirmed',
-    summary: 'REUNION DESDE ANGULAR',
+    summary: 'agusagusagus',
     creator: {
       email: 'centroSaludJujuy@gmail.com',
     },
@@ -67,6 +67,7 @@ export class CalendarComponent implements OnInit {
     this.gooService.createEvent(this.idCalendario,this.event).subscribe(
       (result) => {
         console.log(result);
+        window.location.reload();
       },
       (error) => {
         console.log(error);
