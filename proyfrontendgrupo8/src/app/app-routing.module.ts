@@ -6,11 +6,18 @@ import { PacienteComponent } from './components/paciente/paciente.component';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
 import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { DatosmedicosLisComponent } from './components/datosmedicos-lis/datosmedicos-lis.component';
+import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos-medicos-home.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   {
     path:'login',
     component: LoginComponent
+  },
+  {
+    path:'signUp/:id',
+    component:SignupComponent
   },
   {
     path:'home',
@@ -25,8 +32,16 @@ const routes: Routes = [
     component:PacienteFormComponent
   },
   {
-    path:'datosMedicos-form',
+    path:'datosMedicos-form/:id',
     component:DatosmedicosFormComponent
+  },
+  {
+    path:'datosMedicos',
+    component:DatosmedicosLisComponent
+  },
+  {
+    path:'datosMedicosHome/:id',
+    component:DatosMedicosHomeComponent
   },
   {
     path:'calendar',
