@@ -9,7 +9,7 @@
             <label for="nombre" class="form-label">Nombre</label>
             <input name="nombre" type="text" class="form-control" id="nombre"[(ngModel)]="paciente.nombre"
             placeholder="Ingrese nombre" required #nombre="ngModel" >
-                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+                   <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
                         class="row alert alert-danger">
                           <div *ngIf=" nombre.errors?.['required']">
                                   Nombre Requerido.
@@ -22,8 +22,8 @@
 
         <div class="mb-3">
             <label for="idapellido" class="form-label">Apellido</label>
-            <input name="apellido" type="text" class="form-control" id="idapellido"[(ngModel)]="paciente.apellido" 
-            placeholder="Ingrese apellido" required #apellido="ngModel" >
+            <input name="apellido" type="text" class="form-control" id="idapellido" 
+            placeholder="Ingrese apellido" required #apellido="ngModel" [(ngModel)]="paciente.apellido">
                     <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
                         class="row alert alert-danger">
                           <div *ngIf=" apellido.errors?.['required']">

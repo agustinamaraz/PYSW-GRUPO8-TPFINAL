@@ -29,9 +29,9 @@ export class DatosmedicosFormComponent implements OnInit{
   this.datoMedico = new DatosMedicos()
   this.filtroPacientes=""
     this.getAllPacientes();
-    console.log(this.pacientes.length + 'longitud');
+    //console.log(this.pacientes.length + 'longitud');
     this.datoMedico.fecha = String(new Date().toLocaleDateString('es-ar'));
-    console.log(this.datoMedico.fecha);
+    //console.log(this.datoMedico.fecha);
   }
 
   ngOnInit(): void {
@@ -95,25 +95,25 @@ export class DatosmedicosFormComponent implements OnInit{
       }
     )
   }
-  getAllPacientes(){
+  getAllPacientes() {
     console.log("AAAAAAAAAAAAAAAAAAAA")
     this.pacienteService.getPacientes().subscribe(
       result => {
         let unPaciente = new Paciente();
-        result.forEach((element:any) => {
-          Object.assign(unPaciente,element);
+        result.forEach((element: any) => {
+          Object.assign(unPaciente, element);
           console.log(unPaciente.dni + ' a ' + element.dni)
           this.pacientes.push(unPaciente);
           console.log(this.pacientes[0].dni + ' dni pacientes')
           unPaciente = new Paciente();
         });
       },
-      error=>{
+      error => {
         console.log(error);
       }
     )
   }
-  addMedicalData(){
+  addMedicalData() {
     this.datoMedico.imc = +(this.datoMedico.peso / ((this.datoMedico.talla / 100) ** 2)).toFixed(3);
     console.log(this.datoMedico.paciente)
     this.datosMedicosService.addDatosMedicos(this.datoMedico.motivo, this.datoMedico.paciente,this.datoMedico.fecha,
@@ -123,11 +123,11 @@ export class DatosmedicosFormComponent implements OnInit{
         if(result.status == 1){
           this.datoMedico.idDatoMedico = result._id
           alert('Guardado correctamente')
-        }else{
+        } else {
           alert(result)
         }
       },
-      error=>{
+      error => {
         alert(error)
       }
     )

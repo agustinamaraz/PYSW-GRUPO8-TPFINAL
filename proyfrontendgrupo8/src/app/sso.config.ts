@@ -7,12 +7,12 @@ export const authCodeFlowConfig: AuthConfig = {
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
   clientId:
-    '951934830450-584dsihp59gb3g6f9eq95tofamtg4693.apps.googleusercontent.com',
+    '471352660387-itm3mmda545geqriq02m6t52ns327g6m.apps.googleusercontent.com',
   // Just needed if your auth server demands a secret. In general, this
   // is a sign that the auth server is not configured with SPAs in mind
   // and it might not enforce further best practices vital for security
   // such applications.
-  dummyClientSecret: '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',
+  dummyClientSecret: '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',
   responseType: 'code',
   // set the scope for the permissions the client should request
   // The first four are defined by OIDC.

@@ -59,15 +59,9 @@ registerLocaleData(localeEsAr);
     FormsModule,
     HttpClientModule,
     OAuthModule.forRoot(),
-    ToastrModule.forRoot()
-  ],
-  providers: [
-    LoginService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    },
+
+
+    //toast
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule
