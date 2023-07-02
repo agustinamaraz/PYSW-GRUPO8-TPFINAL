@@ -29,6 +29,9 @@ import { DatosmedicosLisComponent } from './components/datosmedicos-lis/datosmed
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
+import { SearchPipe } from './search.pipe';
+import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos-medicos-home.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 
@@ -45,7 +48,10 @@ registerLocaleData(localeEsAr);
     PacienteFormComponent,
     DatosmedicosFormComponent,
     DatosmedicosLisComponent,
-    CalendarComponent
+    CalendarComponent,
+    SearchPipe,
+    DatosMedicosHomeComponent,
+    SignupComponent
   ],
   imports:[
     BrowserModule,
@@ -64,17 +70,8 @@ registerLocaleData(localeEsAr);
     },
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    // ToastrModule added
+    ToastrModule
   ],
-  providers:
-    [LoginService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptorService,
-        multi: true
-      },
-      { provide: LOCALE_ID, useValue: 'es-AR' }
-    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

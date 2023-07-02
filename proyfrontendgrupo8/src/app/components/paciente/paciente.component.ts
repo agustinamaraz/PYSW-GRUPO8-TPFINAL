@@ -83,5 +83,8 @@ export class PacienteComponent implements OnInit {
   agregarPaciente(){
     this.router.navigate(["paciente-form",0])
   }
+  verControl(paciente:Paciente){
+    this.router.navigate(['datosMedicosHome',paciente._id])
+  }
 }
 

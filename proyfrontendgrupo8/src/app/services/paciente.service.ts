@@ -51,7 +51,19 @@ export class PacienteService {
 
     return this.http.get("http://localhost:3000/api/paciente/",httpOptions);
   }
+  getPacienteById(id:string):Observable<any>{
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
 
+        }
+      ),
+      params: new HttpParams()
+
+    }
+
+    return this.http.get("http://localhost:3000/api/paciente/"+id,httpOptions);
+  }
   createPaciente(paciente:Paciente):Observable<any>{
     let httpOptions={
       headers: new HttpHeaders(
