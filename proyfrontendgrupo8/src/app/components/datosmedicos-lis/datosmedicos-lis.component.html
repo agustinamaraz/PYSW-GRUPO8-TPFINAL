@@ -1,1 +1,30 @@
+<br><br><br>
 <p>datosmedicos-lis works!</p>
+<input class="form-control" type="text" placeholder="Buscar" [(ngModel)]="searchText">
+<div style="padding: 3%;">
+    <table class="table table-bordered table-hover border-primary mt-5" >
+        <thead class="table-primary">
+            <tr>
+                <th scope="col">Motivo</th>
+                <th scope="col">Dni del Paciente</th>
+                <th scope="col">N y A del Paciente</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Diagnostico</th>
+                <th scope="col">Operaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of datosMedicos | search: searchText">
+                <td>{{d.motivo}}</td>
+                <td>{{d.pacienteObj.dni}}</td>
+                <td>{{d.pacienteObj.nombre + ' ' + d.pacienteObj.apellido}}</td>
+                <td>{{d.fecha}}</td>
+                <td>{{d.diagnostico}}</td>
+                <td>
+                    <button type="button" class="btn btn-warning" (click)="modificarDatoMedico(d)">Modificar</button>
+                    <button type="button" class="btn btn-danger" (click)="eliminarDatoMedico(d)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

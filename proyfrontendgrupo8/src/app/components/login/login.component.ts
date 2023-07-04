@@ -46,5 +46,7 @@ export class LoginComponent implements OnInit {
           console.log(error);
         });
   }
-
+  signup(){
+    this.router.navigate(['signUp',0]);
+  }
 }
