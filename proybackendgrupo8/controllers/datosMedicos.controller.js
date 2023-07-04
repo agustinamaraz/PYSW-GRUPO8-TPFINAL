@@ -1,4 +1,5 @@
 const DatosMedicos = require('../models/datosMedicos');
+const Paciente = require('../models/paciente');
 const datosMedicosCtrl = {}
 
 //Recoger todos los datos Medicos
@@ -29,16 +30,10 @@ datosMedicosCtrl.getDatosMedicosById = async (req,res)=>{
     res.json(datosMedicos);
 }
 //Get data by dni
-datosMedicosCtrl.getAllDatosMedicosDni = async (req,res)=>{
-    try{
-    const datosMedicos = await DatosMedicos.find({paciente:{dni:req.params.dni}}).populate('paciente');
-    res.json(datosMedicos)
-    }catch(error){
-        res.status(500).json({
-            status: '0',
-            msg: 'Error retrieving transactions',
-            });
-    }
+datosMedicosCtrl.getAllDatosMedicosDni = async (req, res) => {
+    const paciente2 = await Paciente.findOne({ dni: req.params.dni });
+    const datosMedicos = await DatosMedicos.find({ paciente: paciente2._id}).populate('paciente');
+    res.json(datosMedicos);
 }
 //Edit object data
 datosMedicosCtrl.editDatosMedicos = async (req, res)=>{

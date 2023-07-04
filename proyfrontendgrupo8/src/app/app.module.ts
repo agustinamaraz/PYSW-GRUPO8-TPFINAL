@@ -32,6 +32,8 @@ import localeEsAr from '@angular/common/locales/es-AR';
 import { SearchPipe } from './search.pipe';
 import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos-medicos-home.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 
 
@@ -51,7 +53,9 @@ registerLocaleData(localeEsAr);
     CalendarComponent,
     SearchPipe,
     DatosMedicosHomeComponent,
-    SignupComponent
+    SignupComponent,
+    ConfirmComponent,
+    ResetpasswordComponent
   ],
   imports:[
     BrowserModule,

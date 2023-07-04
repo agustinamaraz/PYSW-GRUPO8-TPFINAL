@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Rol } from 'src/app/models/rol';
 import { Usuario } from 'src/app/models/usuario';
@@ -9,10 +10,16 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
 export class SignupComponent implements OnInit {
   usuario!:Usuario;
   roles!:Array<Rol>;
   modifica:boolean=false
+  repeatedEmail!:boolean;
+  repeatedUsername!:boolean;
+  loadPassword:boolean=false;
+  loadEmail:boolean=false;
+  loadUsername:boolean=false;
   id:string=""
   selectedRole!:Rol
   constructor(private usuarioService:LoginService, private activatedRoute:ActivatedRoute, private route:Router) { 
@@ -30,6 +37,9 @@ export class SignupComponent implements OnInit {
         console.log(this.modifica)
       }
     });
+    // setTimeout(() => {
+    //   this.initializeForm();
+    // });
   }
   onSubmit(){
 
@@ -59,7 +69,30 @@ export class SignupComponent implements OnInit {
       },
       error=>{
         console.log(error);
-        alert('No pudo ser registrado')
+        if (error.error.message === 'Este email ya está en uso') {
+          console.log("Este email ya fue registrado");
+          this.usuario.email="";
+          this.usuario.password="";
+          this.repeatedEmail=true;
+          [this.loadPassword, this.loadEmail] = [true, true];
+        }
+        if (error.error.message === 'Este nombre de usuario ya está en uso') {
+          console.log("Este nombre de usuario ya fue registrado");
+          this.usuario.username="";
+          this.usuario.password="";
+          this.repeatedUsername=true;
+          [this.loadPassword, this.loadUsername] = [true, true];
+        }
+        if (error.status==448) {
+          console.log("Tanto el email como el nombre de usuario ya estan registrados");
+          this.usuario.email="";
+          this.usuario.username="";
+          this.usuario.password="";
+          this.repeatedEmail=true;
+          this.repeatedUsername=true;
+          [this.loadPassword, this.loadEmail, this.loadUsername] = [true, true, true];
+
+        }
       }
     )
   }

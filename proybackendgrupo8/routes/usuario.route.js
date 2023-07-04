@@ -6,6 +6,10 @@ const usuarioCtrl = require('./../controllers/usuario.controller');
 //const autCtrl = require('./../controllers/auth.controller');
 // definiendo rutas
 router.post('/login', usuarioCtrl.loginUsuario); //auth estaba en todos mennos este creo
+router.get('/confirm/:token',[],usuarioCtrl.confirm);
+router.delete('/eliminar',usuarioCtrl.deleteUserNotVerified);
+router.post('/reset-ask', usuarioCtrl.askReset);
+router.post('/reset/:token',[], usuarioCtrl.resetPassword);
 router.post('/', usuarioCtrl.createUsuario);
 router.put('/:id', usuarioCtrl.editUsuario); 
 router.delete('/:id', usuarioCtrl.deleteUsuario);

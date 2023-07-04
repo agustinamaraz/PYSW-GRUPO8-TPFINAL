@@ -9,6 +9,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DatosmedicosLisComponent } from './components/datosmedicos-lis/datosmedicos-lis.component';
 import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos-medicos-home.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,14 @@ const routes: Routes = [
   {
     path:'datosMedicosHome/:id',
     component:DatosMedicosHomeComponent
+  },
+  {
+    path:'confirm/:id',
+    component:ConfirmComponent
+  },
+  {
+    path:'reset/:id',
+    component:ResetpasswordComponent
   },
   {
     path:'calendar',
