@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -23,9 +24,11 @@ export class MenuComponent {
   @ViewChild('menuIcon') menuIcon!: ElementRef;
   @ViewChild('navmenu') navmenu!: ElementRef;
   private routerSubscription: Subscription;
+  userStatus!:boolean;
   constructor(
     public loginService: LoginService,
     private router: Router,
+    private http: HttpClient
   ) {
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

@@ -11,7 +11,30 @@ export class LoginService {
   constructor(private http: HttpClient) {
     this.hostBase = "http://localhost:3000/api/usuario/"
   }
-
+  public getRoles():Observable<any>{
+    const httpOption = {
+      headers: new HttpHeaders({
+      })
+    }
+    return this.http.get('http://localhost:3000/api/rol/', httpOption)
+  }
+  public signUp(username:string, password:string, email:string, rol:string):Observable<any>{
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    console.log(JSON.stringify({ username: username, password: password, email:email, rol:rol }))
+    let body = JSON.stringify({ username: username, password: password, email:email, rol:rol });
+    return this.http.post(this.hostBase, body, httpOption)
+  }
+  public confirm(token:string){
+    const httpOption = {
+      headers: new HttpHeaders({
+      })
+    }
+    return this.http.get('http://localhost:3000/api/usuario/confirm/'+token, httpOption)
+  }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
       headers: new HttpHeaders({
@@ -51,6 +74,15 @@ export class LoginService {
     return id;
   }
 
+  public getUserStatus(): boolean {
+    const user = sessionStorage.getItem("user");
+    if (user) {
+      const status = JSON.parse(user).status;
+      return status === "VERIFIED";
+    } else {
+      return false;
+    }
+  }
   //seguridad
   getToken(): string {
     if (sessionStorage.getItem("token") != null) {
@@ -58,6 +90,16 @@ export class LoginService {
     } else {
       return "";
     }
+  }
+  resetPassword(password:string, token:string){
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    let body = JSON.stringify({password: password });
+    console.log(body);
+    return this.http.post(this.hostBase + 'reset/'+token, body, httpOption);
   }
 
 }

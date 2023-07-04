@@ -3,8 +3,10 @@ const cors = require('cors');
 const { mongoose } = require('./database');
 var app = express();
 //middlewares
+app.use(express.static('./public'));
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(express.urlencoded({ extended: false }));
 
 //Cargamos el modulo de direccionamiento de rutas
 app.use('/api/usuario', require('./routes/usuario.route.js'));
