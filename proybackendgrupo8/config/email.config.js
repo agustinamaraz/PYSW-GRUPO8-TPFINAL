@@ -8,8 +8,8 @@ const mail = {
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: mail.user, // generated ethereal user
-      pass: mail.pass, // generated ethereal password
+        user: mail.user, 
+        pass: mail.pass,
     },
 });
 
@@ -41,7 +41,7 @@ const sendEmailPassword = async (email, subject, html) => {
         });
 
     } catch (error) {
-        console.log('Algo no va bien con el email', error);
+        console.log('Error con el mail', error);
     }
 }
 const getTemplate = (username, token) => {
