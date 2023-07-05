@@ -29,6 +29,7 @@ export class FormAnuncioComponent implements OnInit {
    archivoElec!:string
    arch!:Blob
    fecha !:Date 
+   can!:string
    constructor(private anuncioService: AnuncioService,private route :Router,private storageService: StorageService,private activatedRoute: ActivatedRoute,private pd:DatePipe) { 
     this.anuncio= new Anuncio()
     this.nextbutton = "guardar"
@@ -51,14 +52,19 @@ export class FormAnuncioComponent implements OnInit {
     if (params['id'] == '0') {
       this.nextbutton = "guardar"
       this.controlador = "caja1"
+      this.can="yes"
     } else {
       this.nextbutton = "modificar"
        this.controlador = "caja1"
       this.obtenerAnuncio(params['id']);
       this.id=params['id']
       console.log(this.id)
+      this.can="yes"
     }
   });
+  }
+  cancelarVolver(){
+    this.route.navigate(['list-anuncio'])
   }
   verificar(){
     if(this.fechaStrMin + 1 >= this.anuncio.fechaHasta){
@@ -83,6 +89,7 @@ export class FormAnuncioComponent implements OnInit {
           if (result.status == 1) {
             alert(result.msg);
               this.controlador="caja2"
+              this.can="no"
               this.anuncioService.getAnuncios().subscribe(
                 result1=>{
                   console.log(result1)
@@ -109,6 +116,7 @@ export class FormAnuncioComponent implements OnInit {
           if (result.status == 1) {
             alert(result.msg);
             this.controlador="caja2"
+            this.can="no"
           }
         },
         error => {
@@ -127,7 +135,7 @@ export class FormAnuncioComponent implements OnInit {
   }
   tipoarchivo(){
      this.recurso= new Recurso();
-    this.recurso.tipo="archivo"
+    
     this.tipo="archivo"
    
   }
@@ -148,7 +156,8 @@ export class FormAnuncioComponent implements OnInit {
 
 ////cargarRcurso 
 addRecursoP(){ 
-  if(this.tipo == "url"){
+  if(this.validarRecurso()){
+if(this.tipo == "url"){
      this.anuncioService.addRecurso(this.id,this.recurso ).subscribe(
    
     result => {
@@ -180,6 +189,8 @@ addRecursoP(){
     this.subirFirebase();
     
   }
+  }
+  
   
 }
 
@@ -345,7 +356,33 @@ finalizar(){
   
     return true
   }
-
+  validarRecurso():boolean{
+    if(this.recurso.titulo== null){
+      alert("Ingrese Titulo")
+      return false
+     }
+   if(this.recurso.descripcion == null){
+     alert("Ingrse Descriopcion")
+     return false
+   }
+   if(this.recurso.tipo == null){
+    alert("Elija el tipo de Archivo")
+     return false
+   }
+   if(this.recurso.tipo != "url"){
+     if(this.arch == null){
+     alert("Suba un arhivo")
+     return false
+     }
+   }
+  if(this.recurso.tipo == "url"){
+    if(this.recurso.url == null){
+      alert("Ingrese una url")
+     return false
+    }
+  }
+   return true
+  }
 
   formatDate(date: string): string {
     const parts = date.split('-');

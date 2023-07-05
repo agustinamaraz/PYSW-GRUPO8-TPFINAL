@@ -53,13 +53,14 @@
                 <div class="text-center">
                     <button type="button" class="btn btn-primary btn-lg"  (click)="guardar()" *ngIf="nextbutton=='guardar'"> Siguiente</button>
                     <button type="button" class="btn btn-primary btn-lg"  (click)="modificarAnuncio1()" *ngIf="nextbutton=='modificar'"> Siguiente</button>
+                    <button type="button" class="btn btn-primary btn-lg"  (click)="cancelarVolver()" *ngIf="can=='yes'"> Cancelar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-
+<!--<div  *ngIf="controlador =='caja2'">  -->
 <div  *ngIf="controlador =='caja2'">
     <h1 class="text-center">Registrar Anuncio </h1>
     <button type="button" class="btn btn-primary btn-lg"  (click)="tipourl()" > url </button>
@@ -149,7 +150,8 @@
     </div>
     <button type="button" class="btn btn-primary btn-lg"  (click)="addRecursoP()" > guardar </button>
    </div>
-   <div *ngIf="list=='activa'">
+   <!--    <div *ngIf="list=='activa'">-->
+   <div >
     <table class="table">
         <thead>
           <tr>
