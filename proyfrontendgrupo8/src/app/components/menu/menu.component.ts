@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener, ViewChild} from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
+import { VigilanteGuard } from 'src/app/vigilante.guard';
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
+
   logout() {
     this.loginService.logout();
   }
@@ -28,13 +30,19 @@ export class MenuComponent {
   constructor(
     public loginService: LoginService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private esAdmin:VigilanteGuard,
+    private activatedRoute:ActivatedRoute
   ) {
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.resetClasses();
       }
     });
+  }
+
+  esAdministrador(){
+    return this.loginService.esAdmin();
   }
 
   ngOnDestroy() {
