@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Rol } from 'src/app/models/rol';
 import { Usuario } from 'src/app/models/usuario';
 import { LoginService } from 'src/app/services/login.service';
+import { HomeComponent } from '../home/home.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +16,9 @@ import { LoginService } from 'src/app/services/login.service';
 export class SignupComponent implements OnInit {
   usuario!:Usuario;
   roles!:Array<Rol>;
-  modifica:boolean=false
+  returnUrl!:string;
+  returnUrlLogin!:string
+  modifica:boolean=false;
   repeatedEmail!:boolean;
   repeatedUsername!:boolean;
   loadPassword:boolean=false;
@@ -40,6 +44,8 @@ export class SignupComponent implements OnInit {
     // setTimeout(() => {
     //   this.initializeForm();
     // });
+    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrlLogin = this.activatedRoute.snapshot.queryParams['returnUrlLogin'] || '/login'
   }
   onSubmit(){
 
@@ -66,6 +72,7 @@ export class SignupComponent implements OnInit {
       result=>{
         console.log(result);
         alert('Registrado correctamente')
+        this.login();
       },
       error=>{
         console.log(error);
@@ -96,7 +103,27 @@ export class SignupComponent implements OnInit {
       }
     )
   }
-  
+  login() {
+    this.usuarioService.login(this.usuario.username, this.usuario.password)
+      .subscribe(
+        result=>{
+          var user = result;
+          if (user.status == 1) {
+            //guardamos el user en cookies en el cliente
+            sessionStorage.setItem("token", user.token);
+            sessionStorage.setItem("user", user.username);
+            sessionStorage.setItem("userid", user.userid);
+            sessionStorage.setItem("rol", JSON.stringify(user.rol));
+            //redirigimos a home o a pagina que llamo
+            this.route.navigateByUrl(this.returnUrl);
+          }
+        },
+        error => {
+          alert("Error de conexion");
+          console.log("error en conexion");
+          console.log(error);
+        });
+  }
   modifyUser(){
     this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id).subscribe(
       result=>{
@@ -108,5 +135,8 @@ export class SignupComponent implements OnInit {
         alert('No pudo ser registrado')
       }
     )
+  }
+  loginGo(){
+    this.route.navigateByUrl(this.returnUrlLogin)
   }
 }

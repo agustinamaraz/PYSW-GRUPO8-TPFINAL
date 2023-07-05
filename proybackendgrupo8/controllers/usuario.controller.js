@@ -48,7 +48,7 @@ usuarioCtrl.createUsuario = async (req, res) => {
     const template = getTemplate(username, token);
 
     // Enviar el email
-    await sendEmail(email, 'Este es un email de prueba', template);
+    await sendEmail(email, 'Confirmar Correo Electrónico', template);
     try {
         await usuario.save();
         res.status(200).json({

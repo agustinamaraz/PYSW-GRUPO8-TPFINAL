@@ -1,8 +1,10 @@
-<p>signup works!</p>
-<br><br><br>
+
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
 <form  #signUpForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="mb-3 ms-2">
-        <label for="username" class="form-label">Ingrese el nombre de usuario</label>
+        <h1 class="text-center p-2">Registrarse</h1>
+        <label for="username" class="form-label">Nombre de usuario</label>
         <input type="text" class="form-control form" [(ngModel)]="usuario.username" id="username" min="0.01" name="username" required #usernameInput="ngModel" placeholder="Ingrese su nombre de usuario">
         <div *ngIf="usernameInput.invalid && !loadUsername && (usernameInput.dirty || usernameInput.touched)" class="alert alert-danger my-1 p-1">
             <div *ngIf="usernameInput.errors?.['required']">
@@ -17,7 +19,7 @@
         </div>
     </div>
     <div class="mb-3 ms-2">
-        <label for="password" class="form-label">Ingrese una contraseña</label>
+        <label for="password" class="form-label">Contraseña</label>
         <input type="password" class="form-control form" [(ngModel)]="usuario.password" id="password" min="0.01" name="password" required #passwordInput="ngModel" placeholder="Ingrese una contraseña">
         <div *ngIf="passwordInput.invalid && !loadPassword && (passwordInput.dirty || passwordInput.touched)" class="alert alert-danger my-1 p-1">
             <div *ngIf="passwordInput.errors?.['required']">
@@ -29,7 +31,7 @@
         </div>
     </div>
     <div class="mb-3 ms-2">
-        <label for="email" class="form-label">Ingrese un correo electronico</label>
+        <label for="email" class="form-label">Correo electronico</label>
         <input type="email" class="form-control form" [(ngModel)]="usuario.email" id="email" min="0.01" name="email" required #emailInput="ngModel" placeholder="Ingrese su correo electronico">
         <div *ngIf="emailInput.invalid && !loadEmail && (emailInput.dirty || emailInput.touched)" class="alert alert-danger my-1 p-1">
             <div *ngIf="emailInput.errors?.['required']">
@@ -41,7 +43,7 @@
         </div>
     </div>
     <div *ngIf="!modifica" class="mb-3 ms-2" [ngClass]="{'is-invalid': rolInput.invalid && (rolInput.dirty || rolInput.touched)}">
-        <label for="rol" class="form-label">Elija un rol</label>
+        <label for="rol" class="form-label">Rol</label>
         <select name="rol" id="rol" aria-label="select rol" [(ngModel)]="usuario.rol._id" class="form-select select-scrollable" style="max-height: 200px;" required #rolInput="ngModel">
             <option value="" disabled selected>Seleccione un rol</option>
             <option *ngFor="let item of roles" [value]="item._id">{{item.descripcion}}</option>
@@ -52,6 +54,17 @@
             </div>
         </div>
     </div>
-    <button type="submit" *ngIf="!modifica" [disabled]="signUpForm.invalid" (click)="createUser()" class="btn btn-primary ms-2">Enviar</button>
-    <button type="submit" *ngIf="modifica" [disabled]="signUpForm.invalid" class="btn btn-primary ms-2">Modificar</button>
+    <button type="submit" *ngIf="!modifica" [disabled]="signUpForm.invalid" (click)="createUser()" class=" ms-2">Enviar</button>
+    <button type="submit" *ngIf="modifica" [disabled]="signUpForm.invalid" class="ms-2">Modificar</button>
 </form>
+<div class="overlay-container">
+    <div class="overlay">
+        <div class="overlay-panel overlay-right">
+            <h1>Hola!</h1>
+            <p>Si ya tenes una cuenta, ingresa tu informacion e inicia sesion</p>
+            <button class="ghost" id="signUp"  (click)="loginGo()">Iniciar Sesion</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>
