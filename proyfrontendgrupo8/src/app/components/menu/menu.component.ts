@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
@@ -9,12 +9,13 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
   logout() {
     this.loginService.logout();
   }
   stickyHeader = false;
   activo: boolean = false;
+  isUserVerified!:boolean;
 
   //NAVBAR
   @HostListener('window:scroll', [])
@@ -35,6 +36,9 @@ export class MenuComponent {
         this.resetClasses();
       }
     });
+  }
+  ngOnInit(): void {
+    this.isUserVerified = this.loginService.getUserStatus();
   }
 
   ngOnDestroy() {

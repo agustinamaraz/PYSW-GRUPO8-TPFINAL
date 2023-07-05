@@ -25,6 +25,10 @@ const routes: Routes = [
     path:'home',
     component: HomeComponent
   },
+  {
+    path:'reset/:id',
+    component:ResetpasswordComponent
+  },
   { 
     path:'paciente',
     component:PacienteComponent
@@ -48,10 +52,6 @@ const routes: Routes = [
   {
     path:'confirm/:id',
     component:ConfirmComponent
-  },
-  {
-    path:'reset/:id',
-    component:ResetpasswordComponent
   },
   {
     path:'calendar',

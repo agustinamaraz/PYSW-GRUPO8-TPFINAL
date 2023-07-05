@@ -10,8 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
   userform: Usuario = new Usuario(); //usuario mapeado al formulario
   returnUrl!: string;
+  resetUrl!:string;
   msglogin!: string; // mensaje que indica si no paso el loguin
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/reset';
   }
 
   login() {
