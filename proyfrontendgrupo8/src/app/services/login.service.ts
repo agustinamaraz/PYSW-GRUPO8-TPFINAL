@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { parse } from 'path';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -48,6 +49,7 @@ export class LoginService {
 
   public logout() {
     //borro el vble almacenado mediante el storage
+    sessionStorage.removeItem("usuario");
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("rol");
     sessionStorage.removeItem("userid");
@@ -67,6 +69,22 @@ export class LoginService {
   public userLogged() {
     var usuario = sessionStorage.getItem("user");
     return usuario;
+  }
+
+  public getUser(){
+    let isAdmin = sessionStorage.getItem("usuario");
+    const parsedAdmin = isAdmin ? JSON.stringify(isAdmin) : null;
+
+    return parsedAdmin;
+  }
+
+  public esAdmin(){ //funciona
+    let isAdmin = sessionStorage.getItem("usuario");
+    const parsedAdmin = isAdmin ? JSON.parse(isAdmin) : null;
+    if(parsedAdmin && parsedAdmin.rol && parsedAdmin.rol.descripcion === "administrador"){
+        return true;
+    }
+    return false;
   }
 
   public idLogged() {

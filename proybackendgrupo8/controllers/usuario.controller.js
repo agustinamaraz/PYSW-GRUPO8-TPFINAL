@@ -262,6 +262,7 @@ usuarioCtrl.loginUsuario = async (req, res) => {
             res.json({
                 status: 1,
                 msg: "success",
+                usuario:user,
                 username: user.username, //retorno información útil para el frontend
                 rol: user.rol, //retorno información útil para el frontend
                 userid: user._id, //retorno información útil para el frontend
