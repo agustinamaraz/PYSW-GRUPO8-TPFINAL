@@ -6,8 +6,11 @@ import { PacienteComponent } from './components/paciente/paciente.component';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
 import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-
+import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
+import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
 const routes: Routes = [
+   {path:'form-anuncio/:id',component:FormAnuncioComponent},
+   {path:'list-anuncio',component:ListAnuncioComponent},
   {
     path:'login',
     component: LoginComponent
@@ -38,6 +41,10 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   }
+
+
+
+  
 ];
 
 @NgModule({

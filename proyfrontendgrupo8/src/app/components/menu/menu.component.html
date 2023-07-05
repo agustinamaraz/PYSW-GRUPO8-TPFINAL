@@ -11,8 +11,10 @@
         <li><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
         <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos-form'">Formulario datos medicos</a></li>
+      
       </ul>
     </li>
+      <li><a [routerLink]="'list-anuncio'">Listado Anuncio</a></li>
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn()">LOGIN</a>

@@ -19,7 +19,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
@@ -29,6 +29,10 @@ import { DatosmedicosLisComponent } from './components/datosmedicos-lis/datosmed
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
+import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
+import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
+import { ListAnuncioClienteComponent } from './components/list-anuncio-cliente/list-anuncio-cliente.component';
+
 
 
 
@@ -45,7 +49,11 @@ registerLocaleData(localeEsAr);
     PacienteFormComponent,
     DatosmedicosFormComponent,
     DatosmedicosLisComponent,
-    CalendarComponent
+    CalendarComponent,
+    FormAnuncioComponent,
+    ListAnuncioComponent,
+    ListAnuncioClienteComponent,
+  
   ],
   imports:[
     BrowserModule,
@@ -59,14 +67,7 @@ registerLocaleData(localeEsAr);
     // ToastrModule added
     ToastrModule.forRoot()
   ],
-  providers: [
-    LoginService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    }
-  ],
+  
   providers:
     [LoginService,
       {
@@ -74,7 +75,8 @@ registerLocaleData(localeEsAr);
         useClass: TokenInterceptorService,
         multi: true
       },
-      { provide: LOCALE_ID, useValue: 'es-AR' }
+      { provide: LOCALE_ID, useValue: 'es-AR' },
+      DatePipe,
     ],
   bootstrap: [AppComponent]
 })
