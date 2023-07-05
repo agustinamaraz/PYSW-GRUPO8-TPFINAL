@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
+import { VigilanteGuard } from 'src/app/vigilante.guard';
 
 @Component({
   selector: 'app-menu',
@@ -29,7 +30,9 @@ export class MenuComponent implements OnInit{
   constructor(
     public loginService: LoginService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private esAdmin:VigilanteGuard,
+    private activatedRoute:ActivatedRoute
   ) {
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -39,6 +42,10 @@ export class MenuComponent implements OnInit{
   }
   ngOnInit(): void {
     this.isUserVerified = this.loginService.getUserStatus();
+  }
+
+  esAdministrador(){
+    return this.loginService.esAdmin();
   }
 
   ngOnDestroy() {

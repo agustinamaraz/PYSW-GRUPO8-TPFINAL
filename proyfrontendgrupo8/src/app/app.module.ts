@@ -68,7 +68,11 @@ registerLocaleData(localeEsAr);
     //toast
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule
+    ToastrModule,
+
+    ToastrModule.forRoot({ //agregado agus 4/7/2023
+      positionClass :'toast-bottom-right'
+    })
   ],
   bootstrap: [AppComponent]
 })

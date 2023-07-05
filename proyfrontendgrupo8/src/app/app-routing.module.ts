@@ -11,6 +11,7 @@ import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos
 import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { VigilanteGuard } from './vigilante.guard';
 
 const routes: Routes = [
   {
@@ -31,19 +32,35 @@ const routes: Routes = [
   },
   { 
     path:'paciente',
-    component:PacienteComponent
+    component:PacienteComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
   },
   {
     path:'paciente-form/:id',
-    component:PacienteFormComponent
+    component:PacienteFormComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
   },
   {
     path:'datosMedicos-form/:id',
-    component:DatosmedicosFormComponent
+    component:DatosmedicosFormComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
   },
   {
     path:'datosMedicos',
-    component:DatosmedicosLisComponent
+    component:DatosmedicosLisComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
   },
   {
     path:'datosMedicosHome/:id',
@@ -55,7 +72,11 @@ const routes: Routes = [
   },
   {
     path:'calendar',
-    component:CalendarComponent
+    component:CalendarComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
   },
   //lo siguiente siempre va al final
   {
