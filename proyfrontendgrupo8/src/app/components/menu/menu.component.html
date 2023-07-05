@@ -20,4 +20,7 @@
     <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}}   LogOut</a>
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
   </div>
+  <!--<div *ngIf="!isUserVerified && loginService.userLoggedIn()" class="alert alert-danger my-1 p-1">
+    Verifique su email, siguiendo el link enviado a su correo, si no lo hace su cuenta será borrada automáticamente en 24 horas.
+  </div>-->
 </nav>
