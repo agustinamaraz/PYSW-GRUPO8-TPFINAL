@@ -1,6 +1,33 @@
-section img{
+.image img{
   width: 100%;
 }
-section{
+.image{
   margin-top: 80px;
+  width: 100%;
+}
+.telefonos{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  height: 150px;
+  width: 100%;
+}
+.telefonos .iconos{
+  background-color: grey;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 25px;
+}
+
+.telefonos li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
