@@ -19,7 +19,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
@@ -34,11 +34,16 @@ import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos
 import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
-//swipper
-import { SwiperModule } from 'swiper/angular'
+import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
+import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
+
+import { SwiperModule } from 'swiper/angular';
+
+
 
 
 registerLocaleData(localeEsAr);
+
 
 @NgModule({
   declarations: [
@@ -56,7 +61,9 @@ registerLocaleData(localeEsAr);
     DatosMedicosHomeComponent,
     SignupComponent,
     ConfirmComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    FormAnuncioComponent,
+    ListAnuncioComponent
   ],
   imports:[
     BrowserModule,
@@ -77,6 +84,13 @@ registerLocaleData(localeEsAr);
     //swiper
     SwiperModule,
   ],
+
+  providers:
+    [
+      { provide: LOCALE_ID, useValue: 'es-AR' },
+      DatePipe,
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}
