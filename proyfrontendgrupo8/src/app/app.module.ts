@@ -34,7 +34,8 @@ import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos
 import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
-
+//swipper
+import { SwiperModule } from 'swiper/angular'
 
 
 registerLocaleData(localeEsAr);
@@ -72,7 +73,9 @@ registerLocaleData(localeEsAr);
 
     ToastrModule.forRoot({ //agregado agus 4/7/2023
       positionClass :'toast-bottom-right'
-    })
+    }),
+    //swiper
+    SwiperModule,
   ],
   bootstrap: [AppComponent]
 })
