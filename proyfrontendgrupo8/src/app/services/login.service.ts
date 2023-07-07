@@ -46,6 +46,16 @@ export class LoginService {
     console.log(body);
     return this.http.post(this.hostBase + 'login', body, httpOption);
   }
+  public loginEmail(email: string, password: string): Observable<any> {
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    let body = JSON.stringify({ email: email, password: password });
+    console.log(body);
+    return this.http.post(this.hostBase + 'login-email', body, httpOption);
+  }
 
   public logout() {
     //borro el vble almacenado mediante el storage

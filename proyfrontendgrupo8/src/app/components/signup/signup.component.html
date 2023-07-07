@@ -42,7 +42,7 @@
             Ya existe una cuenta con ese email
         </div>
     </div>
-    <div *ngIf="!modifica" class="mb-3 ms-2" [ngClass]="{'is-invalid': rolInput.invalid && (rolInput.dirty || rolInput.touched)}">
+    <div *ngIf="!modifica && esAdministrador()" class="mb-3 ms-2" [ngClass]="{'is-invalid': rolInput.invalid && (rolInput.dirty || rolInput.touched)}">
         <label for="rol" class="form-label">Rol</label>
         <select name="rol" id="rol" aria-label="select rol" [(ngModel)]="usuario.rol._id" class="form-select select-scrollable" style="max-height: 200px;" required #rolInput="ngModel">
             <option value="" disabled selected>Seleccione un rol</option>
