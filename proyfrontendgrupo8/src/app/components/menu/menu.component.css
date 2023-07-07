@@ -17,6 +17,7 @@ ul{
 }
 ul li ul.dropdown li {
   margin-top: 20px;
+  margin-bottom: 20px;
   height: 30px;
   display: block;
 }

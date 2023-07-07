@@ -1,8 +1,43 @@
-section img{
+.image img{
   width: 100%;
 }
-section{
+.image{
   margin-top: 80px;
-  height: 600px;
   width: 100%;
+}
+.telefonos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 180px;
+  width: 100%;
+}
+.telefonos .iconos{
+  background-color: #F4F2F3;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 25px;
+}
+.telefonos ul{
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  width: 100%;
+}
+p{
+  margin-bottom: 0;
+}
+.telefonos li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

@@ -19,9 +19,29 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
+import { DatosmedicosLisComponent } from './components/datosmedicos-lis/datosmedicos-lis.component';
+
+//fecha
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
+import { SearchPipe } from './search.pipe';
+import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos-medicos-home.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
+import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
+
+
+
+
+
+registerLocaleData(localeEsAr);
 
 
 @NgModule({
@@ -33,28 +53,41 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     PacienteComponent,
     PacienteFormComponent,
+    DatosmedicosFormComponent,
+    DatosmedicosLisComponent,
     CalendarComponent,
+    SearchPipe,
+    DatosMedicosHomeComponent,
+    SignupComponent,
+    ConfirmComponent,
+    ResetpasswordComponent,
+    FormAnuncioComponent,
+    ListAnuncioComponent
   ],
-  imports: [
+  imports:[
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     OAuthModule.forRoot(),
+
+
     //toast
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    // ToastrModule added
-    ToastrModule.forRoot()
+    ToastrModule,
+
+    ToastrModule.forRoot({ //agregado agus 4/7/2023
+      positionClass :'toast-bottom-right'
+    })
   ],
-  providers: [
-    LoginService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    }
-  ],
-  bootstrap: [AppComponent],
+
+  providers:
+    [
+      { provide: LOCALE_ID, useValue: 'es-AR' },
+      DatePipe,
+    ],
+
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

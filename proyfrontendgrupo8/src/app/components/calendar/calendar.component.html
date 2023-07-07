@@ -2,43 +2,30 @@
   <button type="button" (click)="login()">01 login</button>
   <button type="button" (click)="token()">02 Token</button>
   <button type="button" (click)="verEventos()">03 Eventos</button>
-  <form class="border border-1 m-3">
+  <form class="border border-1 m-3 p-3 bg-secondary-subtle">
     <div class="form-group">
-      <label for="my-input">Event Title</label>
-      <input
-        id="sumary"
-        class="form-control"
-        type="text"
-        [(ngModel)]="event.summary"
-        name="sumary"
-      />
-      <label for="my-input">Event From</label>
-      <input
-        id="from"
-        class="form-control"
-        type="datetime-local"
-        [(ngModel)]="fromDate"
-        name="from"
-      />
-      <label for="my-input">Event to</label>
-      <input
-        id="to"
-        class="form-control"
-        type="datetime-local"
-        [(ngModel)]="toDate"
-        name="to"
-      />
+      <div class="mb-3">
+        <label for="my-input">Descripción:</label>
+        <input id="sumary" class="form-control" type="text" [(ngModel)]="event.summary" name="sumary" />
+      </div>
+      <div class="mb-3">
+        <label for="my-input">Desde:</label>
+        <input id="from" class="form-control" type="datetime-local" [(ngModel)]="fromDate" name="from" />
+      </div>
+      <div class="mb-3">
+        <label for="my-input">Hasta:</label>
+        <input id="to" class="form-control" type="datetime-local" [(ngModel)]="toDate" name="to" />
+      </div>
     </div>
-    <button type="button" (click)="crearEvento()">04 Crear Evento</button>
+    <button class="btn btn-primary m-3" type="button" (click)="crearEvento()">04 Crear Evento</button>
   </form>
   <button type="button" (click)="logout()">05 logout</button>
-  <iframe
-    src="https://calendar.google.com/calendar/embed?src=c_q26mptnlohvd84qnt9q6u9cs0o%40grou
-  p.calendar.google.com&ctz=America%2FArgentina%2FJujuy"
-    style="border: 0"
-    width="800"
-    height="600"
-    frameborder="0"
-    scrolling="no"
-  ></iframe>
+
+  <div class="d-flex justify-content-center align-items-center mb-4">
+    <iframe
+    src="https://calendar.google.com/calendar/embed?src=a2240f8dc916721874235dcab6ef8783ac658708a70e722f95bede9c8c979422%40group.calendar.google.com&ctz=America%2FArgentina%2FJujuy"
+    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+
+  
 </section>
