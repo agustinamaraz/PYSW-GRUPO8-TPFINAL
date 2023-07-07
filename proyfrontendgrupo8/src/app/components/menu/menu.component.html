@@ -52,6 +52,16 @@
         </div>
 
       </ul>
+<<<<<<< Updated upstream
     </div>
+=======
+    </li>
+  <!--  <li *ngIf="esAdministrador()==true"><a routerLink="/form-anuncio/0">Lista de Anuncio</a></li>-->
+  </ul>
+  <div class="nav-icons">
+    <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn()">LOGIN</a>
+    <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}}   LogOut</a>
+    <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
+>>>>>>> Stashed changes
   </div>
 </nav>
