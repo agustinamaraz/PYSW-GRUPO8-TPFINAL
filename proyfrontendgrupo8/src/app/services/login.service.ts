@@ -10,7 +10,7 @@ export class LoginService {
   hostBase: string;
 
   constructor(private http: HttpClient) {
-    this.hostBase = "http://localhost:3000/api/usuario/"
+    this.hostBase = "http://3.82.255.160:3000/api/usuario/"
   }
   public getRoles():Observable<any>{
     const httpOption = {
@@ -95,13 +95,16 @@ export class LoginService {
   public getUserStatus(): boolean {
     const user = sessionStorage.getItem("user");
     if (user) {
-      const status = JSON.parse(user).status;
-      return status === "VERIFIED";
-    } else {
-      return false;
+      try {
+        const status = JSON.parse(user).status;
+        return status === "VERIFIED";
+      } catch (error) {
+        console.log("Error al analizar la cadena JSON:", error);
+      }
     }
+    return false;
   }
-  //seguridad
+
   getToken(): string {
     if (sessionStorage.getItem("token") != null) {
       return sessionStorage.getItem("token")!;
@@ -119,5 +122,14 @@ export class LoginService {
     console.log(body);
     return this.http.post(this.hostBase + 'reset/'+token, body, httpOption);
   }
-
+  resetAsk(email:string){
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    let body = JSON.stringify({email:email });
+    console.log(body);
+    return this.http.post(this.hostBase + 'reset-ask', body, httpOption);
+  }
 }

@@ -19,6 +19,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
+import { CommonModule, DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -34,10 +35,15 @@ import { DatosMedicosHomeComponent } from './components/datos-medicos-home/datos
 import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
+import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
+
+
 
 
 
 registerLocaleData(localeEsAr);
+
 
 @NgModule({
   declarations: [
@@ -55,7 +61,9 @@ registerLocaleData(localeEsAr);
     DatosMedicosHomeComponent,
     SignupComponent,
     ConfirmComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    FormAnuncioComponent,
+    ListAnuncioComponent
   ],
   imports:[
     BrowserModule,
@@ -74,6 +82,13 @@ registerLocaleData(localeEsAr);
       positionClass :'toast-bottom-right'
     })
   ],
+
+  providers:
+    [
+      { provide: LOCALE_ID, useValue: 'es-AR' },
+      DatePipe,
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}

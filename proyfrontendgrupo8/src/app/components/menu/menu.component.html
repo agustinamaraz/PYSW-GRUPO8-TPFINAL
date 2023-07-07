@@ -3,21 +3,26 @@
   <ul class="navMenu" #navmenu>
     <li><a routerLink="/inicio">Inicio</a></li>
     <li *ngIf="esAdministrador()==true"><a routerLink="/calendar">Crear un evento</a></li>
-    <li  *ngIf="esAdministrador()==true" class="nav-item dropdown bg-dark"  >
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <li  *ngIf="esAdministrador()==true">
+      <a href="#">
         Paciente
       </a>
-      <ul class="dropdown-menu bg-dark">
+      <ul class="dropdown">
         <li ><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
         <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
       </ul>
-    </li>
+
+
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
+
+
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn()">LOGIN</a>
     <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}}   LogOut</a>
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
+
   </div>
 </nav>

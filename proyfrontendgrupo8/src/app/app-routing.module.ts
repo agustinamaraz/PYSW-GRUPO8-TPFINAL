@@ -12,9 +12,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { VigilanteGuard } from './vigilante.guard';
+import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
+import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
 
 const routes: Routes = [
-  {
+{
     path:'login',
     component: LoginComponent
   },
@@ -25,6 +27,10 @@ const routes: Routes = [
   {
     path:'home',
     component: HomeComponent
+  },
+  {
+    path:'reset/:id',
+    component:ResetpasswordComponent
   },
   { 
     path:'paciente',
@@ -67,12 +73,22 @@ const routes: Routes = [
     component:ConfirmComponent
   },
   {
-    path:'reset/:id',
-    component:ResetpasswordComponent
-  },
-  {
     path:'calendar',
     component:CalendarComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'form-anuncio/:id',component:FormAnuncioComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+   {
+    path:'list-anuncio',component:ListAnuncioComponent,
     data:{
       rol: 'administrador'
     },
@@ -83,7 +99,11 @@ const routes: Routes = [
     path:'**',
     redirectTo: '/home',
     pathMatch: 'full'
-  }
+  },
+  
+ /*
+  {path:'form-anuncio/:id',component:FormAnuncioComponent},
+   {path:'list-anuncio',component:ListAnuncioComponent}*/
 ];
 
 @NgModule({

@@ -8,25 +8,47 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./resetpassword.component.css']
 })
 export class ResetpasswordComponent implements OnInit {
-  password!:string
-  id!:string
+  password!:string;
+  id!:string;
+  returnUrl!:string;
+  email!:string;
+  form:boolean=false;
   constructor(private loginService:LoginService, private activatedRoute: ActivatedRoute, private route:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       if (params['id'] != '0') {
         this.id = params['id'];
+        this.form = true;
         console.log(this.id)
       }
     });
+    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/home';
   }
+  resetAsk(){
+    console.log(this.email)
+    this.loginService.resetAsk(this.email).subscribe(
+      result=>{
+        console.log(result);
+        this.returnUrl;
+        // setTimeout(() => {
+        //   window.location.reload(); // Recargar la página actual
+        // }, 5000);
+      },
+      error=>{
+        console.log(error)
+      }
+    )
+  }
+
+
   reset(){
     console.log(this.id);
     console.log(this.password);
     this.loginService.resetPassword(this.password, this.id).subscribe(
       result=>{
         console.log(result)
-        alert("contrasena reseteada correctamente")
+        alert("contraseña restablecida correctamente")
       },
       error=>{
         console.log(error)

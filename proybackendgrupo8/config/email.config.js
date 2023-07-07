@@ -47,32 +47,58 @@ const sendEmailPassword = async (email, subject, html) => {
 const getTemplate = (username, token) => {
     return `
         <head>
-            <link rel="stylesheet" href="./style.css">
-        </head>
+            <link rel="stylesheet" href="../../proyfrontendgrupo8/src/assets/styles/styleEmail.css">
+        </head>    
+        <link
+        <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+        rel="stylesheet"
+        />
         
         <div id="email___content">
             <h2>Hola ${ username }</h2>
+            
+        <div class="container">
+        <div class="shapes"></div>
+        <div class="card">
+        
+        <div class="text-container">
             <p>Para confirmar tu cuenta, ingresa al siguiente enlace</p>
             <a
                 href="http://localhost:4200/confirm/${ token }"
                 target="_blank"
             >Confirmar Cuenta</a>
+            </div>
+        </div>
+        </div>
         </div>
     `;
 }
 const getTemplatePassword = (username, token) => {
     return `
         <head>
-            <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="../../proyfrontendgrupo8/src/assets/styles/styleEmail.css"> 
+        <link
+        <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+        rel="stylesheet"
+        />
         </head>
         
         <div id="email___content">
             <h2>Hola ${ username }</h2>
-            <p>Para resetear tu contraseña, ingresa al siguiente enlace</p>
+            
+        <div class="container">
+        <div class="shapes"></div>
+        <div class="card">
+            <p>Para restablecer su contraseña, ingrese al siguiente enlace</p>
             <a
                 href="http://localhost:4200/reset/${ token }"
                 target="_blank"
-            >Resetear contraseña</a>
+            >Restablecer contraseña</a>
+            </div>
+        </div>
+        </div>
         </div>
     `;
 }
