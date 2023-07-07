@@ -13,11 +13,16 @@
         <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
       </ul>
-    </li>
+
+
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
+
+
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn()">LOGIN</a>
     <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}}   LogOut</a>
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
+
   </div>
 </nav>
