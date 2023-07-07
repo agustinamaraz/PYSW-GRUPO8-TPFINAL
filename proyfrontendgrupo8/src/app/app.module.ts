@@ -20,7 +20,6 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
 import { CommonModule, DatePipe } from '@angular/common';
-import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
