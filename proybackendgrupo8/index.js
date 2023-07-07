@@ -10,7 +10,12 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 app.use('/api/usuario', require('./routes/usuario.route.js'));
 app.use('/api/rol', require('./routes/rol.route.js'));
 app.use('/api/paciente', require('./routes/paciente.route.js'));
+<<<<<<< Updated upstream
 
+=======
+app.use('/api/datosMedicos', require('./routes/datosMedicos.route.js'));
+app.use('/api/anuncio', require('./routes/anuncio.route.js'));
+>>>>>>> Stashed changes
 //setting
 app.set('port', process.env.PORT || 3000);
 

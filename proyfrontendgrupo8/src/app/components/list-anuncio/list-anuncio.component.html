@@ -1,0 +1,83 @@
+<div>
+    <div class="text-center" style="background-color: #84b6f4;padding: 30px;">
+        LISTADO DE Anuncio 
+      </div>
+      <br>
+      <div style="padding-left: 5%;">
+        <button type="button" class="btn btn-success" (click)="direcionar()" >AGREGAR ANUNCIO</button>  
+      </div>
+<br>
+<br>
+     
+    <div style="padding: 3%;">
+        <table class="table table-bordered table-hover border-primary mt-5" >
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">TITULO</th>
+                    <th scope="col">DESCRIPCION</th>
+                    <th scope="col">ESTADO</th>
+                    <th scope="col">FECHA DE DESDE</th>
+                    <th scope="col">FECHA DE HASTA</th>
+                    <th scope="col">RECURSO</th>
+                    <th scope="col">Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let  a  of ancuncios">
+                    <td>{{a.titulo}}</td>
+                    <td>{{a.descripcion}}</td>
+                    <td>{{a.estado}}</td>
+                    <td>{{a.fechaDesde}}</td>
+                    <td>{{a.fechaHasta}}</td>
+                    <td> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="clickRecurso(a)">
+                        recurso
+                      </button>
+                    <td>
+                        <button type="button" class="btn btn-warning" (click)="modificarAnuncio(a._id)">MODIFICAR ANUNCIO</button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarAnuncio(a._id)">ELIMINAR ANUNCIO</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Recurso del Anuncio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered table-hover border-primary mt-5" >
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">TITULO</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">TIPO</th>
+                        <th scope="col">URL</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let  a  of listRecurso">
+                        <td>{{a.titulo}}</td>
+                        <td>{{a.descripcion}}</td>
+                        <td>{{a.tipo}}</td>
+                        <td>{{a.url}}</td>
+                      
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
