@@ -37,7 +37,6 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
 import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
 
-import { SwiperModule } from 'swiper/angular';
 
 
 
@@ -80,9 +79,7 @@ registerLocaleData(localeEsAr);
 
     ToastrModule.forRoot({ //agregado agus 4/7/2023
       positionClass :'toast-bottom-right'
-    }),
-    //swiper
-    SwiperModule,
+    })
   ],
 
   providers:
