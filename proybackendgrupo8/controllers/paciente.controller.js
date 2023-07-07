@@ -7,6 +7,23 @@ pacienteCtrl.getPacientes = async (req, res) => {
        var pacientes = await Paciente.find(); 
     res.json(pacientes);
  }
+ //get id
+ pacienteCtrl.getPacientebyId = async (req, res) => {//siempre cunado las solicitudes vienen por http se reciben obetos el req y el res
+    const paciente = await Paciente.findById(req.params.id);
+  res.json(paciente);
+ }
+
+//get paciente por dni(agregado 23/06)
+pacienteCtrl.getPacienteDni = async (req, res) => {
+    console.log("ENTRANDO A Paciente po dni");
+    criteria = {};
+    if (req.query.dniP != null && req.query.dniP!= "") {
+      criteria.dni = {$regex: req.query.dniP, $options:""};
+    }
+    var pacientes = await Paciente.find(criteria);
+    res.json(pacientes);
+}
+
 //create
 pacienteCtrl.createPaciente = async (req, res) => {
     console.log("Entrando a create")
@@ -25,12 +42,7 @@ pacienteCtrl.createPaciente = async (req, res) => {
         })
     }
 }
-//get one
-pacienteCtrl.getPaciente = async (req, res) => {
-    console.log("Entrando a get by id")
-    const paciente = await Paciente.findById(req.params.id);
-    res.json(paciente);
-}
+
 //edit
 pacienteCtrl.editPaciente = async (req, res) => {
     console.log("Entrando a edit")
@@ -58,6 +70,7 @@ pacienteCtrl.deletePaciente = async (req, res) => {
             msg: 'Paciente removed'
         })
     } catch (error) {
+
         res.status(400).json({
             'status': '0',
             'msg': 'Error procesando la operacion'

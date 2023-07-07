@@ -11,8 +11,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 
-<<<<<<< Updated upstream
-=======
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PacienteComponent } from './components/paciente/paciente.component';
@@ -22,6 +20,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 
 //toast
 import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatosmedicosFormComponent } from './components/datosmedicos-form/datosmedicos-form.component';
@@ -39,8 +38,12 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
 import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
 
+
+
+
+
 registerLocaleData(localeEsAr);
->>>>>>> Stashed changes
+
 
 @NgModule({
   declarations: [
@@ -48,9 +51,6 @@ registerLocaleData(localeEsAr);
     LoginComponent,
     MenuComponent,
     FooterComponent,
-<<<<<<< Updated upstream
-    HomeComponent
-=======
     HomeComponent,
     PacienteComponent,
     PacienteFormComponent,
@@ -64,23 +64,31 @@ registerLocaleData(localeEsAr);
     ResetpasswordComponent,
     FormAnuncioComponent,
     ListAnuncioComponent
->>>>>>> Stashed changes
   ],
-  imports: [
+  imports:[
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot(),
+
+
+    //toast
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule,
+
+    ToastrModule.forRoot({ //agregado agus 4/7/2023
+      positionClass :'toast-bottom-right'
+    })
   ],
-<<<<<<< Updated upstream
-  providers: [LoginService],
-=======
+
   providers:
     [
       { provide: LOCALE_ID, useValue: 'es-AR' },
       DatePipe,
     ],
->>>>>>> Stashed changes
+
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

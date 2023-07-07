@@ -1,67 +1,28 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Centro de Salud "Los Huaicos"</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#" routerLinkActive="active">Home</a>
-        </li> -->
-
-        <li class="nav-item dropdown" *ngIf="loginService.userLoggedIn()">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Gestión de Pacientes
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['paciente']" routerLinkActive="active">Listado de Pacientes</a>
-            </li>
-            <li><a class="dropdown-item" [routerLink]="['paciente-form/0']" routerLinkActive="active">Formulario de
-                Paciente</a></li>
-          </ul>
-        </li>
-
-
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            P2-Gestión de Transacción
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['transaccion']" routerLinkActive="active">Listado de Transacciones</a></li>
-            <li><a class="dropdown-item" [routerLink]="['transaccion-form/0']" routerLinkActive="active">Formulario de Transaccion</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            P3-Gestión de Ticket
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['ticket']" routerLinkActive="active">Listado de Tickets</a></li>
-            <li><a class="dropdown-item" [routerLink]="['ticket-form/0']" routerLinkActive="active">Formulario de Ticket</a></li>
-          </ul>
-        </li> -->
-
-        <div class="">
-          <a *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">(Login)</a>
-          <a *ngIf="loginService.userLoggedIn()" [routerLink]="['login']" (click)="logout()">
-            {{loginService.userLogged()}} (logout)
-          </a>
-        </div>
-
+<nav [class.sticky]="stickyHeader">
+  <a href="#" class="logo">Centro de Salud <br> "Los Huaicos"</a>
+  <ul class="navMenu" #navmenu>
+    <li><a routerLink="/inicio">Inicio</a></li>
+    <li *ngIf="esAdministrador()==true"><a routerLink="/calendar">Crear un evento</a></li>
+    <li  *ngIf="esAdministrador()==true">
+      <a href="#">
+        Paciente
+      </a>
+      <ul class="dropdown">
+        <li ><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
+        <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
+        <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
+        <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
       </ul>
-<<<<<<< Updated upstream
-    </div>
-=======
-    </li>
+
+
   <!--  <li *ngIf="esAdministrador()==true"><a routerLink="/form-anuncio/0">Lista de Anuncio</a></li>-->
+
+
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn()">LOGIN</a>
     <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}}   LogOut</a>
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
->>>>>>> Stashed changes
+
   </div>
 </nav>
