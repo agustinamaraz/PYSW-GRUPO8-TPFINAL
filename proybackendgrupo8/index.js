@@ -11,6 +11,9 @@ app.use('/api/usuario', require('./routes/usuario.route.js'));
 app.use('/api/rol', require('./routes/rol.route.js'));
 app.use('/api/paciente', require('./routes/paciente.route.js'));
 app.use('/api/datosMedicos', require('./routes/datosMedicos.route.js'));
+app.use('/api/anuncio', require('./routes/anuncio.route.js'));
+app.use('/api/contacto', require('./routes/contacto.route.js'));
+
 
 //setting
 app.set('port', process.env.PORT || 3000);
