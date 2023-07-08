@@ -14,7 +14,10 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 import { VigilanteGuard } from './vigilante.guard';
 import { FormAnuncioComponent } from './components/form-anuncio/form-anuncio.component';
 import { ListAnuncioComponent } from './components/list-anuncio/list-anuncio.component';
-
+import { ListAnuncioClienteComponent } from './components/list-anuncio-cliente/list-anuncio-cliente.component';
+import { AnuncioComponent } from './components/anuncio/anuncio.component';
+import { FormcontactoComponent } from './components/formcontacto/formcontacto.component';
+import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 const routes: Routes = [
 {
     path:'login',
@@ -89,6 +92,34 @@ const routes: Routes = [
   },
    {
     path:'list-anuncio',component:ListAnuncioComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'formcontacto/:id',component:FormcontactoComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'list-contacto',component:ListContactoComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'list-anuncio-cliente',component:ListAnuncioClienteComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'anuncio/:id',component:AnuncioComponent,
     data:{
       rol: 'administrador'
     },

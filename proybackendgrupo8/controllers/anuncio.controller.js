@@ -34,12 +34,18 @@ AnuncioCtrl.getAnuncio  = async (req, res) => {
     res.json(anuncio);
 },
 AnuncioCtrl.getAnuncioFechaDisponible   = async (req, res) => {
+    console.log("Entrando a Fecha")
     let fecha = req.params.fecha;
-    var anun = await Anuncio.find({
-        fechaHasta:{
-            $lte:fecha
+    console.log(fecha)
+    var anun = await Anuncio.find(
+        
+        {
+            fechaHasta:{
+                $gte:fecha
+            }
         }
-    })
+    )
+    console.log(anun)
     res.json(anun);
     // console.log("Entrando a get by id")
   //  const anuncio = await Anuncio.findById(req.params.id);
