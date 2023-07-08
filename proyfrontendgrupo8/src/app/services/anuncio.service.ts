@@ -84,4 +84,15 @@ export class AnuncioService {
     return this._http.delete(this.urlBase +idanuncio+"/recurso/" + idrecurso, httpOptions);
 
   }
+  ////Anuncio Con fecha 
+  getFechaAnuncios(fecha:string):Observable<any>{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+      }),
+      params: new HttpParams()
+    };
+    return this._http.get(this.urlBase+"/verFechaDisponible/"+fecha ,httpOptions)
+
+  }
 }
