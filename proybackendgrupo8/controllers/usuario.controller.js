@@ -40,7 +40,8 @@ usuarioCtrl.createUsuario = async (req, res) => {
         email: req.body.email,
         code: code,
         status: 'UNVERIFIED',
-        rol: req.body.rol
+        rol: req.body.rol,
+        dni: req.body.dni
     });
     email = req.body.email
     username= req.body.username
@@ -135,6 +136,12 @@ usuarioCtrl.askReset = async (req, res) => {
         });
     }
     if(user){
+        if (!user.isVerified()) {
+            return res.status(498).json({
+                success: false,
+                message: 'Usuario no verificado'
+            });
+        }
         const code = uuidv4();
         const token = getTokenPassword({ email});
         const emailSubject = 'Recuperación de Contraseña';
@@ -277,7 +284,7 @@ usuarioCtrl.loginUsuario = async (req, res) => {
     //el método findOne retorna un objeto que cumpla con los criterios de busqueda
 
 }
-usuarioCtrl.loginUsuarioEmail= async (req, res) => {
+usuarioCtrl.loginUsuarioEmail = async (req, res) => {
     //en req.body se espera que vengan las credenciales de login
     //defino los criterios de busqueda en base al username y password recibidos
     const criteria = {

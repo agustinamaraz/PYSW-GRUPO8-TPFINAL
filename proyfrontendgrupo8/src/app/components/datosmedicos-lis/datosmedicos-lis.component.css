@@ -1,0 +1,34 @@
+.container{
+    margin-top: 8vh;
+}
+.btnAgregar{
+    margin-top: 2%;
+    padding: 0.8%;
+    border: #3da9b8 0.1em solid;
+    border-radius: 12px;
+    background-color: #3da9b8;
+    font-weight: 600;
+    color: #fefeff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btnExcel{
+    margin-top: 15%;
+    background-color: #007f5f;
+    padding: 0.8%;
+    font-weight: 600;
+    border: #007f5f 0.1em solid;
+    border-radius: 12px;
+    letter-spacing: 0.028;
+    color: #fefeff;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.btnExcel a, .btnExcel i{
+    font-size: 16px;
+}
+.btnExcel i{
+    font-size: 20px;
+}

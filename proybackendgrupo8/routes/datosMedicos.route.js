@@ -5,6 +5,7 @@ const datosMedicosCtrl = require('./../controllers/datosMedicos.controller');
 // Definiendo rutas
 router.get('/dni/:dni', datosMedicosCtrl.getAllDatosMedicosDni);
 router.get('/', datosMedicosCtrl.getDatosMedicos);
+router.get('/dni-latest/:dni', datosMedicosCtrl.getLatestByDni);
 router.post('/', datosMedicosCtrl.createDatosMedicos);
 router.get('/:id', datosMedicosCtrl.getDatosMedicosById);
 router.put('/:id', datosMedicosCtrl.editDatosMedicos);
