@@ -40,7 +40,8 @@ usuarioCtrl.createUsuario = async (req, res) => {
         email: req.body.email,
         code: code,
         status: 'UNVERIFIED',
-        rol: req.body.rol
+        rol: req.body.rol,
+        dni: req.body.dni
     });
     email = req.body.email
     username= req.body.username
@@ -129,12 +130,18 @@ usuarioCtrl.askReset = async (req, res) => {
     try {
         const user = await Usuario.findOne({ email });
         if (!user) {
-        return res.json({
+        return res.status(499).json({
             success: false,
-            msg: 'Usuario no encontrado'
+            message: 'Usuario no encontrado'
         });
     }
     if(user){
+        if (!user.isVerified()) {
+            return res.status(498).json({
+                success: false,
+                message: 'Usuario no verificado'
+            });
+        }
         const code = uuidv4();
         const token = getTokenPassword({ email});
         const emailSubject = 'Recuperación de Contraseña';
@@ -173,7 +180,7 @@ usuarioCtrl.resetPassword = async (req, res) => {
         const { email } = data.data;
         const user = await Usuario.findOne({ email });
         if (!user) {
-            return res.json({
+            return res.json.status(499)({
             success: false,
             msg: 'Usuario no encontrado'
             });
@@ -239,10 +246,54 @@ usuarioCtrl.loginUsuario = async (req, res) => {
         username: req.body.username
     }
 
+    console.log(req.body.username + ' aaaaaa')
     try {
         const user = await Usuario.findOne(criteria).populate("rol");
 
         console.log(user + ' aaaaaaa')
+        if (!user) {
+            res.json({
+                status: 0,
+                msg: "not found"
+            })
+        } else {
+            console.log(user.password + req.body.password)
+            const passwordMatch = await bcrypt.compare(
+                req.body.password,
+                user.password
+            );
+            console.log(passwordMatch + ' HOLAAAAAAA')
+            if (passwordMatch) {
+              // Las contraseñas coinciden, generando el token de autenticación
+                const unToken = jwt.sign({ id: user._id }, 'secretkey');
+
+            res.json({
+                status: 1,
+                msg: "success",
+                usuario:user,
+                username: user.username, //retorno información útil para el frontend
+                rol: user.rol, //retorno información útil para el frontend
+                userid: user._id, //retorno información útil para el frontend
+                token: unToken
+            })
+        }
+    }
+    } catch (error) {
+        console.log(error);
+    }
+    //el método findOne retorna un objeto que cumpla con los criterios de busqueda
+
+}
+usuarioCtrl.loginUsuarioEmail = async (req, res) => {
+    //en req.body se espera que vengan las credenciales de login
+    //defino los criterios de busqueda en base al username y password recibidos
+    const criteria = {
+        email: req.body.email
+    }
+    try {
+        const user = await Usuario.findOne(criteria).populate("rol");
+
+        console.log(req.body.email +'  ' +user + ' aaaaaaa')
         if (!user) {
             res.json({
                 status: 0,

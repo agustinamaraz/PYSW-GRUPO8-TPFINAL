@@ -12,6 +12,8 @@ export class ResetpasswordComponent implements OnInit {
   id!:string;
   returnUrl!:string;
   email!:string;
+  notFound!:boolean;
+  notVerified:boolean=false;
   form:boolean=false;
   constructor(private loginService:LoginService, private activatedRoute: ActivatedRoute, private route:Router) { }
 
@@ -37,6 +39,21 @@ export class ResetpasswordComponent implements OnInit {
       },
       error=>{
         console.log(error)
+        if (error.status === 499) {
+          this.notFound = true;
+          let myDiv = document.getElementById('errorEmail')!;
+          if (myDiv) {
+            myDiv.style.display = 'block';
+            setTimeout(() => {
+              myDiv.style.display = 'none';
+            }, 3000);
+          }
+        }
+        if(error.status === 498){
+          console.log(this.notVerified)
+          this.notVerified = true
+          console.log(this.notVerified)
+        }
       }
     )
   }

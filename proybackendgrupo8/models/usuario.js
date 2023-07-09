@@ -8,7 +8,8 @@ const UsuarioSchema = new Schema({
     email:{type:String, require:true},
     code: { type: String },
     status: { type: String, required: true, default: 'UNVERIFIED' },
-    rol: { type: Schema.Types.ObjectId, ref: Rol, required: true } //administrador - gestor - paciente
+    rol: { type: Schema.Types.ObjectId, ref: Rol, required: true }, //administrador - gestor - paciente
+    dni: {type: String, required:true}
 });
 
 UsuarioSchema.pre('save', function (next) {
@@ -55,6 +56,9 @@ UsuarioSchema.statics.isThisUsernameInUse = async function (username) {
         console.log(error.message);
         return false;
     }
+};
+UsuarioSchema.methods.isVerified = function () {
+    return this.status === 'VERIFIED';
 };
 //exporto objeto para que pueda ser usado en otros lugares
 module.exports = mongoose.model('Usuario', UsuarioSchema);
