@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteService } from 'src/app/services/paciente.service';
-
+import * as  ExcelJS from 'exceljs';
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
@@ -86,5 +86,14 @@ export class PacienteComponent implements OnInit {
   verControl(paciente:Paciente){
     this.router.navigate(['datosMedicosHome',paciente._id])
   }
-}
+  generarExcel(paciente:Paciente){
+    console.log('entrando a generar excel')
+    const workbook = new ExcelJS.Workbook(); //creamos una nueva hojja 
+    const create = workbook.creator = ('Centro de Salud Huaicos') //agregamos el autor del excel
+    const worksheet =workbook.addWorksheet ('Listado de Pacientes') //nombre del excel
 
+    //agregar datos al archivo de excel
+    worksheet.addRow(['DNI','Nombre', 'Apellido', 'Fecha de Nacimiento']);
+    worksheet.addRow([paciente.dni,paciente.nombre,paciente.apellido,paciente.fechaNac ]);
+  }
+}

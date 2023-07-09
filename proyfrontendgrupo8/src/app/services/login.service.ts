@@ -34,7 +34,8 @@ export class LoginService {
       headers: new HttpHeaders({
       })
     }
-    return this.http.get('http://localhost:3000/api/usuario/confirm/'+token, httpOption)
+    
+    
   }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
