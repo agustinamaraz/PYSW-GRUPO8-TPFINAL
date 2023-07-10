@@ -10,23 +10,23 @@ export class LoginService {
   hostBase: string;
 
   constructor(private http: HttpClient) {
-    this.hostBase = "http://3.82.255.160/api/usuario/"
+    this.hostBase = "http://3.82.255.160:3000/api/usuario/"
   }
   public getRoles():Observable<any>{
     const httpOption = {
       headers: new HttpHeaders({
       })
     }
-    return this.http.get('http://3.82.255.160/api/rol/', httpOption)
+    return this.http.get('http://localhost:3000/api/rol/', httpOption)
   }
-  public signUp(username:string, password:string, email:string, rol:string, dni:string):Observable<any>{
+  public signUp(username:string, password:string, email:string, rol:string):Observable<any>{
     const httpOption = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    console.log(JSON.stringify({ username: username, password: password, email:email, rol:rol, dni:dni }))
-    let body = JSON.stringify({ username: username, password: password, email:email, rol:rol, dni:dni });
+    console.log(JSON.stringify({ username: username, password: password, email:email, rol:rol }))
+    let body = JSON.stringify({ username: username, password: password, email:email, rol:rol });
     return this.http.post(this.hostBase, body, httpOption)
   }
   public confirm(token:string){
@@ -34,7 +34,7 @@ export class LoginService {
       headers: new HttpHeaders({
       })
     }
-    return this.http.get(this.hostBase+'confirm/'+token, httpOption)
+    return this.http.get('http://localhost:3000/api/usuario/confirm/'+token, httpOption)
   }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
@@ -81,10 +81,6 @@ export class LoginService {
     return usuario;
   }
 
-  public userLoggedDNI() {
-    var dni = sessionStorage.getItem("userDni");
-    return dni;
-  }
   public getUser(){
     let isAdmin = sessionStorage.getItem("usuario");
     const parsedAdmin = isAdmin ? JSON.stringify(isAdmin) : null;
@@ -96,14 +92,6 @@ export class LoginService {
     let isAdmin = sessionStorage.getItem("usuario");
     const parsedAdmin = isAdmin ? JSON.parse(isAdmin) : null;
     if(parsedAdmin && parsedAdmin.rol && parsedAdmin.rol.descripcion === "administrador"){
-        return true;
-    }
-    return false;
-  }
-  public esPaciente(){ //funciona
-    let isPatient = sessionStorage.getItem("usuario");
-    const parsePatient = isPatient ? JSON.parse(isPatient) : null;
-    if(parsePatient && parsePatient.rol && parsePatient.rol.descripcion === "paciente"){
         return true;
     }
     return false;

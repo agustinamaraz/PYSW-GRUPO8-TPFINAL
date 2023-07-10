@@ -47,14 +47,7 @@ export class MenuComponent implements OnInit{
   esAdministrador(){
     return this.loginService.esAdmin();
   }
-  
-  esPaciente(){
-    return this.loginService.esPaciente();
-  }
-  logOutComponent(){
-    this.logout()
-    this.router.navigate(['/home'])
-  }
+
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
   }

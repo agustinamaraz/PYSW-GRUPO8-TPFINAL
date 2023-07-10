@@ -68,7 +68,7 @@ const routes: Routes = [
     canActivate:[VigilanteGuard]
   },
   {
-    path:'datosMedicosHome/:dni',
+    path:'datosMedicosHome/:id',
     component:DatosMedicosHomeComponent
   },
   {

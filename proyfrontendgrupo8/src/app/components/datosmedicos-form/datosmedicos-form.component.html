@@ -1,15 +1,16 @@
+
+<p>datosmedicos-form works!</p>
 <br><br><br>
-<div class="container">
-<form  #datosMedicosForm="ngForm"  (ngSubmit)="onSubmit()">
+<form  #datosMedicosForm="ngForm" (ngSubmit)="onSubmit()">
         <div *ngIf="!modifica" class="mb-3 ms-2">
             <label for="paciente" class="form-label">Elija un paciente</label>
                 <input type="text" class="form-control" [(ngModel)]="filtroPacientes" id="filtroPacientes" name="filtroPacientes" (input)="filtrarPacientes()" #filtroInput="ngModel" placeholder="Busque el paciente por el nombre"> 
-                    <select  name="paciente" id=""  aria-label="select pacient" [(ngModel)]="datoMedico.paciente" #selectList class="form-select select-scrollable" style="max-height: 200px;" (ngModelChange)="onChangeofOptions($event)" #pacienteInput="ngModel" required>
+                    <select  name="paciente" id=""  aria-label="select pacient" [(ngModel)]="datoMedico.paciente" #selectList class="form-select select-scrollable" style="max-height: 200px;" (ngModelChange)="onChangeofOptions($event)" required>
                             <option value="" disabled selected >Seleccione un paciente</option>
-                            <option *ngFor="let item of pacientes" (click)="isSelected()" [value]="item._id">N y A: {{ item.nombre + ' ' + item.apellido }}    dni: {{ item.dni }}</option>
+                            <option *ngFor="let item of pacientes" [value]="item._id">N y A: {{ item.nombre + ' ' + item.apellido }}    dni: {{ item.dni }}</option>
                     </select>
-                <div *ngIf="pacienteInput.invalid && (pacienteInput.dirty ||pacienteInput.touched)" class="alert alert-danger my-1 p-1">
-                    <div *ngIf="pacienteInput.errors?.['required']">
+                <div *ngIf="datosMedicosForm.controls['paciente'].invalid && (datosMedicosForm.controls['paciente'].dirty ||datosMedicosForm.controls['paciente'].touched)" class="alert alert-danger my-1 p-1">
+                    <div *ngIf="datosMedicosForm.controls['paciente'].errors?.['required']">
                         El paciente es requerido
                     </div>
                 </div>
@@ -17,9 +18,6 @@
         <div class="mb-3 ms-2"  *ngIf="modifica">
             <label>{{datoMedico.pacienteObj.nombre + '  '+ datoMedico.pacienteObj.apellido}}</label>
         </div>
-        <button type="button" class="btnCopy mb-3 ms-2" (click)="asignLatest()" *ngIf="selectedPaciente">
-            Copiar datos del anterior control
-        </button>
     <div class="mb-3 ms-2">
         <label for="motivo" class="form-label">Ingrese el motivo</label>
         <input type="text" class="form-control form" [(ngModel)]="datoMedico.motivo" id="motivo"  name="motivo" required #motivoInput="ngModel" placeholder="Ingrese el motivo del control">
@@ -55,7 +53,7 @@
         </div>
         <div class="mb-3 ms-2">
             <label for="tension_arterial" class="form-label">Ingrese la tension arterial</label>
-            <input type="number" class="form-control form" [(ngModel)]="datoMedico.tension_arterial" id="tension_arterial" min="0.01" name="tension_arterial"  [value]="datoMedico.peso == 0 ? datoMedico.peso : ''" required #tension_arterialInput="ngModel" [value]="datoMedico.tension_arterial== 0 ? datoMedico.tension_arterial : ''" placeholder="Ingrese la tension arterial del paciente">
+            <input type="number" class="form-control form" [(ngModel)]="datoMedico.tension_arterial" id="tension_arterial" min="0.01" name="tension_arterial" required #tension_arterialInput="ngModel" [value]="datoMedico.tension_arterial== 0 ? datoMedico.tension_arterial : ''" placeholder="Ingrese la tension arterial del paciente">
             <div *ngIf="tension_arterialInput.invalid && (tension_arterialInput.dirty || tension_arterialInput.touched)" class="alert alert-danger my-1 p-1">
                 <div *ngIf="tension_arterialInput.errors?.['required']">
                     La tension arterial es requerida
@@ -78,9 +76,7 @@
         <label for="fecha" class="form-label">Fecha del dato medico</label>
         <label class="form-control">{{datoMedico.fecha}}</label>
     </div>
-    <button type="submit" *ngIf="!modifica" [disabled]="datosMedicosForm.invalid" class="btnEnviar ms-2 mb-4">Enviar</button>
-    <button type="submit" *ngIf="modifica" [disabled]="datosMedicosForm.invalid" class="btnEnviar ms-2 mb-4">Modificar</button>
-    <a class="btnVolver ms-2" [routerLink]="'/datosMedicos'">Volver</a>
+    <button type="submit" *ngIf="!modifica" [disabled]="datosMedicosForm.invalid" class="btn btn-primary ms-2">Enviar</button>
+    <button type="submit" *ngIf="modifica" [disabled]="datosMedicosForm.invalid" class="btn btn-primary ms-2">Modificar</button>
 </form>
-</div>
 <br>
