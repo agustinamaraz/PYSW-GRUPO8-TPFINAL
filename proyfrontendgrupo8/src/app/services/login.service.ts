@@ -20,14 +20,14 @@ export class LoginService {
     }
     return this.http.get('http://localhost:3000/api/rol/', httpOption)
   }
-  public signUp(username:string, password:string, email:string, rol:string, dni:string):Observable<any>{
+  public signUp(username:string, password:string, email:string, rol:string):Observable<any>{
     const httpOption = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    console.log(JSON.stringify({ username: username, password: password, email:email, rol:rol, dni:dni }))
-    let body = JSON.stringify({ username: username, password: password, email:email, rol:rol, dni:dni });
+    console.log(JSON.stringify({ username: username, password: password, email:email, rol:rol }))
+    let body = JSON.stringify({ username: username, password: password, email:email, rol:rol });
     return this.http.post(this.hostBase, body, httpOption)
   }
   public confirm(token:string){
@@ -35,11 +35,14 @@ export class LoginService {
       headers: new HttpHeaders({
       })
     }
-    return this.http.get(this.hostBase+'confirm/'+token, httpOption)
+
+    return this.http.get('http://localhost:3000/api/usuario/confirm/'+token, httpOption)
+
   }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
       headers: new HttpHeaders({
+        'access-control-allow-origin': 'http://localhost:4200',
         'Content-Type': 'application/json'
       })
     }
@@ -57,7 +60,6 @@ export class LoginService {
     console.log(body);
     return this.http.post(this.hostBase + 'login-email', body, httpOption);
   }
-
   public logout() {
     //borro el vble almacenado mediante el storage
     sessionStorage.removeItem("usuario");
@@ -94,10 +96,6 @@ export class LoginService {
     return usuario;
   }
 
-  public userLoggedDNI() {
-    var dni = sessionStorage.getItem("userDni");
-    return dni;
-  }
   public getUser(){
     let isAdmin = sessionStorage.getItem("usuario");
     const parsedAdmin = isAdmin ? JSON.stringify(isAdmin) : null;
@@ -174,4 +172,9 @@ export class LoginService {
     console.log(body);
     return this.http.post(this.hostBase + 'reset-ask', body, httpOption);
   }
+
+  userLoggedDNI(){ //nose quien lo puso en el menu asi q lo tuve q poner aca
+
+  }
+
 }

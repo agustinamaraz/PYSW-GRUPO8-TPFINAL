@@ -12,11 +12,15 @@ import { VigilanteGuard } from 'src/app/vigilante.guard';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit{
+
+
+
   logout() {
     this.loginService.logout();
   }
   stickyHeader = false;
   activo: boolean = false;
+  
   isUserVerified!:boolean;
 
   //NAVBAR
@@ -49,7 +53,6 @@ export class MenuComponent implements OnInit{
   esAdministrador(){
     return this.loginService.esAdmin();
   }
-  
   esPaciente(){
     return this.loginService.esPaciente();
   }

@@ -23,10 +23,6 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
     var pacientes = await Paciente.find(criteria);
     res.json(pacientes);
 }
-pacienteCtrl.getOnePacienteDni = async (req,res)=>{
-    const paciente = await Paciente.findOne({ dni: req.params.dni })
-    res.json(paciente)
-}
 
 //create
 pacienteCtrl.createPaciente = async (req, res) => {

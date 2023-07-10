@@ -13,7 +13,6 @@ export class ResetpasswordComponent implements OnInit {
   returnUrl!:string;
   email!:string;
   notFound!:boolean;
-  notVerified:boolean=false;
   form:boolean=false;
   constructor(private loginService:LoginService, private activatedRoute: ActivatedRoute, private route:Router) { }
 
@@ -48,11 +47,6 @@ export class ResetpasswordComponent implements OnInit {
               myDiv.style.display = 'none';
             }, 3000);
           }
-        }
-        if(error.status === 498){
-          console.log(this.notVerified)
-          this.notVerified = true
-          console.log(this.notVerified)
         }
       }
     )

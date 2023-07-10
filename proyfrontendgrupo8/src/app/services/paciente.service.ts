@@ -7,8 +7,11 @@ import { Paciente } from '../models/paciente';
   providedIn: 'root'
 })
 export class PacienteService {
+  hostBase: string;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.hostBase = "http://localhost:3000/api/paciente/";
+   }
 
   getPaciente(id:string):Observable<any>{
     let httpOptions={
@@ -21,8 +24,10 @@ export class PacienteService {
 
     }
 
-    return this.http.get("http://localhost:3000/api/paciente/"+id,httpOptions);
+    return this.http.get(this.hostBase+id,httpOptions);
+
   }
+
 
   //todos los pacientes
   getPacientes():Observable<any>{
@@ -36,7 +41,8 @@ export class PacienteService {
 
     }
 
-    return this.http.get("http://localhost:3000/api/paciente/",httpOptions);
+    return this.http.get(this.hostBase,httpOptions);
+
   }
   //paciente por dni
   getPacienteDni(dni:string):Observable<any>{
@@ -50,7 +56,9 @@ export class PacienteService {
       .append("dniP",dni)
     }
 
-    return this.http.get("http://localhost:3000/api/paciente/dni",httpOptions);
+
+    return this.http.get(this.hostBase+"dni",httpOptions);
+
   }
   getOnePacienteByDni(dni:string):Observable<any>{
     let httpOptions={
@@ -74,7 +82,7 @@ export class PacienteService {
 
     }
 
-    return this.http.get("http://localhost:3000/api/paciente/"+id,httpOptions);
+    return this.http.get(this.hostBase+id,httpOptions);
   }
   createPaciente(paciente:Paciente):Observable<any>{
     let httpOptions={
@@ -88,7 +96,7 @@ export class PacienteService {
 
     let body = JSON.stringify(paciente);
     
-    return this.http.post("http://localhost:3000/api/paciente",body,httpOptions);
+    return this.http.post(this.hostBase,body,httpOptions);
   }
 
   deletePaciente(id:string):Observable<any>{
@@ -101,7 +109,7 @@ export class PacienteService {
       params: new HttpParams()
     }
 
-    return this.http.delete("http://localhost:3000/api/paciente/"+id,httpOptions);
+    return this.http.delete(this.hostBase+id,httpOptions);
   }
 
   editPaciente(paciente:Paciente):Observable<any>{
@@ -116,6 +124,6 @@ export class PacienteService {
 
     let body = JSON.stringify(paciente);
 
-    return this.http.put("http://localhost:3000/api/paciente/"+paciente._id,body,httpOptions);
+    return this.http.put(this.hostBase+paciente._id,body,httpOptions);
   }
 }
