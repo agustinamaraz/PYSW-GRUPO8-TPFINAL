@@ -13,6 +13,7 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 //app.use(cors({ origin: allowedOrigins })); //Hay que agregar eso al repositorio del backend
 
 
+
 //Cargamos el modulo de direccionamiento de rutas
 app.use('/api/usuario', require('./routes/usuario.route.js'));
 app.use('/api/rol', require('./routes/rol.route.js'));

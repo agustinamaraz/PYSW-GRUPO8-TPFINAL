@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { Usuario } from 'src/app/models/usuario';
 import { GooService } from 'src/app/services/goo.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -12,10 +13,20 @@ export class LoginComponent implements OnInit {
   userform: Usuario = new Usuario(); //usuario mapeado al formulario
   returnUrl!: string;
   resetUrl!:string;
+  auth2: any;
+  @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
   msglogin!: string; // mensaje que indica si no paso el loguin
   constructor(
+    private readonly oAuthService: OAuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private loginService: LoginService,
+    private gooService: GooService) {
+  }
+
+ // ngOnInit() {
+   // this.googleAuthSDK();
+
     private loginService: LoginService,private gooService:GooService) {
   }
 
@@ -51,6 +62,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem("rol", JSON.stringify(user.rol));
             //redirigimos a home o a pagina que llamo
             this.router.navigateByUrl(this.returnUrl);
+            this.gooService.checkIfGoogleAccountLinked();
           } else {
             //usuario no encontrado muestro mensaje en la vista
             this.msglogin = "Credenciales incorrectas..";
@@ -76,6 +88,10 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem("user", user.username);
             sessionStorage.setItem("userid", user.userid);
             sessionStorage.setItem("rol", JSON.stringify(user.rol));
+
+            sessionStorage.setItem("userDni",user.usuario.dni);
+            this.gooService.checkIfGoogleAccountLinked();
+
             //redirigimos a home o a pagina que llamo
             this.router.navigateByUrl(this.returnUrl);
           } else {
@@ -95,17 +111,86 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['signUp',0]);
   }
 
-  loginGoogle(){
-    this.gooService.login()
+  callLogin(){
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleAuthUser: any) => {
+        // Código para obtener los detalles del perfil de Google
+        let profile = googleAuthUser.getBasicProfile();
 
+        console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        let rol = "visitante";
+        let name = this.cortarStringPorEspacio(profile.getName())
+        sessionStorage.setItem("username", name)
+        sessionStorage.setItem("rol", rol)
+        sessionStorage.setItem('googleIsLoggedIn', 'true')
+        console.log(sessionStorage.getItem('googleIsLoggedIn'))
+        this.oAuthService.setupAutomaticSilentRefresh();
+        this.oAuthService.initCodeFlow();
+        console.log(this.oAuthService.hasValidAccessToken())
+        console.log(googleAuthUser.getBasicProfile());
+        this.router.navigateByUrl(this.returnUrl);
+      }, (error: any) => {
+        alert(JSON.stringify(error, undefined, 2)+ 'HOLAAAAAAAAAAAAAAAAA');
+      });
   }
+  cortarStringPorEspacio(texto: string): string {
+    const indiceEspacio = texto.indexOf(' ');
+    if (indiceEspacio !== -1) {
+      return texto.substring(0, indiceEspacio);
+    } else {
+      return texto;
+    }
+  }
+  googleAuthSDK() {
+
+    (<any>window)['googleSDKLoaded'] = () => {
+      (<any>window)['gapi'].load('auth2', () => {
+        this.auth2 = (<any>window)['gapi'].auth2.init({
+          client_id: '989832783745-cp1uiv1g4hhf3qh0bkgcilbls624cpb7.apps.googleusercontent.com',
+          plugin_name:'login',
+          cookiepolicy: 'single_host_origin',
+          scope: 'profile email'
+        });
+        this.loadGoogleAuth();
+      });
+    }
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement('script');
+      js.id = id;
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      fjs?.parentNode?.insertBefore(js, fjs);
+    }(document, 'script', 'google-jssdk'));
+  }
+  loadGoogleAuth() {
+    if (this.auth2) {
+      this.callLogin();
+    } else {
+      // La biblioteca de autenticación de Google no se cargó correctamente
+      console.error('Error: Google Auth library not loaded');
+    }
+  }
+
+
+
+//   loginGoogle(){
+//     this.gooService.login()
+
+//   }
   
-  logoutGoogle(){
-    this.gooService.logout();
-  }
+//   logoutGoogle(){
+//     this.gooService.logout();
+//   }
 
-  token(){
-    console.log(this.gooService.getToken());
-    alert(this.gooService.getToken())
-  }
+//   token(){
+//     console.log(this.gooService.getToken());
+//     alert(this.gooService.getToken())
+//   }
+
 }
