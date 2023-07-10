@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/reset';
+    //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/reset';
   }
   verificarTexto(texto:any):boolean {
     const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;

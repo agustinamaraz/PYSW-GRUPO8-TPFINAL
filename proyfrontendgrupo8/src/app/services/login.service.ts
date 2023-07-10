@@ -39,6 +39,7 @@ export class LoginService {
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
       headers: new HttpHeaders({
+        //'access-control-allow-origin': 'http://localhost:4200',
         'Content-Type': 'application/json'
       })
     }
@@ -142,4 +143,9 @@ export class LoginService {
     console.log(body);
     return this.http.post(this.hostBase + 'reset-ask', body, httpOption);
   }
+
+  userLoggedDNI(){ //nose quien lo puso en el menu asi q lo tuve q poner aca
+
+  }
+
 }
