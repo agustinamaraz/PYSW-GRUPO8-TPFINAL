@@ -6,7 +6,7 @@ import { Anuncio } from 'src/app/models/anuncio';
 import { Recurso } from 'src/app/models/recurso';
 import { AnuncioService } from 'src/app/services/anuncio.service';
 import { StorageService } from 'src/app/services/storage.service';
-
+declare var window:any;
 @Component({
   selector: 'app-list-anuncio',
   templateUrl: './list-anuncio.component.html',
@@ -16,6 +16,7 @@ export class ListAnuncioComponent implements OnInit {
   ancuncios : Array<Anuncio>
   listRecurso: Array<Recurso>
   listRecrso!:Array<Recurso>
+  formModal:any ;
   constructor(private anuncioService:AnuncioService ,private route:Router,  private storageService: StorageService ) { 
     this.ancuncios= new Array<Anuncio>()
     this.listRecurso= new Array<Recurso>()
@@ -24,8 +25,11 @@ export class ListAnuncioComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAnucios()
-
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("exampleModal")
+    )
     }
+    
      getAnucios(){
       this.anuncioService.getAnuncios().subscribe(
         result=>{
@@ -91,6 +95,11 @@ elimarArchivo(ref : string){
 
  clickRecurso(anuncio:Anuncio){
     this.listRecurso= anuncio.recursos
+     console.log(this.listRecurso)
+    this.formModal.show();
+   
+    
+  
  }
  direcionar(){
   this.route.navigate(['form-anuncio/0'])
