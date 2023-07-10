@@ -54,7 +54,7 @@ export class PacienteFormComponent implements OnInit {
         }
       },
       error => {
-        this.toastr.error(error.msg)
+        this.toastr.error("Debe completar todos los campos")
       }
     )
 
@@ -67,7 +67,7 @@ export class PacienteFormComponent implements OnInit {
     this.pacienteService.editPaciente(this.paciente).subscribe(
       result => {
         if (result.status == 1) {
-          this.toastr.success('Paciente Modificado Correctamente')
+          this.toastr.success('Paciente Modificado Correctamente', 'Paciente Modificado')
           this.router.navigate(["paciente"])
         }
       },

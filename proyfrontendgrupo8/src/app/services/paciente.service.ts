@@ -25,7 +25,9 @@ export class PacienteService {
     }
 
     return this.http.get(this.hostBase+id,httpOptions);
+
   }
+
 
   //todos los pacientes
   getPacientes():Observable<any>{
@@ -40,6 +42,7 @@ export class PacienteService {
     }
 
     return this.http.get(this.hostBase,httpOptions);
+
   }
   //paciente por dni
   getPacienteDni(dni:string):Observable<any>{
@@ -53,7 +56,9 @@ export class PacienteService {
       .append("dniP",dni)
     }
 
+
     return this.http.get(this.hostBase+"dni",httpOptions);
+
   }
   getPacienteById(id:string):Observable<any>{
     let httpOptions={
