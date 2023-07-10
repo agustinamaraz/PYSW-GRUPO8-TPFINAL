@@ -20,6 +20,8 @@ import { FormcontactoComponent } from './components/formcontacto/formcontacto.co
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { EspecialistaComponent } from './components/especialista/especialista.component';
+import { TurnoComponent } from './components/turno/turno.component';
+import { TurnoFormComponent } from './components/turno-form/turno-form.component';
 const routes: Routes = [
 {
     path:'login',
@@ -136,6 +138,20 @@ const routes: Routes = [
   },
   {
     path:'especialista',component:EspecialistaComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'turno',component:TurnoComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'turno-form/:id',component:TurnoFormComponent,
     data:{
       rol: 'administrador'
     },

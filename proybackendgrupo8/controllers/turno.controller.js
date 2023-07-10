@@ -2,7 +2,7 @@ const Turno = require('./../models/turno')
 const turnoCtrl = {}
 
 turnoCtrl.createTurno = async (req, res) => {
-    //en req.body se espera que vengan los datos de usuario a crear
+    console.log("turno controller"+ req.body)
     const turno = new Turno(req.body);
     try {
         await turno.save();
