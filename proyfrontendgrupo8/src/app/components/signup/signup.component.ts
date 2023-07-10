@@ -63,11 +63,18 @@ export class SignupComponent implements OnInit {
       }
     )
   }
+  
+  esAdministrador(){
+    return this.usuarioService.esAdmin();
+  }
   onChangeOptions(rol:Rol){
     console.log(rol._id)
   }
   createUser(){
     console.log(this.usuario.rol.descripcion +  '  '+ JSON.stringify(this.usuario.rol))
+    if(!this.esAdministrador()){
+      this.usuario.rol._id = '649de3a7583b9ab931caaa6c'
+    }
     this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id).subscribe(
       result=>{
         console.log(result);

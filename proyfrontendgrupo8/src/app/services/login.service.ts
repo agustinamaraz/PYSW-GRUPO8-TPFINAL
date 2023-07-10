@@ -10,7 +10,7 @@ export class LoginService {
   hostBase: string;
 
   constructor(private http: HttpClient) {
-    this.hostBase = "http://localhost:3000/api/usuario/"
+    this.hostBase = "http://3.82.255.160:3000/api/usuario/"
   }
   public getRoles():Observable<any>{
     const httpOption = {
@@ -45,6 +45,16 @@ export class LoginService {
     let body = JSON.stringify({ username: username, password: password });
     console.log(body);
     return this.http.post(this.hostBase + 'login', body, httpOption);
+  }
+  public loginEmail(email: string, password: string): Observable<any> {
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    let body = JSON.stringify({ email: email, password: password });
+    console.log(body);
+    return this.http.post(this.hostBase + 'login-email', body, httpOption);
   }
 
   public logout() {
