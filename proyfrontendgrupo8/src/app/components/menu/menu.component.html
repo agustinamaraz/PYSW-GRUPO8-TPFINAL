@@ -8,6 +8,26 @@
 
     <li *ngIf="esAdministrador()==true">
       <a href="#">
+        Gestionar Especialistas
+      </a>
+      <ul class="dropdown">
+        <li><a class="dropdown-item" [routerLink]="'especialista-form/0'">Formulario para Especialista</a></li>
+        <li><a class="dropdown-item" [routerLink]="'especialista'">Listado de Especialistas</a></li>
+      </ul>
+    </li>
+
+    <li *ngIf="esAdministrador()==true">
+      <a href="#">
+        Gestionar Turnos
+      </a>
+      <ul class="dropdown">
+        <li><a class="dropdown-item" [routerLink]="'turnos-form/0'">Formulario para Turnos</a></li>
+        <li><a class="dropdown-item" [routerLink]="'turnos'">Listado de Turnos</a></li>
+      </ul>
+    </li>
+
+    <li *ngIf="esAdministrador()==true">
+      <a href="#">
         Gestionar Paciente
       </a>
       <ul class="dropdown">
