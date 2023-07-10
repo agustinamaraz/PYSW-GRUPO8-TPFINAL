@@ -4,39 +4,27 @@
     <li><a routerLink="/inicio">Inicio</a></li>
     <li *ngIf="esAdministrador()==true"><a routerLink="/calendar">Crear un evento</a></li>
 
-    <li  *ngIf="esAdministrador()==true">
+    <li *ngIf="esAdministrador()==true">
       <a href="#">
-        Paciente
+        Gestionar Paciente
       </a>
       <ul class="dropdown">
-        <li ><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
+        <li><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
         <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
+        <li><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
       </ul>
+    </li>
 
-
-   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
-   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
-   <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
-
-    <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncios</a></li>
-
-    <a href="#">
-      Paciente
-    </a>
-    <ul class="dropdown">
-      <li><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
-      <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
-      <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
-      <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
-    </ul>
-    <li  *ngIf="esPaciente()==true">
+    <li *ngIf="esAdministrador()==true">
       <a href="#">
-        Paciente
+        Gestionar Anuncios
       </a>
       <ul class="dropdown">
-        <li ><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
       </ul>
     </li>
 
