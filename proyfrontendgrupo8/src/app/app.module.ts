@@ -40,7 +40,8 @@ import { ListContactoComponent } from './components/list-contacto/list-contacto.
 import { EspecialistaComponent } from './components/especialista/especialista.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 
-
+//datatable
+import { DataTablesModule } from "angular-datatables";
 
 
 registerLocaleData(localeEsAr);
@@ -85,9 +86,11 @@ registerLocaleData(localeEsAr);
     BrowserAnimationsModule, // required animations module
     ToastrModule,
 
-    ToastrModule.forRoot({ //agregado agus 4/7/2023
+    ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
-    })
+    }),
+    //datatable
+    DataTablesModule  
   ],
 
   providers:
