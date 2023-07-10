@@ -143,4 +143,9 @@ export class LoginService {
     console.log(body);
     return this.http.post(this.hostBase + 'reset-ask', body, httpOption);
   }
+
+  userLoggedDNI(){ //nose quien lo puso en el menu asi q lo tuve q poner aca
+
+  }
+
 }
