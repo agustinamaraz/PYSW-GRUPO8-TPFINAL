@@ -18,7 +18,7 @@ export class VigilanteGuard implements CanActivate {
   checkUserRol(route:ActivatedRouteSnapshot):boolean{
     const scopes:any = this.login.getUser()!;
 
-    console.log("vigilanteeeee: "+ scopes);
+    //console.log("vigilanteeeee: "+ scopes);
 
     if(scopes.includes(route.data["rol"])){
       return true;

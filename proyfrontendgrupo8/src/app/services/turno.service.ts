@@ -54,6 +54,7 @@ export class TurnoService {
     }
 
     let body = JSON.stringify(t);
+    console.log(body);
 
     return this.http.post(this.hostBase, body, httpOptions);
   }
