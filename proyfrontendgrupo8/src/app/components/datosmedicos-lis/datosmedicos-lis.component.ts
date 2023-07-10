@@ -1,24 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatosMedicos } from 'src/app/models/datos-medicos';
 import { DatosMedicosServiceService } from 'src/app/services/datos-medicos-service.service';
-import * as ExcelJS from 'exceljs'
+import * as ExcelJS from 'exceljs';
+//import {Subject} from 'rxjs';
 @Component({
   selector: 'app-datosmedicos-lis',
   templateUrl: './datosmedicos-lis.component.html',
   styleUrls: ['./datosmedicos-lis.component.css']
 })
-export class DatosmedicosLisComponent implements OnInit{
+export class DatosmedicosLisComponent implements OnInit, OnDestroy{
   datosMedicos:Array<DatosMedicos>;
   datoMed!:DatosMedicos;
   fecha!:string;
+  //dtOptions: DataTables.Settings = {}; 
+  //dtTrigger = new Subject<any>();
   searchText = '';
   constructor(private datosMedicosService:DatosMedicosServiceService, private router:Router){
     this.datosMedicos=new Array<DatosMedicos>();
     this.fecha = String(new Date().toLocaleDateString('es-ar'));
   }
   ngOnInit(): void {
-    this.getAllData()
+    this.getAllData();    
+    //this.dtOptions = {
+      //pagingType: 'full_numbers'
+    //}
+  }
+  ngOnDestroy(): void {
+    //this.dtTrigger.unsubscribe();
   }
   getAllData(){
     this.datosMedicosService.getDatosMedicos().subscribe(
@@ -38,6 +47,7 @@ export class DatosmedicosLisComponent implements OnInit{
             nuevo.pacienteObj = result[i].paciente;
         this.datosMedicos.push(nuevo)
         }
+        //this.dtTrigger.next(this.datosMedicos);
       },
       error=>{
         console.log(error)

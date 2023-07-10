@@ -7,7 +7,6 @@ import { Recurso } from 'src/app/models/recurso';
 import { AnuncioService } from 'src/app/services/anuncio.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { taggedTemplate } from '@angular/compiler/src/output/output_ast';
 import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-form-anuncio',

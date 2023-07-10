@@ -14,6 +14,10 @@
             </div>
             <button class="" (click)="login()">Login</button>
             <div class="alert-danger">{{msglogin}}</div>
+            <button class="login-google" #loginRef (click)="callLogin()">
+                <span>Iniciar sesion con google</span> <i class='bx bxl-google' style='color:rgba(210,213,217,0.99)'  ></i>
+            </button>
+            <button (click)="signup()" class="btnRegistrarse">Registrarse</button>
             <div class="link">
             <a [routerLink]="'/reset/0'">¿No recuerda su contraseña?</a>
         </div>

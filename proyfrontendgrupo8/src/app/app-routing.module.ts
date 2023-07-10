@@ -81,7 +81,7 @@ const routes: Routes = [
     data:{
       rol: 'administrador'
     },
-    canActivate:[VigilanteGuard]
+    //canActivate:[VigilanteGuard]
   },
   {
     path:'form-anuncio/:id',component:FormAnuncioComponent,

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { ActivatedRoute, NavigationEnd, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
@@ -28,6 +29,7 @@ export class MenuComponent implements OnInit{
   private routerSubscription: Subscription;
   userStatus!:boolean;
   constructor(
+    private readonly oAuthService: OAuthService,
     public loginService: LoginService,
     private router: Router,
     private http: HttpClient,
@@ -51,8 +53,15 @@ export class MenuComponent implements OnInit{
   esPaciente(){
     return this.loginService.esPaciente();
   }
+  esVisitante(){
+    return this.loginService.esVisitante();
+  }
   logOutComponent(){
     this.logout()
+    this.router.navigate(['/home'])
+  }
+  logoutGoogle(){
+    this.oAuthService.logOut(); 
     this.router.navigate(['/home'])
   }
   ngOnDestroy() {
