@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
  // ngOnInit() {
    // this.googleAuthSDK();
 
-    private loginService: LoginService,private gooService:GooService) {
-  }
 
   ngOnInit() {
     this.gooService.configureSingleSignOne();
@@ -179,10 +177,10 @@ export class LoginComponent implements OnInit {
 
 
 
-//   loginGoogle(){
-//     this.gooService.login()
+  loginGoogle(){
+    this.gooService.login()
 
-//   }
+  }
   
 //   logoutGoogle(){
 //     this.gooService.logout();
