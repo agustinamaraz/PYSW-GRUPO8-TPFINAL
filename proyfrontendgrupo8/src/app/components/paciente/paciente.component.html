@@ -2,19 +2,23 @@
     <div class="text-center" style="background-color: #84b6f4;padding: 30px;">
         LISTADO DE PACIENTES
       </div>
+      
       <br>
       <div style="padding-left: 5%;">
-        <button type="button" class="btn btn-success" (click)="agregarPaciente()">AGREGAR PACIENTE</button>  
+        <button type="button" class="btn btn-success" (click)="agregarPaciente()">AGREGAR PACIENTE</button>
+        <button type="button" class="btn btn-secondary" (click)="imprimirPdf()">IMPRMIR PACIENTES EN PDF</button>
+        <button type="button" class="btn btn-warning" (click)="imprimirXlsx()">IMPRIMIR PACIENTES EN XLSX</button>
       </div>
 <br>
 <br>
       <h5>Buscar Paciente ya registrado con dni</h5>
       <div class="mb-3" style="width:80%;">
         <input type="text" class="form-control" id="idfecha" name="fechaNac" required
-            placeholder="Ingrese dni a buscar" [(ngModel)]="dni" (ngModelChange)="obtenerPacienteDni()">
+            placeholder="Ingrese dni de paciente a buscar" [(ngModel)]="dni" (ngModelChange)="obtenerPacienteDni()">
     </div>
 
     <div style="padding: 3%;">
+        <!-- datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"-->
         <table class="table table-bordered table-hover border-primary mt-5" >
             <thead class="table-primary">
                 <tr>

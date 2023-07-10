@@ -1,6 +1,6 @@
 <br>
 <div class="mt-5">
-    <div style="padding-left:30%; padding-top: 2%;padding-bottom: 2%;">
+    <div style="padding-left:30%; padding-top: 2%; padding-bottom: 2%;">
      
       <form #pacienteForm="ngForm" class="formstyle" style="padding: 5%;">
         <h1>Formulario para cargar un paciente</h1>
@@ -14,7 +14,7 @@
                           <div *ngIf=" nombre.errors?.['required']">
                                   Nombre Requerido.
                           </div>
-                          <div *ngIf=" nombre.errors?.['minlength']">
+                          <div *ngIf=" nombre.errors?.['minlength = 4 ']">
                             Nombre, no menos de 4 caracteres.
                           </div>
                     </div>
