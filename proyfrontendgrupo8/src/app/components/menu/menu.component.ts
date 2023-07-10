@@ -99,7 +99,4 @@ export class MenuComponent implements OnInit{
     }
   }
 
-  esPaciente(){ //no se quien lo puso en el html pero aca no estaba asi que lo puse asi noomas
-    return true;
-  }
 }

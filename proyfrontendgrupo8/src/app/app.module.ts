@@ -40,6 +40,8 @@ import { ListContactoComponent } from './components/list-contacto/list-contacto.
 
 import { EspecialistaComponent } from './components/especialista/especialista.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
+import { TurnoComponent } from './components/turno/turno.component';
+import { TurnoFormComponent } from './components/turno-form/turno-form.component';
 
 //datatable
 //import { DataTablesModule } from "angular-datatables";
@@ -73,7 +75,9 @@ registerLocaleData(localeEsAr);
     FormcontactoComponent,
     ListContactoComponent,
     EspecialistaComponent,
-    EspecialistaFormComponent
+    EspecialistaFormComponent,
+    TurnoComponent,
+    TurnoFormComponent
   ],
   imports:[
     BrowserModule,

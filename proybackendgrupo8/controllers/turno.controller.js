@@ -19,12 +19,12 @@ turnoCtrl.createTurno = async (req, res) => {
 }
 
 turnoCtrl.getTurnos = async (req, res) => {
-    var turnos = await Turno.find();
+    var turnos = await Turno.find().populate("especialista").populate("paciente");
     res.json(turnos);
 }
 
 turnoCtrl.getTurno = async (req, res) => {
-    const turno = await Turno.findById(req.params.id);
+    const turno = await Turno.findById(req.params.id).populate("especialista").populate("paciente");
     res.json(turno);
 }
 
