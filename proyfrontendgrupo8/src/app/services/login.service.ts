@@ -35,7 +35,6 @@ export class LoginService {
       })
     }
     
-    
   }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {

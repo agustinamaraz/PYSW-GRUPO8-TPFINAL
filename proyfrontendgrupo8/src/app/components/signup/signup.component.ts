@@ -75,7 +75,7 @@ export class SignupComponent implements OnInit {
     if(!this.esAdministrador()){
       this.usuario.rol._id = '649de3a7583b9ab931caaa6c'
     }
-    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id, this.usuario.dni).subscribe(
+    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id).subscribe(
       result=>{
         console.log(result);
         alert('Registrado correctamente')
@@ -137,7 +137,7 @@ export class SignupComponent implements OnInit {
         });
   }
   modifyUser(){
-    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id, this.usuario.dni).subscribe(
+    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id).subscribe(
       result=>{
         console.log(result);
         alert('Registrado correctamente')
