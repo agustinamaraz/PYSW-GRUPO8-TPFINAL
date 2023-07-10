@@ -211,3 +211,38 @@ input {
 	transform: translateX(20%);
 }
 
+.login-google{
+	margin-top: 2vh;
+	font-size: 12px;
+	width: auto;
+	white-space: nowrap;
+	height: auto;
+}
+.login-google i{
+	align-items: baseline;
+	justify-self: baseline;
+	text-align:end;
+	font-size: 16px;
+}
+@media(max-width:705px){
+	.container{
+		min-height: 620px;
+	}
+	.overlay-container{
+		width: 0;
+		display: none;
+	}
+	.sign-in-container{
+		width: 100%;
+	}
+
+}	.btnRegistrarse{
+	margin-top: 2%;
+	width: auto;
+	height: auto;
+}
+@media(min-width:706px){
+	.btnRegistrarse{
+		display: none;
+	}
+}
