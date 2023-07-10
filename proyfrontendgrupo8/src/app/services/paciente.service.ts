@@ -20,8 +20,8 @@ export class PacienteService {
       params: new HttpParams()
 
     }
+    return this.http.get("http://localhost:3000/api/paciente/"+id,httpOptions);
     //return this.http.get("http://3.82.255.160:3000/api/paciente/"+id,httpOptions);
-    return this.http.get("http://3.82.255.160:3000/api/paciente/"+id,httpOptions);
   }
 
 
@@ -36,8 +36,8 @@ export class PacienteService {
       params: new HttpParams()
 
     }
-
-    return this.http.get("http://3.82.255.160:3000/api/paciente/",httpOptions);
+    return this.http.get("http://localhost:3000/api/paciente/",httpOptions);
+    //return this.http.get("http://3.82.255.160:3000/api/paciente/",httpOptions);
   }
   //paciente por dni
   getPacienteDni(dni:string):Observable<any>{
@@ -51,7 +51,8 @@ export class PacienteService {
       .append("dniP",dni)
     }
 
-    return this.http.get("http://3.82.255.160:3000/api/paciente/dni",httpOptions);
+    //return this.http.get("http://3.82.255.160:3000/api/paciente/dni",httpOptions);
+    return this.http.get("http://localhost:3000/api/paciente/dni",httpOptions);
   }
   getPacienteById(id:string):Observable<any>{
     let httpOptions={

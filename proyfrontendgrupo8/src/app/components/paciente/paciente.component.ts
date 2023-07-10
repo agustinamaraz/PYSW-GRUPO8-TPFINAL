@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteService } from 'src/app/services/paciente.service';
 import * as printJS from 'print-js'; //print en pdf
-//import * as XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 import * as  ExcelJS from 'exceljs';
 import { Subject } from 'rxjs/internal/Subject';
 @Component({
@@ -56,7 +56,7 @@ export class PacienteComponent implements OnInit {
         text-align: center;
         color:withe;
         font-weight: bold;
-        background-color:;
+        background-color:lightblue;
         padding: 10px 0;
         margin:0;
       }
@@ -74,9 +74,13 @@ export class PacienteComponent implements OnInit {
     })
   }
  
-  imprimirXlsx(){
-
-  }
+  imprimirXlsx():void{
+    const worksheet= XLSX.utils.json_to_sheet(this.pacientes)//definimos hojas de trabajo y le asignamos los pacientes
+    const workbook =XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, `Pacientes Registrados`) //nombre de la hoja de excel
+    XLSX.writeFile(workbook, `ListaPacientes.xlsx`);
+    
+    }
 
   obtenerPacientes(){
     console.log("entrando a obtener pacientes")
