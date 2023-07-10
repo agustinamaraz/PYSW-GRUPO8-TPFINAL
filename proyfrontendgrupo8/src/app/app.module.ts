@@ -41,7 +41,7 @@ import { EspecialistaComponent } from './components/especialista/especialista.co
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 
 //datatable
-import { DataTablesModule } from "angular-datatables";
+//import { DataTablesModule } from "angular-datatables";
 
 
 registerLocaleData(localeEsAr);
@@ -88,9 +88,10 @@ registerLocaleData(localeEsAr);
 
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
-    }),
-    //datatable
-    DataTablesModule  
+    })
+    // ,
+    // //datatable
+    // DataTablesModule  
   ],
 
   providers:

@@ -9,7 +9,8 @@ import { DatosMedicos } from '../models/datos-medicos';
 export class DatosMedicosServiceService {
   urlBase:string
   constructor(private _http: HttpClient) {
-    this.urlBase = "http://3.82.255.160:3000/api/datosMedicos/";
+    //this.urlBase = "http://3.82.255.160:3000/api/datosMedicos/";
+    this.urlBase = "http://localhost:3000/api/datosMedicos/";
   }
   addDatosMedicos(motivo:string, pacienteId:string, fecha:string, peso:number, 
     imc:number, talla:number, tension_arterial:number, diagnostico:string):Observable<any>{
