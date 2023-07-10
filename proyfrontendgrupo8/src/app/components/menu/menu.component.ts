@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import { VigilanteGuard } from 'src/app/vigilante.guard';
 
@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit{
   stickyHeader = false;
   activo: boolean = false;
   isUserVerified!:boolean;
-
+  activeRoute: string = '';
   //NAVBAR
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -42,6 +42,13 @@ export class MenuComponent implements OnInit{
   }
   ngOnInit(): void {
     this.isUserVerified = this.loginService.getUserStatus();
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.activeRoute = event.url;
+        console.log(this.activeRoute)
+      }
+    });
+
   }
 
   esAdministrador(){

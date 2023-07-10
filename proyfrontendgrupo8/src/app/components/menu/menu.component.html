@@ -14,6 +14,14 @@
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
       </ul>
     </li>
+<<<<<<< Updated upstream
+=======
+
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
+
+>>>>>>> Stashed changes
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn()">LOGIN</a>
@@ -21,3 +29,13 @@
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
   </div>
 </nav>
+
+<div class="celular">
+  <ul>
+    <li [class.active]="activeRoute === '/home'"><a routerLink="/home"><span>Inicio</span><i class='bx bx-home'></i></a></li>
+    <li *ngIf="loginService.userLoggedIn()" [class.active]="activeRoute === '/calendar'"><a routerLink="/calendar"><span>Calendario</span><i class='bx bxs-calendar'></i></a></li>
+    <li *ngIf="loginService.userLoggedIn()" [class.active]="activeRoute.includes('/paciente')"><a [routerLink]="'paciente'"><span>Pacientes</span><i class='bx bx-plus-medical'></i></a></li>
+    <li *ngIf="loginService.userLoggedIn()" [class.active]="activeRoute === '/list-anuncio'"><a routerLink="/list-anuncio"><span>Anuncios</span><i class='bx bxs-megaphone'></i></a></li>
+    <li [class.active]="activeRoute === '/login'" *ngIf="!loginService.userLoggedIn()"> <a routerLink="/login"><span>Login</span><i class='bx bx-user'></i></a></li>
+  </ul>
+</div>
