@@ -1,0 +1,46 @@
+<div>
+    <div class="text-center" style="background-color: #84b6f4;padding: 30px;">
+        LISTADO DE ESPECIALISTAS
+    </div>
+    <br>
+    <div style="padding-left: 5%;">
+        <button type="button" class="btn btn-success" (click)="agregarEspecialista()">AGREGAR PACIENTE</button>
+    </div>
+    <br>
+    <br>
+    
+    <h5>Buscar Especialista por su DNI</h5>
+    <div class="mb-3" style="width:80%;">
+        <input type="text" class="form-control" id="idfecha" name="fechaNac" required placeholder="Ingrese dni a buscar"
+            [(ngModel)]="dni" (ngModelChange)="obtenerEspecialistaPorDNI()">
+    </div>
+
+    <div style="padding: 3%;">
+        <table class="table table-bordered table-hover border-primary mt-5">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">DNI</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">APELLIDO</th>
+                    <th scope="col">PROFESION</th>
+                    <th scope="col">Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let e of especialistas">
+                    <td>{{e.dni}}</td>
+                    <td>{{e.nombre}}</td>
+                    <td>{{e.apellido}}</td>
+                    <td>{{e.profesion}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" (click)="modificarEspecialista(e)">MODIFICAR
+                            ESPECIALISTA</button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarEspecialista(e)">ELIMINAR
+                            ESPECIALISTA</button>
+                        <!-- podria ser turnos asignados -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

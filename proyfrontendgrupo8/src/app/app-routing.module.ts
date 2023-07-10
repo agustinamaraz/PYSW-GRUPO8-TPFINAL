@@ -18,6 +18,8 @@ import { ListAnuncioClienteComponent } from './components/list-anuncio-cliente/l
 import { AnuncioComponent } from './components/anuncio/anuncio.component';
 import { FormcontactoComponent } from './components/formcontacto/formcontacto.component';
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
+import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
+import { EspecialistaComponent } from './components/especialista/especialista.component';
 const routes: Routes = [
 {
     path:'login',
@@ -68,7 +70,7 @@ const routes: Routes = [
     canActivate:[VigilanteGuard]
   },
   {
-    path:'datosMedicosHome/:dni',
+    path:'datosMedicosHome/:id',
     component:DatosMedicosHomeComponent
   },
   {
@@ -120,6 +122,20 @@ const routes: Routes = [
   },
   {
     path:'anuncio/:id',component:AnuncioComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'especialista-form/:id',component:EspecialistaFormComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'especialista',component:EspecialistaComponent,
     data:{
       rol: 'administrador'
     },

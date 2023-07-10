@@ -2,18 +2,45 @@
   <a href="#" class="logo">Centro de Salud <br> "Los Huaicos"</a>
   <ul class="navMenu" #navmenu>
     <li><a routerLink="/inicio">Inicio</a></li>
+
     <li *ngIf="esAdministrador()==true || esVisitante()"><a routerLink="/calendar">Crear un evento</a></li>
 
-    <li  *ngIf="esAdministrador()==true">
+
+    <li *ngIf="esAdministrador()==true"><a routerLink="/signUp/0">Crear un usuario</a></li>
+    <li *ngIf="esAdministrador()==true"><a routerLink="/calendar">Gestionar Actividades</a></li>
+
+    <li *ngIf="esAdministrador()==true">
       <a href="#">
-        Paciente
+        Gestionar Especialistas
       </a>
       <ul class="dropdown">
-        <li ><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
+        <li><a class="dropdown-item" [routerLink]="'especialista-form/0'">Formulario para Especialista</a></li>
+        <li><a class="dropdown-item" [routerLink]="'especialista'">Listado de Especialistas</a></li>
+      </ul>
+    </li>
+
+    <li *ngIf="esAdministrador()==true">
+      <a href="#">
+        Gestionar Turnos
+      </a>
+      <ul class="dropdown">
+        <li><a class="dropdown-item" [routerLink]="'turnos-form/0'">Formulario para Turnos</a></li>
+        <li><a class="dropdown-item" [routerLink]="'turnos'">Listado de Turnos</a></li>
+      </ul>
+    </li>
+
+    <li *ngIf="esAdministrador()==true">
+      <a href="#">
+        Gestionar Paciente
+      </a>
+      <ul class="dropdown">
+        <li><a class="dropdown-item" [routerLink]="'paciente-form/0'">Formulario para Paciente</a></li>
         <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
+        <li><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
       </ul>
+
       </li>
 
 
@@ -23,11 +50,14 @@
     <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncios</a></li>
 
     <li  *ngIf="esPaciente()==true">
+
       <a href="#">
-        Paciente
+        Gestionar Anuncios
       </a>
       <ul class="dropdown">
-        <li ><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
       </ul>
     </li>
     <h1 *ngIf="esVisitante()">AAAAAAAAAAAAAA</h1>
