@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
   templateUrl: './paciente.component.html',
   styleUrls: ['./paciente.component.css']
 })
-export class PacienteComponent implements OnInit,OnDestroy {
+export class PacienteComponent implements OnInit {
   pacientes:Array<Paciente>;
   pacienteDni:Array<Paciente>;
   dni!:string;

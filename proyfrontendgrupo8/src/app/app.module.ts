@@ -39,8 +39,7 @@ import { FormcontactoComponent } from './components/formcontacto/formcontacto.co
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 
 //datatable
-import { DataTablesModule } from "angular-datatables";
-
+import { DataTablesModule } from 'angular-datatables';
 
 registerLocaleData(localeEsAr);
 
@@ -85,7 +84,7 @@ registerLocaleData(localeEsAr);
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
     }),
-    DataTablesModule
+    DataTablesModule //datatble agregaddo 10/07
   ],
 
   providers:
