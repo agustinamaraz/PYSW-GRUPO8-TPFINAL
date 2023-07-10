@@ -320,7 +320,38 @@ usuarioCtrl.loginUsuarioEmail= async (req, res) => {
     //el método findOne retorna un objeto que cumpla con los criterios de busqueda
 
 }
+usuarioCtrl.googleLoggedIn = async (req,res) => {
+    const criteria = {
+        email: req.body.email
+    }
+    try {
+        const user = await Usuario.findOne(criteria).populate("rol");
 
+        console.log(req.body.email +'  ' +user + ' aaaaaaa')
+        if (!user) {
+            res.json({
+                status: 0,
+                msg: "not found"
+            })
+        } else {
+            if (passwordMatch) {
+                // Las contraseñas coinciden, generando el token de autenticación
+                    const unToken = jwt.sign({ id: user._id }, 'secretkey');
+                res.json({
+                    status: 1,
+                    msg: "success",
+                    usuario:user,
+                    username: user.username, //retorno información útil para el frontend
+                    rol: user.rol, //retorno información útil para el frontend
+                    userid: user._id, //retorno información útil para el frontend
+                    token: unToken
+                })
+        }
+    }
+}catch(error){
+        
+}
+}
 usuarioCtrl.getUsuarios = async (req, res) => {
     var usuarios = await Usuario.find().populate("rol");
     res.json(usuarios);

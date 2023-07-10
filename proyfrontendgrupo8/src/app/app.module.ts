@@ -37,6 +37,7 @@ import { ListAnuncioClienteComponent } from './components/list-anuncio-cliente/l
 import { AnuncioComponent } from './components/anuncio/anuncio.component';
 import { FormcontactoComponent } from './components/formcontacto/formcontacto.component';
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
+
 import { EspecialistaComponent } from './components/especialista/especialista.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { TurnoComponent } from './components/turno/turno.component';
@@ -44,6 +45,7 @@ import { TurnoFormComponent } from './components/turno-form/turno-form.component
 
 //datatable
 //import { DataTablesModule } from "angular-datatables";
+
 
 
 registerLocaleData(localeEsAr);
@@ -82,9 +84,8 @@ registerLocaleData(localeEsAr);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OAuthModule.forRoot(),
-
-
+    OAuthModule.forRoot(), 
+    //DataTablesModule,
     //toast
     CommonModule,
     BrowserAnimationsModule, // required animations module
