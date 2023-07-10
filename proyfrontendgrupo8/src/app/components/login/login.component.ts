@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
+import { GooService } from 'src/app/services/goo.service';
 import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-login',
@@ -15,10 +16,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private loginService: LoginService) {
+    private loginService: LoginService,private gooService:GooService) {
   }
 
   ngOnInit() {
+    this.gooService.configureSingleSignOne();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/reset';
   }
@@ -91,5 +93,19 @@ export class LoginComponent implements OnInit {
 }
   signup(){
     this.router.navigate(['signUp',0]);
+  }
+
+  loginGoogle(){
+    this.gooService.login()
+
+  }
+  
+  logoutGoogle(){
+    this.gooService.logout();
+  }
+
+  token(){
+    console.log(this.gooService.getToken());
+    alert(this.gooService.getToken())
   }
 }
