@@ -17,8 +17,8 @@ export class PacienteComponent implements OnInit {
   pacientes:Array<Paciente>;
   pacienteDni:Array<Paciente>;
   dni!:string;
-  dtOptions : DataTables.Settings = {}; 
-  dtTrigger =new Subject<any>();
+  //dtOptions : DataTables.Settings = {}; 
+  //dtTrigger =new Subject<any>();
 
   constructor(private pacienteService: PacienteService, private activatedRoute: ActivatedRoute, 
     private router: Router, private toastr:ToastrService) { 
@@ -28,16 +28,16 @@ export class PacienteComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.dtOptions={
+    /*this.dtOptions={
       pagingType :'full_pages',
       pageLength: 5,
     },
-    this.obtenerPacientes();
+    this.obtenerPacientes();*/
   }
 
- ngOnDestroy():void{
+ /*ngOnDestroy():void{
     this.dtTrigger.unsubscribe();
-}
+}*/
 
   imprimirPdf(){
     printJS({

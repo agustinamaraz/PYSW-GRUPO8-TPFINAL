@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { parse } from 'path';
 import { Observable } from 'rxjs';
+import { GooService } from './goo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,12 @@ import { Observable } from 'rxjs';
 export class LoginService {
   hostBase: string;
 
+
   constructor(private http: HttpClient) {
 
     //this.hostBase = "http://3.82.255.160:3000/api/usuario/";
     this.hostBase = "http://localhost:3000/api/usuario/";
+
   }
   public getRoles():Observable<any>{
     const httpOption = {
@@ -79,9 +82,21 @@ export class LoginService {
     }
     return resultado;
   }
-
+  
   public userLogged() {
     var usuario = sessionStorage.getItem("user");
+    return usuario;
+  }
+  public userLoggedInGoogle() {
+    var resultado = false;
+    var usuario = sessionStorage.getItem("googleIsLoggedIn");
+    if(usuario === 'true'){
+      resultado = true
+    }
+    return resultado;
+  }
+  public userLoggedGoogle() {
+    var usuario = sessionStorage.getItem("username");
     return usuario;
   }
 
@@ -100,6 +115,23 @@ export class LoginService {
     }
     return false;
   }
+
+  public esPaciente(){ //funciona
+    let isPatient = sessionStorage.getItem("usuario");
+    const parsePatient = isPatient ? JSON.parse(isPatient) : null;
+    if(parsePatient && parsePatient.rol && parsePatient.rol.descripcion === "paciente"){
+        return true;
+    }
+    return false;
+  }
+  public esVisitante(){ //funciona
+    let isVisitante = sessionStorage.getItem("rol");
+    if(isVisitante === "visitante"){
+        return true;
+    }
+    return false;
+  }
+
 
   public idLogged() {
     var id = sessionStorage.getItem("userid");

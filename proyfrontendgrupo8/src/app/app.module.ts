@@ -38,8 +38,13 @@ import { AnuncioComponent } from './components/anuncio/anuncio.component';
 import { FormcontactoComponent } from './components/formcontacto/formcontacto.component';
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 
-//datatable
-import { DataTablesModule } from 'angular-datatables';
+import { EspecialistaComponent } from './components/especialista/especialista.component';
+import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
+import { TurnoComponent } from './components/turno/turno.component';
+import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+
+
+//import { DataTablesModule } from "angular-datatables";
 
 registerLocaleData(localeEsAr);
 
@@ -66,16 +71,19 @@ registerLocaleData(localeEsAr);
     ListAnuncioClienteComponent,
     AnuncioComponent,
     FormcontactoComponent,
-    ListContactoComponent
+    ListContactoComponent,
+    EspecialistaComponent,
+    EspecialistaFormComponent,
+    TurnoComponent,
+    TurnoFormComponent
   ],
   imports:[
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OAuthModule.forRoot(),
-
-
+    OAuthModule.forRoot(), 
+    //DataTablesModule,
     //toast
     CommonModule,
     BrowserAnimationsModule, // required animations module
@@ -83,9 +91,11 @@ registerLocaleData(localeEsAr);
 
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
-    }),
-    DataTablesModule //datatble agregaddo 10/07
-  ],
+    // ,
+    // //datatable
+    // DataTablesModule  
+})
+],
 
   providers:
     [
