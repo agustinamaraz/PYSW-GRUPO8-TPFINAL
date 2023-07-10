@@ -101,4 +101,16 @@ export class DatosMedicosServiceService {
     }
     return this._http.delete(this.urlBase+id,httpOptions)
   }
+  getLatest(dni:string):Observable<any>{
+    console.log(dni +  'jksndkjasndkjjakjasjknasdassnjas')
+    let httpOptions={
+      headers: new HttpHeaders(
+          {
+
+          }
+        ),
+      params: new HttpParams()
+    }
+    return this._http.get(this.urlBase+'dni-latest/'+dni,httpOptions)
+  }
 }

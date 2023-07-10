@@ -20,14 +20,14 @@ export class LoginService {
     }
     return this.http.get('http://localhost:3000/api/rol/', httpOption)
   }
-  public signUp(username:string, password:string, email:string, rol:string):Observable<any>{
+  public signUp(username:string, password:string, email:string, rol:string, dni:string):Observable<any>{
     const httpOption = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    console.log(JSON.stringify({ username: username, password: password, email:email, rol:rol }))
-    let body = JSON.stringify({ username: username, password: password, email:email, rol:rol });
+    console.log(JSON.stringify({ username: username, password: password, email:email, rol:rol, dni:dni }))
+    let body = JSON.stringify({ username: username, password: password, email:email, rol:rol, dni:dni });
     return this.http.post(this.hostBase, body, httpOption)
   }
   public confirm(token:string){
@@ -38,6 +38,15 @@ export class LoginService {
 
     return this.http.get('http://localhost:3000/api/usuario/confirm/'+token, httpOption)
 
+  }
+  loginEmailGoogle(email:string):Observable<any>{
+    const httpOption ={
+      headers: new HttpHeaders({
+        'Content-Type':'application/json'
+      })
+    }
+    let body = JSON.stringify({email:email});
+    return this.http.post(this.hostBase +'gmail/', body, httpOption);
   }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
