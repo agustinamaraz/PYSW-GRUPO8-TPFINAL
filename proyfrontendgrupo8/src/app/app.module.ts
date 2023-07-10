@@ -85,8 +85,7 @@ registerLocaleData(localeEsAr);
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
     }),
-    //datatable
-    DataTablesModule  
+    DataTablesModule
   ],
 
   providers:
@@ -97,4 +96,4 @@ registerLocaleData(localeEsAr);
 
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

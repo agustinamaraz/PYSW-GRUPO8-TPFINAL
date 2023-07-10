@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Paciente } from 'src/app/models/paciente';
@@ -6,20 +6,19 @@ import { PacienteService } from 'src/app/services/paciente.service';
 import * as printJS from 'print-js'; //print en pdf
 import * as XLSX from 'xlsx';
 import * as  ExcelJS from 'exceljs';
-import { Subject } from 'rxjs/internal/Subject';
+import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
   styleUrls: ['./paciente.component.css']
 })
-export class PacienteComponent implements OnInit {
+export class PacienteComponent implements OnInit,OnDestroy {
   pacientes:Array<Paciente>;
   pacienteDni:Array<Paciente>;
   dni!:string;
-
-  
-  //dtOptions: DataTables.Settings={};
-  //dtTrigger : Subject<any>=new Subject<any>();
+  dtOptions : DataTables.Settings = {}; 
+  dtTrigger =new Subject<any>();
 
   constructor(private pacienteService: PacienteService, private activatedRoute: ActivatedRoute, 
     private router: Router, private toastr:ToastrService) { 
@@ -29,16 +28,16 @@ export class PacienteComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    /*this.dtOptions={
+    this.dtOptions={
       pagingType :'full_pages',
       pageLength: 5,
     },
-    this.obtenerPacientes();*/
+    this.obtenerPacientes();
   }
 
- // ngOnDestroy():void{
-   // this.dtTrigger.unsubscribe();
-  //}
+ ngOnDestroy():void{
+    this.dtTrigger.unsubscribe();
+}
 
   imprimirPdf(){
     printJS({
