@@ -142,7 +142,7 @@ export class PacienteComponent implements OnInit {
     this.router.navigate(["paciente-form",0])
   }
   verControl(paciente:Paciente){
-    this.router.navigate(['datosMedicosHome',paciente._id])
+    this.router.navigate(['datosMedicosHome',paciente.dni])
   }
   generarExcel(paciente:Paciente){
     console.log('entrando a generar excel')

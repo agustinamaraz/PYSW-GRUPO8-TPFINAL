@@ -9,9 +9,6 @@ import { DatosMedicos } from '../models/datos-medicos';
 export class DatosMedicosServiceService {
   urlBase:string
   constructor(private _http: HttpClient) {
-
-    //this.urlBase = "http://3.82.255.160:3000/api/datosMedicos/";
-
     this.urlBase = "http://localhost:3000/api/datosMedicos/";
   }
   addDatosMedicos(motivo:string, pacienteId:string, fecha:string, peso:number, 
@@ -103,5 +100,17 @@ export class DatosMedicosServiceService {
       params: new HttpParams() 
     }
     return this._http.delete(this.urlBase+id,httpOptions)
+  }
+  getLatest(dni:string):Observable<any>{
+    console.log(dni +  'jksndkjasndkjjakjasjknasdassnjas')
+    let httpOptions={
+      headers: new HttpHeaders(
+          {
+
+          }
+        ),
+      params: new HttpParams()
+    }
+    return this._http.get(this.urlBase+'dni-latest/'+dni,httpOptions)
   }
 }

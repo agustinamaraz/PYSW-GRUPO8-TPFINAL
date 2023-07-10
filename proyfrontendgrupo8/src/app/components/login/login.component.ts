@@ -21,15 +21,12 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private loginService: LoginService,
-    private gooService: GooService) {
+    private gooService: GooService) { 
   }
 
- // ngOnInit() {
-   // this.googleAuthSDK();
-
-
   ngOnInit() {
-    this.gooService.configureSingleSignOne();
+  
+    this.googleAuthSDK();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/reset';
   }
@@ -52,15 +49,16 @@ export class LoginComponent implements OnInit {
           console.log("usuarioooooooooooooooooooooooLOGIN"+JSON.stringify(result)
           );
           if (user.status == 1) {
+            console.log(user.usuario.dni)
             //guardamos el user en cookies en el cliente
             sessionStorage.setItem("usuario", JSON.stringify(user));
             sessionStorage.setItem("token", user.token);
             sessionStorage.setItem("user", user.username);
             sessionStorage.setItem("userid", user.userid);
             sessionStorage.setItem("rol", JSON.stringify(user.rol));
+            sessionStorage.setItem("userDni",user.usuario.dni);
             //redirigimos a home o a pagina que llamo
             this.router.navigateByUrl(this.returnUrl);
-            this.gooService.checkIfGoogleAccountLinked();
           } else {
             //usuario no encontrado muestro mensaje en la vista
             this.msglogin = "Credenciales incorrectas..";
@@ -80,16 +78,14 @@ export class LoginComponent implements OnInit {
           console.log("usuarioooooooooooooooooooooooLOGIN"+JSON.stringify(result)
           );
           if (user.status == 1) {
+            console.log(user.usuario.dni)
             //guardamos el user en cookies en el cliente
             sessionStorage.setItem("usuario", JSON.stringify(user));
             sessionStorage.setItem("token", user.token);
             sessionStorage.setItem("user", user.username);
             sessionStorage.setItem("userid", user.userid);
             sessionStorage.setItem("rol", JSON.stringify(user.rol));
-
             sessionStorage.setItem("userDni",user.usuario.dni);
-            this.gooService.checkIfGoogleAccountLinked();
-
             //redirigimos a home o a pagina que llamo
             this.router.navigateByUrl(this.returnUrl);
           } else {
@@ -108,7 +104,6 @@ export class LoginComponent implements OnInit {
   signup(){
     this.router.navigate(['signUp',0]);
   }
-
   callLogin(){
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleAuthUser: any) => {
@@ -174,21 +169,5 @@ export class LoginComponent implements OnInit {
       console.error('Error: Google Auth library not loaded');
     }
   }
-
-
-
-  loginGoogle(){
-    this.gooService.login()
-
-  }
-  
-//   logoutGoogle(){
-//     this.gooService.logout();
-//   }
-
-//   token(){
-//     console.log(this.gooService.getToken());
-//     alert(this.gooService.getToken())
-//   }
 
 }
