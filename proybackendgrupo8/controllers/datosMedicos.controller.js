@@ -35,6 +35,15 @@ datosMedicosCtrl.getAllDatosMedicosDni = async (req, res) => {
     const datosMedicos = await DatosMedicos.find({ paciente: paciente2._id}).populate('paciente');
     res.json(datosMedicos);
 }
+datosMedicosCtrl.getLatestByDni = async (req, res) => {
+    console.log(req.params.dni)
+    const paciente2 = await Paciente.findOne({ dni: req.params.dni });
+    const datosMedicos = await DatosMedicos.find({ paciente: paciente2._id }).populate('paciente')
+        .populate('paciente')
+        .sort({ fecha: -1 })
+        .limit(1);
+    res.json(datosMedicos);
+};
 //Edit object data
 datosMedicosCtrl.editDatosMedicos = async (req, res)=>{
     try{

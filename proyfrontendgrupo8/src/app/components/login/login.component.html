@@ -12,9 +12,6 @@
                 <input type="password" class="form-control" name="password" [(ngModel)]="userform.password" />
             </div>
             <button class="" (click)="login()">Login</button>
-            <button class="btn btn-success inline" (click)="loginGoogle()">Iniciar Sesion con Google</button>
-            <!-- <button class="btn btn-secondary inline" (click)="logoutGoogle()">LogoutGoogle</button> -->
-            <!-- <button type="button" (click)="token()">02 Token</button> -->
             <div class="alert-danger">{{msglogin}}</div>
             <button class="login-google" #loginRef (click)="callLogin()">
                 <span>Iniciar sesion con google</span> <i class='bx bxl-google' style='color:rgba(210,213,217,0.99)'  ></i>
