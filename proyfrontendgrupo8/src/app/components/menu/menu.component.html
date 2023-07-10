@@ -14,14 +14,11 @@
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
       </ul>
     </li>
-<<<<<<< Updated upstream
-=======
 
    <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
    <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
    <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
 
->>>>>>> Stashed changes
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn()">LOGIN</a>
