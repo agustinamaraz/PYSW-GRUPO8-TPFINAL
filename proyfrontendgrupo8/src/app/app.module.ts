@@ -38,7 +38,8 @@ import { AnuncioComponent } from './components/anuncio/anuncio.component';
 import { FormcontactoComponent } from './components/formcontacto/formcontacto.component';
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 
-
+//datatable
+import { DataTablesModule } from "angular-datatables";
 
 
 registerLocaleData(localeEsAr);
@@ -81,9 +82,11 @@ registerLocaleData(localeEsAr);
     BrowserAnimationsModule, // required animations module
     ToastrModule,
 
-    ToastrModule.forRoot({ //agregado agus 4/7/2023
+    ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
-    })
+    }),
+    //datatable
+    DataTablesModule  
   ],
 
   providers:

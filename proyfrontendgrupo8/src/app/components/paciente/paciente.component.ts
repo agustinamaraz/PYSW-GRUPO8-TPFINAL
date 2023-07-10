@@ -3,7 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteService } from 'src/app/services/paciente.service';
+import * as printJS from 'print-js'; //print en pdf
+//import * as XLSX from 'xlsx';
 import * as  ExcelJS from 'exceljs';
+import { Subject } from 'rxjs/internal/Subject';
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
@@ -13,6 +16,11 @@ export class PacienteComponent implements OnInit {
   pacientes:Array<Paciente>;
   pacienteDni:Array<Paciente>;
   dni!:string;
+
+  
+  //dtOptions: DataTables.Settings={};
+  //dtTrigger : Subject<any>=new Subject<any>();
+
   constructor(private pacienteService: PacienteService, private activatedRoute: ActivatedRoute, 
     private router: Router, private toastr:ToastrService) { 
       this.pacientes = new Array<Paciente>();
@@ -21,9 +29,55 @@ export class PacienteComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    /*this.dtOptions={
+      pagingType :'full_pages',
+      pageLength: 5,
+    },
+    this.obtenerPacientes();*/
   }
 
-  
+ // ngOnDestroy():void{
+   // this.dtTrigger.unsubscribe();
+  //}
+
+  imprimirPdf(){
+    printJS({
+      printable: this.pacientes, 
+      properties: [
+        {field:'dni',displayName:'DNI'},
+        {field:'nombre',displayName:'Nombre'},
+        {field:'apellido',displayName:'Apellido'},
+        {field:'fechaNac',displayName:'Fecha de Nacimiento'}
+      ], 
+      type: 'json',
+      header:`<h2 class="print-header">Pacientes Registrados</h2> <hr/>`,
+      style:`
+      .print-header{
+        text-align: center;
+        color:withe;
+        font-weight: bold;
+        background-color:;
+        padding: 10px 0;
+        margin:0;
+      }
+      table{
+        width:100%;
+        text-align: center;
+      }
+      th, td{
+        padding:8px;
+      }
+      th{
+        background-color:lightgray;
+        color:white;
+      }` ,
+    })
+  }
+ 
+  imprimirXlsx(){
+
+  }
+
   obtenerPacientes(){
     console.log("entrando a obtener pacientes")
     this.pacienteService.getPacientes().subscribe(

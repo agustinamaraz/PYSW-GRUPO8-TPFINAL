@@ -20,9 +20,10 @@ export class PacienteService {
       params: new HttpParams()
 
     }
-
+    //return this.http.get("http://3.82.255.160:3000/api/paciente/"+id,httpOptions);
     return this.http.get("http://3.82.255.160:3000/api/paciente/"+id,httpOptions);
   }
+
 
   //todos los pacientes
   getPacientes():Observable<any>{
