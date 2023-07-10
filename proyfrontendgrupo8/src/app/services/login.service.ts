@@ -10,7 +10,9 @@ export class LoginService {
   hostBase: string;
 
   constructor(private http: HttpClient) {
-    this.hostBase = "http://localhost:3000/api/usuario/"
+
+    //this.hostBase = "http://3.82.255.160:3000/api/usuario/";
+    this.hostBase = "http://localhost:3000/api/usuario/";
   }
   public getRoles():Observable<any>{
     const httpOption = {
@@ -34,11 +36,14 @@ export class LoginService {
       headers: new HttpHeaders({
       })
     }
-    
+
+    return this.http.get('http://localhost:3000/api/usuario/confirm/'+token, httpOption)
+
   }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
       headers: new HttpHeaders({
+        //'access-control-allow-origin': 'http://localhost:4200',
         'Content-Type': 'application/json'
       })
     }
@@ -132,4 +137,9 @@ export class LoginService {
     console.log(body);
     return this.http.post(this.hostBase + 'reset-ask', body, httpOption);
   }
+
+  userLoggedDNI(){ //nose quien lo puso en el menu asi q lo tuve q poner aca
+
+  }
+
 }

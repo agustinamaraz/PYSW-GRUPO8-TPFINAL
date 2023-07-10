@@ -11,11 +11,15 @@ import { VigilanteGuard } from 'src/app/vigilante.guard';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit{
+
+
+
   logout() {
     this.loginService.logout();
   }
   stickyHeader = false;
   activo: boolean = false;
+  
   isUserVerified!:boolean;
 
   //NAVBAR
@@ -47,14 +51,7 @@ export class MenuComponent implements OnInit{
   esAdministrador(){
     return this.loginService.esAdmin();
   }
-  
-  esPaciente(){
-    return this.loginService.esPaciente();
-  }
-  logOutComponent(){
-    this.logout()
-    this.router.navigate(['/home'])
-  }
+
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
   }
@@ -82,5 +79,9 @@ export class MenuComponent implements OnInit{
       iconElement.classList.replace('bx-x-circle', 'bx-menu');
       buttonElement.classList.remove('open');
     }
+  }
+
+  esPaciente(){ //no se quien lo puso en el html pero aca no estaba asi que lo puse asi noomas
+    return true;
   }
 }

@@ -21,7 +21,7 @@ export class PacienteService {
 
     }
 
-    return this.http.get("http://3.82.255.160/api/paciente/"+id,httpOptions);
+    return this.http.get("http://3.82.255.160:3000/api/paciente/"+id,httpOptions);
   }
 
   //todos los pacientes
@@ -36,7 +36,7 @@ export class PacienteService {
 
     }
 
-    return this.http.get("http://3.82.255.160/api/paciente/",httpOptions);
+    return this.http.get("http://3.82.255.160:3000/api/paciente/",httpOptions);
   }
   //paciente por dni
   getPacienteDni(dni:string):Observable<any>{
@@ -50,18 +50,7 @@ export class PacienteService {
       .append("dniP",dni)
     }
 
-    return this.http.get("http://3.82.255.160/api/paciente/dni",httpOptions);
-  }
-  getOnePacienteByDni(dni:string):Observable<any>{
-    let httpOptions={
-      headers: new HttpHeaders(
-        {
-          
-        }
-      ),
-      params: new HttpParams()
-    }
-    return this.http.get('http://3.82.255.160/api/paciente/dniOne/'+dni, httpOptions)
+    return this.http.get("http://3.82.255.160:3000/api/paciente/dni",httpOptions);
   }
   getPacienteById(id:string):Observable<any>{
     let httpOptions={
@@ -74,7 +63,7 @@ export class PacienteService {
 
     }
 
-    return this.http.get("http://3.82.255.160/api/paciente/"+id,httpOptions);
+    return this.http.get("http://3.82.255.160:3000/api/paciente/"+id,httpOptions);
   }
   createPaciente(paciente:Paciente):Observable<any>{
     let httpOptions={
