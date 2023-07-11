@@ -24,6 +24,20 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
     res.json(pacientes);
 }
 
+
+  pacienteCtrl.busquedaPaciente = async (req, res) => {
+        var paciente = await Paciente.find({
+          $or: [
+            { nombre: { $regex: req.query.dato, $options: "i" } },
+            { apellido: { $regex: req.query.dato, $options: "i"} }
+          ],
+        });
+
+        res.json(paciente);
+        console.log(res.json);
+      };
+  
+
 //create
 pacienteCtrl.createPaciente = async (req, res) => {
     console.log("Entrando a create")
