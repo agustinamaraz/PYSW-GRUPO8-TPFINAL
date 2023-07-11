@@ -20,6 +20,7 @@ import { FormcontactoComponent } from './components/formcontacto/formcontacto.co
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { EspecialistaComponent } from './components/especialista/especialista.component';
+import { CalendarclienteComponent } from './components/calendarcliente/calendarcliente.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
@@ -91,6 +92,10 @@ const routes: Routes = [
     //canActivate:[VigilanteGuard]
   },
   {
+    path:'calendarVisitante',
+    component:CalendarclienteComponent
+  },
+  {
     path:'form-anuncio/:id',component:FormAnuncioComponent,
     data:{
       rol: 'administrador'
@@ -120,17 +125,17 @@ const routes: Routes = [
   },
   {
     path:'list-anuncio-cliente',component:ListAnuncioClienteComponent,
-    data:{
-      rol: 'administrador'
-    },
-    canActivate:[VigilanteGuard]
+    // data:{
+    //   rol: 'administrador'
+    // },
+    // canActivate:[VigilanteGuard]
   },
   {
     path:'anuncio/:id',component:AnuncioComponent,
-    data:{
-      rol: 'administrador'
-    },
-    canActivate:[VigilanteGuard]
+    // data:{
+    //   rol: 'administrador'
+    // },
+    // canActivate:[VigilanteGuard]
   },
   {
     path:'especialista-form/:id',component:EspecialistaFormComponent,

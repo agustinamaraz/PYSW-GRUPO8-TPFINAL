@@ -27,7 +27,7 @@
       </ul>
     </li>
 
-    <li><a [routerLink]="'turnos-disponibles'">Ver Turnos disponibles</a></li>
+    <li *ngIf="loginService.userLoggedIn() && !bothLogin"><a [routerLink]="'turnos-disponibles'">Ver Turnos disponibles</a></li>
 
     <li *ngIf="esAdministrador()==true">
       <a href="#">
@@ -38,10 +38,11 @@
         <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
-        <li><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
+        <li><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'">Mis Controles</a></li>
       </ul>
     </li>
 
+    <li  *ngIf="esPaciente()"><a [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
     <li *ngIf="esAdministrador()==true">
       <a href="#">
         Gestionar Anuncios
@@ -49,15 +50,38 @@
       <ul class="dropdown">
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
-        <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
-        <li *ngIf="esAdministrador()==true"><a routerLink="/contacto">Contacto</a></li>
+        <!-- <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/formcontacto/0">Form Contacto</a></li> -->
       </ul>
     </li>
+
+
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
+   <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
+
+
+    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/list-anuncio-cliente">Anuncios</a></li>
+    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/calendarVisitante">Calendario de Actividades</a></li>
+
   </ul>
   <div class="nav-icons">
-    <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn() || !loginService.userLoggedInGoogle()">LOGIN</a>
-    <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}} LogOut</a>
+    <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn() && !esLoggedGoogle() && !bothLogin ">Login</a>
+    <a (click)="logOutComponent()" class="login" *ngIf="loginService.userLoggedIn() && !bothLogin">User:{{loginService.userLogged()}} LogOut</a>
+    <a (click)="logoutGoogle()" class="login" *ngIf="esLoggedGoogle()  && !bothLogin">User:{{loginService.userLoggedGoogle()}} LogOut</a>
+      <a (click)="bothLogOut()" class="login" *ngIf="bothLogin">User:{{loginService.userLoggedGoogle()}} LogOut</a>
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
-
   </div>
+
 </nav>
+
+<div class="celular">
+  <ul>
+    <li [class.active]="activeRoute === '/home'"><a routerLink="/home"><span>Inicio</span><i class='bx bx-home'></i></a></li>
+    <li *ngIf="loginService.userLoggedIn()" [class.active]="activeRoute === '/calendar'"><a routerLink="/calendar"><span>Calendario</span><i class='bx bxs-calendar'></i></a></li>
+    <li *ngIf="loginService.userLoggedIn()" [class.active]="activeRoute.includes('/paciente')"><a [routerLink]="'paciente'"><span>Pacientes</span><i class='bx bx-plus-medical'></i></a></li>
+    <li *ngIf="loginService.userLoggedIn()" [class.active]="activeRoute === '/list-anuncio'"><a routerLink="/list-anuncio"><span>Anuncios</span><i class='bx bxs-megaphone'></i></a></li>
+    <li [class.active]="activeRoute === '/login'" *ngIf="!loginService.userLoggedIn()"> <a routerLink="/login"><span>Login</span><i class='bx bx-user'></i></a></li>
+  </ul>
+</div>
+

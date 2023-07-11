@@ -161,8 +161,9 @@ export class DatosmedicosFormComponent implements OnInit{
       this.datoMedico.diagnostico).subscribe(
       result=>{
         if(result.status == 1){
-          this.datoMedico.idDatoMedico = result._id
-          alert('Guardado correctamente')
+          this.datoMedico.idDatoMedico = result._id;
+          alert('Guardado correctamente');
+          this.router.navigate(["home"]);
         } else {
           alert(result)
         }
@@ -181,6 +182,7 @@ export class DatosmedicosFormComponent implements OnInit{
       result=>{
         if(result.status == 1){
           alert('Editado Correctamente')
+          this.router.navigate(["home"]);
         }else{
           alert(result)
         }

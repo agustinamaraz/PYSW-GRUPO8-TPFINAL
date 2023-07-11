@@ -31,7 +31,7 @@ const sendEmail = async (email, subject, html) => {
 
 const sendEmailPassword = async (email, subject, html) => {
     try {
-        
+        console.log("Enviando email")
         await transporter.sendMail({
             from: ` <${ mail.user }>`, // sender address
             to: email, // list of receivers
@@ -39,7 +39,7 @@ const sendEmailPassword = async (email, subject, html) => {
             text: "Hola", // plain text body
             html, // html body
         });
-
+        console.log("Email enviado");
     } catch (error) {
         console.log('Error con el mail', error);
     }

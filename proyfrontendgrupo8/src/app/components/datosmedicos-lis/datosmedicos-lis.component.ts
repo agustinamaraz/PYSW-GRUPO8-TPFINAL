@@ -134,4 +134,8 @@ export class DatosmedicosLisComponent implements OnInit{
       a.click()
     })
   }
+  
+  verControl(dni:string){
+    this.router.navigate(['datosMedicosHome',dni])
+  }
 }

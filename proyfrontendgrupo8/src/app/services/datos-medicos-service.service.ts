@@ -9,9 +9,9 @@ import { DatosMedicos } from '../models/datos-medicos';
 export class DatosMedicosServiceService {
   urlBase:string
   constructor(private _http: HttpClient) {
-    this.urlBase = "http://localhost:3000/api/datosMedicos/";
+    this.urlBase = "http://3.82.255.160:3000/api/datosMedicos/";
   }
-  addDatosMedicos(motivo:string, pacienteId:string, fecha:string, peso:number, 
+  addDatosMedicos(motivo:string, pacienteId:string, fecha:string, peso:number,
     imc:number, talla:number, tension_arterial:number, diagnostico:string):Observable<any>{
     const dataMedic = {
       motivo:motivo,
@@ -34,7 +34,7 @@ export class DatosMedicosServiceService {
     let body = JSON.stringify(dataMedic);
     return this._http.post(this.urlBase, body, httpOptions)
   }
-  editDatosMedicos(id:string,motivo:string, pacienteId:string, fecha:string, peso:number, 
+  editDatosMedicos(id:string,motivo:string, pacienteId:string, fecha:string, peso:number,
     imc:number, talla:number, tension_arterial:number, diagnostico:string):Observable<any>{
     const dataMedic = {
       motivo:motivo,
@@ -64,7 +64,7 @@ export class DatosMedicosServiceService {
 
           }
         ),
-      params: new HttpParams() 
+      params: new HttpParams()
     }
     return this._http.get(this.urlBase,httpOptions)
   }
@@ -75,7 +75,7 @@ export class DatosMedicosServiceService {
 
           }
         ),
-      params: new HttpParams() 
+      params: new HttpParams()
     }
     return this._http.get(this.urlBase+'dni/'+dni,httpOptions)
   }
@@ -86,7 +86,7 @@ export class DatosMedicosServiceService {
 
           }
         ),
-      params: new HttpParams() 
+      params: new HttpParams()
     }
     return this._http.get(this.urlBase+id, httpOptions)
   }
@@ -97,7 +97,7 @@ export class DatosMedicosServiceService {
 
           }
         ),
-      params: new HttpParams() 
+      params: new HttpParams()
     }
     return this._http.delete(this.urlBase+id,httpOptions)
   }

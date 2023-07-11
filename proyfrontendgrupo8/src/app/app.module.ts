@@ -41,11 +41,15 @@ import { EspecialistaComponent } from './components/especialista/especialista.co
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+import { CalendarclienteComponent } from './components/calendarcliente/calendarcliente.component';
 
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
+
+//datatable
+//import { DataTablesModule } from "angular-datatables";
 
 
 
@@ -80,9 +84,9 @@ registerLocaleData(localeEsAr);
     EspecialistaFormComponent,
     TurnoComponent,
     TurnoFormComponent,
+    CalendarclienteComponent,
 
-    ContactoComponent
-
+    ContactoComponent,
     TurnosDisponiblesComponent
 
   ],
@@ -97,11 +101,9 @@ registerLocaleData(localeEsAr);
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule,
-
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
     }),
-    // ,
     // //datatable
     // DataTablesModule 
     NgxDocViewerModule
@@ -115,4 +117,4 @@ registerLocaleData(localeEsAr);
 
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

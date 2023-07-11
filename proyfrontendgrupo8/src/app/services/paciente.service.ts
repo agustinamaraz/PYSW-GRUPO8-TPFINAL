@@ -11,7 +11,7 @@ export class PacienteService {
   hostBase: string;
 
   constructor(private http:HttpClient) {
-    this.hostBase = "http://localhost:3000/api/paciente/";
+    this.hostBase = "http://3.82.255.160:3000/api/paciente/";
    }
 
   getPaciente(id:string):Observable<any>{
@@ -58,17 +58,17 @@ export class PacienteService {
     }
     return this.http.get(this.hostBase+"dni",httpOptions);
   }
-  
+
   getOnePacienteByDni(dni:string):Observable<any>{
     let httpOptions={
       headers: new HttpHeaders(
         {
-          
+
         }
       ),
       params: new HttpParams()
     }
-    return this.http.get('http://localhost:3000/api/paciente/dniOne/'+dni, httpOptions)
+    return this.http.get('http://3.82.255.160:3000/api/paciente/dniOne/'+dni, httpOptions)
   }
   getPacienteById(id:string):Observable<any>{
     let httpOptions={
@@ -94,7 +94,7 @@ export class PacienteService {
     }
 
     let body = JSON.stringify(paciente);
-    
+
     return this.http.post(this.hostBase,body,httpOptions);
   }
 

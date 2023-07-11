@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   
-    this.googleAuthSDK();
+    this.gooService.configureSingleSignOne();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/reset';
   }
@@ -105,30 +105,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['signUp',0]);
   }
   callLogin(){
-    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
-      (googleAuthUser: any) => {
-        // Código para obtener los detalles del perfil de Google
-        let profile = googleAuthUser.getBasicProfile();
-
-        console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        let rol = "visitante";
-        let name = this.cortarStringPorEspacio(profile.getName())
-        sessionStorage.setItem("username", name)
-        sessionStorage.setItem("rol", rol)
-        sessionStorage.setItem('googleIsLoggedIn', 'true')
-        console.log(sessionStorage.getItem('googleIsLoggedIn'))
-        this.oAuthService.setupAutomaticSilentRefresh();
-        this.oAuthService.initCodeFlow();
-        console.log(this.oAuthService.hasValidAccessToken())
-        console.log(googleAuthUser.getBasicProfile());
-        this.router.navigateByUrl(this.returnUrl);
-      }, (error: any) => {
-        alert(JSON.stringify(error, undefined, 2)+ 'HOLAAAAAAAAAAAAAAAAA');
-      });
+    this.gooService.login()
   }
   cortarStringPorEspacio(texto: string): string {
     const indiceEspacio = texto.indexOf(' ');
