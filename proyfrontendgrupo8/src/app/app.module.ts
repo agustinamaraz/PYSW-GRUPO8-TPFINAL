@@ -81,7 +81,7 @@ registerLocaleData(localeEsAr);
     TurnoComponent,
     TurnoFormComponent,
 
-    ContactoComponent
+    ContactoComponent,
 
     TurnosDisponiblesComponent
 
