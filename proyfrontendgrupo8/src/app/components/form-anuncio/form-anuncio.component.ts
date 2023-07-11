@@ -86,7 +86,6 @@ export class FormAnuncioComponent implements OnInit {
         result => {
           console.log(result);
           if (result.status == 1) {
-            alert(result.msg);
               this.controlador="caja2"
               this.can="no"
               this.anuncioService.getAnuncios().subscribe(

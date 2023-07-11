@@ -39,8 +39,13 @@ import { FormcontactoComponent } from './components/formcontacto/formcontacto.co
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 import { EspecialistaComponent } from './components/especialista/especialista.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
+<<<<<<< Updated upstream
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+=======
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+
+>>>>>>> Stashed changes
 
 
 
@@ -89,10 +94,11 @@ registerLocaleData(localeEsAr);
 
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
-    })
+    }),
     // ,
     // //datatable
-    // DataTablesModule  
+    // DataTablesModule 
+    NgxDocViewerModule
   ],
 
   providers:
