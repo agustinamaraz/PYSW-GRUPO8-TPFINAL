@@ -12,7 +12,7 @@ router.delete('/eliminar',usuarioCtrl.deleteUserNotVerified);
 router.post('/reset-ask', usuarioCtrl.askReset);
 router.post('/reset/:token',[], usuarioCtrl.resetPassword);
 router.post('/', usuarioCtrl.createUsuario);
-router.post('/gmail/', usuarioCtrl.googleLoggedIn);
+router.post('/gmail', usuarioCtrl.googleLoggedIn);
 router.put('/:id', usuarioCtrl.editUsuario); 
 router.delete('/:id', usuarioCtrl.deleteUsuario);
 router.get('/:id', usuarioCtrl.getUsuario);
