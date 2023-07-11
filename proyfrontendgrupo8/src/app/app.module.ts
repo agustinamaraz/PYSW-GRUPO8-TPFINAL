@@ -47,6 +47,9 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
 
+//datatable
+//import { DataTablesModule } from "angular-datatables";
+
 
 
 
@@ -81,8 +84,7 @@ registerLocaleData(localeEsAr);
     TurnoComponent,
     TurnoFormComponent,
 
-    ContactoComponent
-
+    ContactoComponent,
     TurnosDisponiblesComponent
 
   ],
@@ -97,11 +99,9 @@ registerLocaleData(localeEsAr);
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule,
-
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
     }),
-    // ,
     // //datatable
     // DataTablesModule 
     NgxDocViewerModule
@@ -115,4 +115,4 @@ registerLocaleData(localeEsAr);
 
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
