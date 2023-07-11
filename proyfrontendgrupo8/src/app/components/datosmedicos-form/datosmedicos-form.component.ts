@@ -21,15 +21,18 @@ export class DatosmedicosFormComponent implements OnInit{
   myDropDown!: string;
   modifica!:boolean
   filtroPacientes!:string;
+  latestMedicalData!:DatosMedicos;
+  asign:boolean=false;
+  selectedPaciente:boolean=false;
   pacientesFiltrados: any[] = [];
   @ViewChild('selectList', { static: false }) selectList!: ElementRef;
   constructor(private pacienteService:PacienteService, private datosMedicosService: DatosMedicosServiceService, 
     private activatedRoute: ActivatedRoute, private router:Router){
-  this.datosMedicos = new Array<DatosMedicos>()
-  this.datoMedico = new DatosMedicos()
-  this.filtroPacientes=""
+  this.datosMedicos = new Array<DatosMedicos>();
+  this.datoMedico = new DatosMedicos();
+  this.latestMedicalData = new DatosMedicos();
+  this.filtroPacientes="";
     this.getAllPacientes();
-    //console.log(this.pacientes.length + 'longitud');
     this.datoMedico.fecha = String(new Date().toLocaleDateString('es-ar'));
     //console.log(this.datoMedico.fecha);
   }
@@ -54,11 +57,23 @@ export class DatosmedicosFormComponent implements OnInit{
       this.addMedicalData();
     }
   }
+  isSelected(){
+    console.log(this.datoMedico.paciente)
+    let cont:number=0;
+    if(this.datoMedico.paciente != '' && !this.selectedPaciente && cont===0){
+      console.log('AAAAAAAAAAAAAAAAAAAAAAa')
+      this.selectedPaciente = true
+      cont=1;
+      this.searchPacienteObj();
+    }
+  }
   searchPacienteObj(){
-    this.datosMedicosService.getDatosMedicosId(this.datoMedico.paciente).subscribe(
+    console.log(this.datoMedico.paciente)
+    this.pacienteService.getPacienteById(this.datoMedico.paciente).subscribe(
       result=>{
         console.log(result)
         this.datoMedico.pacienteObj = result
+        this.getLatestMedicalData();
       },
       error=>{
         console.log(error)
@@ -89,6 +104,7 @@ export class DatosmedicosFormComponent implements OnInit{
         console.log(result);
         this.datoMedico = result;
         this.datoMedico.pacienteObj = result.paciente
+        console.log(this.datoMedico.pacienteObj.dni)
       },
       error=>{
         console.log(error)
@@ -113,6 +129,30 @@ export class DatosmedicosFormComponent implements OnInit{
       }
     )
   }
+  async getLatestMedicalData() {
+    console.log(this.datoMedico.pacienteObj.dni);
+    
+    if (this.datoMedico.pacienteObj.dni !== undefined) {
+      setTimeout(() => {
+        this.datosMedicosService.getLatest(this.datoMedico.pacienteObj.dni).subscribe(
+          result => {
+            console.log(result);
+            console.log(this.datoMedico);
+            this.latestMedicalData = result[0];
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }, 0);
+    } else {
+      console.log('NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOooo');
+    }
+  }
+  asignLatest(){
+    this.datoMedico = this.latestMedicalData
+  }
+  
   addMedicalData() {
     this.datoMedico.imc = +(this.datoMedico.peso / ((this.datoMedico.talla / 100) ** 2)).toFixed(3);
     console.log(this.datoMedico.paciente)
@@ -131,7 +171,7 @@ export class DatosmedicosFormComponent implements OnInit{
         alert(error)
       }
     )
-  }
+}
   modifyMedicalData(){
     this.datoMedico.imc = +(this.datoMedico.peso / ((this.datoMedico.talla / 100) ** 2)).toFixed(3);
     console.log('Entro a modificar' + this.id)

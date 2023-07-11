@@ -8,7 +8,8 @@ const UsuarioSchema = new Schema({
     email:{type:String, require:true},
     code: { type: String },
     status: { type: String, required: true, default: 'UNVERIFIED' },
-    rol: { type: Schema.Types.ObjectId, ref: Rol, required: true } //administrador - gestor - paciente
+    rol: { type: Schema.Types.ObjectId, ref: Rol, required: true }, //administrador - gestor - paciente
+    dni: {type: String, required:true}
 });
 
 UsuarioSchema.pre('save', function (next) {
@@ -21,6 +22,9 @@ UsuarioSchema.pre('save', function (next) {
         });
     }
 });
+UsuarioSchema.methods.isVerified = function () {
+    return this.status === 'VERIFIED';
+};
 UsuarioSchema.methods.comparePassword = async function (password) {
     if (this.isModified('password')) {
         // No realices el hash del password aquí, simplemente pasa al siguiente middleware

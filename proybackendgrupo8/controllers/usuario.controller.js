@@ -40,7 +40,8 @@ usuarioCtrl.createUsuario = async (req, res) => {
         email: req.body.email,
         code: code,
         status: 'UNVERIFIED',
-        rol: req.body.rol
+        rol: req.body.rol,
+        dni: req.body.dni
     });
     email = req.body.email
     username= req.body.username
@@ -134,7 +135,13 @@ usuarioCtrl.askReset = async (req, res) => {
             message: 'Usuario no encontrado'
         });
     }
-    if(user){
+    if(user)
+    {if (!user.isVerified()) {
+        return res.status(498).json({
+            success: false,
+            message: 'Usuario no verificado'
+        });
+    }
         const code = uuidv4();
         const token = getTokenPassword({ email});
         const emailSubject = 'Recuperación de Contraseña';

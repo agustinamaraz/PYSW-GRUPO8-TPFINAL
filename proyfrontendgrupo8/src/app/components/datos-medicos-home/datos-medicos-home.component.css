@@ -58,12 +58,169 @@ input[type="checkbox"]:checked ~ .accordion-content {
 
     transition: 1s;
 }
+.title h4{
+    font-size: 2em;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    color: #3da9b8;
+    text-transform: capitalize;
+}
+.box-title{
+    font-size: 1.5em;
+}
+.box-body p{
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    line-height: 1.5em;
+}
+.descripcion p {
+    font-size: 18px;
+    letter-spacing: 0.08em;
+}
+.container{
+    margin-bottom: 40vh;
+    margin-left: 5%;
+}
+.layout {
+    margin-top: 15vh;
+    display: grid;
+    grid-auto-rows: 22rem;
+    grid-template-columns: repeat(auto-fill, minmax(49%,1fr));
+    gap: 1em;
+}
 .section-left{
     width: 60%;
     display: inline-block;
+    margin-left: 4rem;
+    display: inline;
 }
 .section-right{
     width: 35%;
     display: inline-block;
     margin-bottom: 8%;
+    margin-left: 4rem;
+    display: inline;
+    margin-right: 0;
+}
+.accordion{
+    margin-top: 6rem;
+}
+.box2{
+    overflow-x: hidden;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100vw;
+}
+.main-cv{
+    padding-top: 15em;
+    height: 60vh;
+    width: 40%;
+    background-color: #fefeff;
+    position: absolute;
+    margin: auto;
+    margin-bottom: 4vh;
+    border-radius: 8px;
+}
+.info{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items: center;
+}
+.body-perfil{
+    background-color: #fefeff;
+}
+.name{
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    color: #3da9b8;
+    margin-bottom: 2vh;
+}
+.prof{
+    color: #353535;
+    font-family: inherit;
+    font-size: 20px;
+    margin-bottom: 2vh;
+}
+.divider{
+    height: 1.5px;
+    width: 50px;
+    background-color: #949594;
+}
+.bio{
+    color: #949594;
+    font:inherit;
+    line-height: 28px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4vh;
+
+}
+
+.btnVolver{
+    padding: 1em;
+    border: #f2715a 0.1em solid;
+    border-radius: 12px;
+    background-color: #f2715a;
+    font-weight: 400;
+    color: #fefeff;
+    text-decoration: none;
+}
+.container{
+    margin-bottom: 80vh;
+    height: 100%;
+}
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+#motivoAccordion{
+    font-size: 1.2em;
+}
+.accordion-item i{
+    font-size: 1.1em;
+}
+.accordion-content p{
+    font-size: 16px;
+}
+.caution{
+    background-color: #f2715a;
+    padding: 0.8em;
+    border: #f2715a 0.1em solid;
+    border-radius: 12px;
+    letter-spacing: 0.03;
+    font-weight: 600;
+    color: #fefeff;
+}
+@media (max-width: 1180px) {
+    .accordion {
+        display: none;
+    }
+}
+.btnExcel{
+    margin-top: 15%;
+    background-color: #007f5f;
+    padding: 1%;
+    border: #007f5f 0.1em solid;
+    border-radius: 12px;
+    letter-spacing: 0.028;
+    font-weight: 500;
+    color: #fefeff;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.btnExcel a, .btnExcel i{
+    font-size: 16px;
 }

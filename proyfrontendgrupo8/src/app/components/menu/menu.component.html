@@ -2,9 +2,7 @@
   <a href="#" class="logo">Centro de Salud <br> "Los Huaicos"</a>
   <ul class="navMenu" #navmenu>
     <li><a routerLink="/inicio">Inicio</a></li>
-
     <li *ngIf="esAdministrador()==true || esVisitante()"><a routerLink="/calendar">Crear un evento</a></li>
-
 
     <li *ngIf="esAdministrador()==true"><a routerLink="/signUp/0">Crear un usuario</a></li>
     <li *ngIf="esAdministrador()==true"><a routerLink="/calendar">Gestionar Actividades</a></li>
@@ -24,10 +22,12 @@
         Gestionar Turnos
       </a>
       <ul class="dropdown">
-        <li><a class="dropdown-item" [routerLink]="'turnos-form/0'">Formulario para Turnos</a></li>
-        <li><a class="dropdown-item" [routerLink]="'turnos'">Listado de Turnos</a></li>
+        <li><a class="dropdown-item" [routerLink]="'turno-form/0'">Formulario para Turnos</a></li>
+        <li><a class="dropdown-item" [routerLink]="'turno'">Listado de Turnos</a></li>
       </ul>
     </li>
+
+    <li><a [routerLink]="'turnos-disponibles'">Ver Turnos disponibles</a></li>
 
     <li *ngIf="esAdministrador()==true">
       <a href="#">
@@ -40,17 +40,9 @@
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
         <li><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
       </ul>
+    </li>
 
-      </li>
-
-
-   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
-   <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
-   <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
-    <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncios</a></li>
-
-    <li  *ngIf="esPaciente()==true">
-
+    <li *ngIf="esAdministrador()==true">
       <a href="#">
         Gestionar Anuncios
       </a>
@@ -60,7 +52,6 @@
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
       </ul>
     </li>
-    <h1 *ngIf="esVisitante()">AAAAAAAAAAAAAA</h1>
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn() || !loginService.userLoggedInGoogle()">LOGIN</a>

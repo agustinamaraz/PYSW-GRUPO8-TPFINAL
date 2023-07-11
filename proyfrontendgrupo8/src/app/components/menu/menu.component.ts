@@ -53,8 +53,6 @@ export class MenuComponent implements OnInit{
   esAdministrador(){
     return this.loginService.esAdmin();
   }
-
-  
   esPaciente(){
     return this.loginService.esPaciente();
   }
@@ -69,7 +67,6 @@ export class MenuComponent implements OnInit{
     this.oAuthService.logOut(); 
     this.router.navigate(['/home'])
   }
-
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
   }
@@ -98,5 +95,4 @@ export class MenuComponent implements OnInit{
       buttonElement.classList.remove('open');
     }
   }
-
 }

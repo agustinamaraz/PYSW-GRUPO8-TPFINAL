@@ -103,8 +103,9 @@ export class PacienteComponent implements OnInit {
     console.log("ENTRANDO A PACIENTE POR DNI");
     this.pacientes=new Array<Paciente>();
     this.pacienteService.getPacienteDni(this.dni).subscribe(
-      result=>{
+      (result:any)=>{
         this.pacienteDni=result;
+        
         let unPaciente = new Paciente();
         result.forEach((element:any) => {
           Object.assign(unPaciente,element);
@@ -141,7 +142,7 @@ export class PacienteComponent implements OnInit {
     this.router.navigate(["paciente-form",0])
   }
   verControl(paciente:Paciente){
-    this.router.navigate(['datosMedicosHome',paciente._id])
+    this.router.navigate(['datosMedicosHome',paciente.dni])
   }
   generarExcel(paciente:Paciente){
     console.log('entrando a generar excel')

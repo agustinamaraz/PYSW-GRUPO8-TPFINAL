@@ -75,7 +75,7 @@ export class SignupComponent implements OnInit {
     if(!this.esAdministrador()){
       this.usuario.rol._id = '649de3a7583b9ab931caaa6c'
     }
-    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id).subscribe(
+    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id, this.usuario.dni).subscribe(
       result=>{
         console.log(result);
         alert('Registrado correctamente')
@@ -87,6 +87,7 @@ export class SignupComponent implements OnInit {
           console.log("Este email ya fue registrado");
           this.usuario.email="";
           this.usuario.password="";
+          this.usuario.dni=""
           this.repeatedEmail=true;
           [this.loadPassword, this.loadEmail] = [true, true];
         }
@@ -94,6 +95,7 @@ export class SignupComponent implements OnInit {
           console.log("Este nombre de usuario ya fue registrado");
           this.usuario.username="";
           this.usuario.password="";
+          this.usuario.dni=""
           this.repeatedUsername=true;
           [this.loadPassword, this.loadUsername] = [true, true];
         }
@@ -102,6 +104,7 @@ export class SignupComponent implements OnInit {
           this.usuario.email="";
           this.usuario.username="";
           this.usuario.password="";
+          this.usuario.dni=""
           this.repeatedEmail=true;
           this.repeatedUsername=true;
           [this.loadPassword, this.loadEmail, this.loadUsername] = [true, true, true];
@@ -117,10 +120,12 @@ export class SignupComponent implements OnInit {
           var user = result;
           if (user.status == 1) {
             //guardamos el user en cookies en el cliente
+            sessionStorage.setItem("usuario", JSON.stringify(user));
             sessionStorage.setItem("token", user.token);
             sessionStorage.setItem("user", user.username);
             sessionStorage.setItem("userid", user.userid);
             sessionStorage.setItem("rol", JSON.stringify(user.rol));
+            sessionStorage.setItem("dni",user.dni)
             //redirigimos a home o a pagina que llamo
             this.route.navigateByUrl(this.returnUrl);
           }
@@ -132,7 +137,7 @@ export class SignupComponent implements OnInit {
         });
   }
   modifyUser(){
-    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id).subscribe(
+    this.usuarioService.signUp(this.usuario.username, this.usuario.password, this.usuario.email, this.usuario.rol._id, this.usuario.dni).subscribe(
       result=>{
         console.log(result);
         alert('Registrado correctamente')
