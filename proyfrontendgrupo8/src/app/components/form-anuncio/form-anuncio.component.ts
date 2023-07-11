@@ -68,7 +68,7 @@ export class FormAnuncioComponent implements OnInit {
   }
   verificar(){
     if(this.fechaStrMin + 1 >= this.anuncio.fechaHasta){
-        alert("Tienes   que ingresar una fecha mayor a la fecha Desde")
+      this.toastr.warning("la fecha Hasta debe ser mayor a la fecha Desde")
         this.anuncio.fechaHasta=""
     }
   }
@@ -102,7 +102,7 @@ export class FormAnuncioComponent implements OnInit {
         },
         error => {
           console.log(error);
-          alert(error.msg);
+          this.toastr.error("Llene todos los campos")
         }
       )
     }
@@ -341,15 +341,15 @@ finalizar(){
 
   validarAnuncio():boolean{
     if(this.anuncio.titulo == null){
-       alert("Ingrese Titulo")
+      this.toastr.error("Ingrese Titulo")
        return false
       }
     if(this.anuncio.descripcion == null){
-      alert("Ingrse Descriopcion")
+      this.toastr.error("Ingrese Descripcion")
       return false
     }
     if(this.anuncio.fechaHasta == null){
-      alert("Ingrese Fecha")
+      this.toastr.warning("Ingrese fecha")
       return false
     }
   
@@ -357,26 +357,26 @@ finalizar(){
   }
   validarRecurso():boolean{
     if(this.recurso.titulo== null){
-      alert("Ingrese Titulo")
+      this.toastr.error("Ingrese un Titulo")
       return false
      }
    if(this.recurso.descripcion == null){
-     alert("Ingrse Descriopcion")
+    this.toastr.error("Ingrese Descripcion")
      return false
    }
    if(this.recurso.tipo == null){
-    alert("Elija el tipo de Archivo")
+    this.toastr.warning("Elija un Archivo")
      return false
    }
    if(this.recurso.tipo != "url"){
      if(this.arch == null){
-     alert("Suba un arhivo")
+      this.toastr.error("suba un Archivo")
      return false
      }
    }
   if(this.recurso.tipo == "url"){
     if(this.recurso.url == null){
-      alert("Ingrese una url")
+       this.toastr.error("Ingrese url")
      return false
     }
   }
