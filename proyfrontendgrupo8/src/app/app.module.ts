@@ -39,14 +39,10 @@ import { FormcontactoComponent } from './components/formcontacto/formcontacto.co
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 import { EspecialistaComponent } from './components/especialista/especialista.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
-<<<<<<< Updated upstream
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
-=======
+import { ContactoComponent } from './components/contacto/contacto.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-
->>>>>>> Stashed changes
-
 
 
 registerLocaleData(localeEsAr);
@@ -78,7 +74,8 @@ registerLocaleData(localeEsAr);
     EspecialistaComponent,
     EspecialistaFormComponent,
     TurnoComponent,
-    TurnoFormComponent
+    TurnoFormComponent,
+    ContactoComponent
   ],
   imports:[
     BrowserModule,
