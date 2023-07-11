@@ -13,6 +13,9 @@ router.get('/:id', pacienteCtrl.getPacientebyId);
 router.post('/', pacienteCtrl.createPaciente);
 router.put('/:id', pacienteCtrl.editPaciente);
 router.delete('/:id', pacienteCtrl.deletePaciente);
-
+router.post('/:idpaciente/recurso',pacienteCtrl.addContacto);
+router.delete('/:idpaciente/recurso/:idcontacto',pacienteCtrl.deleteContacto)
+router.get('/contactog/:idPaciente', pacienteCtrl.getContacto);
+router.put('/:idpaciente/contacto/:idcontacto', pacienteCtrl.editContacto);
 //exportacion del modulo de rutas
 module.exports = router;

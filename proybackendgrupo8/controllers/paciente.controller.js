@@ -1,5 +1,9 @@
 const Paciente = require('../models/paciente');
+
+const Contacto = require('../models/contacto');
+
 const DatosMedicos = require ('../models/datosMedicos')
+
 const pacienteCtrl = {}
 
 //get todos
@@ -97,4 +101,71 @@ pacienteCtrl.deletePaciente = async (req, res) => {
         })
     }
 }
-module.exports = pacienteCtrl;
+ 
+pacienteCtrl.addContacto  = async (req, res) => {
+    var contacto =  new Contacto(req.body);
+    const idpaciente = req.params.idpaciente;
+    try {
+        var anuncio = await Paciente.findById(idpaciente);
+        anuncio.contactos.push(contacto)
+        await anuncio.save();
+        res.json({
+            'status': '1',
+            'msg': 'Contacto guardado.'
+        })
+    } catch (error) {
+        res.status(400).json({
+            'status': '0',
+            'msg':error.message 
+        })
+    }
+}
+pacienteCtrl.deleteContacto = async (req, res) => {
+    console.log("Entrando a delete")
+    const idpaciente = req.params.idpaciente
+    const idcontacto = req.params.idcontacto
+    try {
+        var paciente = await Paciente.findById(idpaciente);
+        paciente.contactos.pull(idcontacto)
+        await paciente.save()
+        //await anuncio.deleteOne({ _id: req.params.id });
+        res.status(200).json({
+            status: '1',
+            msg: 'Recurso removed'
+        })
+    } catch (error) {
+        res.status(400).json({
+            'status': '0',
+           // 'msg': 'Error procesando la operacion'
+            'msg':error.message 
+        })
+    }
+}
+pacienteCtrl.editContacto = async (req, res) => {
+    console.log("Entrando a edit")
+    const idpaciente = req.params.idpaciente
+    const vpaciente = new Contacto(req.body);
+    try {
+        var paciente = await Paciente.findById(idpaciente)
+        await paciente.contactos.updateOne({ _id: req.body.idcontacto }, vpaciente);
+        await paciente.save();
+        res.json({
+            'status': '1',
+            'msg': 'Paciente updated'
+        })
+    } catch (error) {
+        res.status(400).json({
+            'status': '0',
+            'msg': 'Error procesando la operacion'
+        })
+    }
+}
+
+
+
+pacienteCtrl.getContacto = async (req, res) => {
+    const paciente = await Paciente.findById(req.params.idPaciente);
+    res.json(paciente.contactos);
+}
+module.exports = pacienteCtrl; 
+
