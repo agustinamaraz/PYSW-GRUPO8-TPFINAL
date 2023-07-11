@@ -123,17 +123,17 @@ const routes: Routes = [
   },
   {
     path:'list-anuncio-cliente',component:ListAnuncioClienteComponent,
-    data:{
-      rol: 'administrador'
-    },
-    canActivate:[VigilanteGuard]
+    // data:{
+    //   rol: 'administrador'
+    // },
+    // canActivate:[VigilanteGuard]
   },
   {
     path:'anuncio/:id',component:AnuncioComponent,
-    data:{
-      rol: 'administrador'
-    },
-    canActivate:[VigilanteGuard]
+    // data:{
+    //   rol: 'administrador'
+    // },
+    // canActivate:[VigilanteGuard]
   },
   {
     path:'especialista-form/:id',component:EspecialistaFormComponent,

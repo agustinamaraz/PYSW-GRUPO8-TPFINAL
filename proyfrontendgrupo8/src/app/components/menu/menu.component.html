@@ -54,8 +54,8 @@
         <li *ngIf="esAdministrador()==true"><a routerLink="/formcontacto/0">Form Contacto</a></li>
       </ul>
     </li>
-    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
-    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/calendarVisitante">Calendario Cliente</a></li>
+    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/list-anuncio-cliente">Anuncios</a></li>
+    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/calendarVisitante">Calendario de Actividades</a></li>
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn() && !esLoggedGoogle() && !bothLogin ">Login</a>
