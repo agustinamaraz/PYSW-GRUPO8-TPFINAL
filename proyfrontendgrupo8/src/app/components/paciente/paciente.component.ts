@@ -7,6 +7,7 @@ import * as printJS from 'print-js'; //print en pdf
 import * as XLSX from 'xlsx';
 import * as  ExcelJS from 'exceljs';
 import { Subject } from 'rxjs/internal/Subject';
+import { Contacto } from 'src/app/models/contacto';
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
@@ -86,6 +87,13 @@ export class PacienteComponent implements OnInit {
     console.log("entrando a obtener pacientes")
     this.pacienteService.getPacientes().subscribe(
       result=>{
+         console.log(result)
+         var i = result.length -1
+         this.pacienteService.getContacto(result[i]._id).subscribe(
+          result3=>{
+            console.log(result3)
+          }
+         )
         let unPaciente = new Paciente();
         result.forEach((element:any) => {
           Object.assign(unPaciente,element);

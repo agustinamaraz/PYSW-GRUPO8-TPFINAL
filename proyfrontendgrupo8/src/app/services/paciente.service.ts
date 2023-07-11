@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Paciente } from '../models/paciente';
+import { Contacto } from '../models/contacto';
 
 @Injectable({
   providedIn: 'root'
@@ -125,5 +126,54 @@ export class PacienteService {
     let body = JSON.stringify(paciente);
 
     return this.http.put(this.hostBase+paciente._id,body,httpOptions);
+  }
+
+  addRecurso(id : string ,recurso :Contacto):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-type": "application/json"
+      }),
+      params: new HttpParams()
+    };
+    const body = JSON.stringify(recurso);
+    console.log(recurso)
+    return this.http.post(this.hostBase + id + "/recurso" , body, httpOptions);
+  }
+  getContacto(idPaciente:string):Observable<any>{
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
+
+        }
+      ),
+      params: new HttpParams()
+
+    }
+
+    return this.http.get(this.hostBase +"contactog/" +idPaciente,httpOptions);
+  }
+  deleteRecurso(idanuncio:string , idrecurso : string ):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+      }),
+      params: new HttpParams()
+    };
+
+    return this.http.delete(this.hostBase +idanuncio+"/recurso/" + idrecurso, httpOptions);
+
+  }
+  editCotacto(contacto:Contacto,idcontacto:string,idPaciente:string):Observable<any>{
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
+          "Content-type": "application/json"
+        }
+      ),
+      params: new HttpParams()
+    }
+
+    let body = JSON.stringify(contacto);
+
+    return this.http.put(this.hostBase+idPaciente+"/contacto/"+idcontacto,body,httpOptions);
   }
 }
