@@ -84,7 +84,7 @@ registerLocaleData(localeEsAr);
     TurnoComponent,
     TurnoFormComponent,
 
-    ContactoComponent
+    ContactoComponent,
     TurnosDisponiblesComponent
 
   ],
@@ -99,11 +99,9 @@ registerLocaleData(localeEsAr);
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule,
-
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
     }),
-    // ,
     // //datatable
     // DataTablesModule 
     NgxDocViewerModule

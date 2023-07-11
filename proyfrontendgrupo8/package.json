@@ -30,6 +30,7 @@
     "firebase": "^10.0.0",
     "jquery": "^3.7.0",
     "luxon": "^3.3.0",
+    "ngx-doc-viewer": "^14.0.0",
     "ngx-toastr": "^14.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
