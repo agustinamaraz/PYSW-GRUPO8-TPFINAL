@@ -8,6 +8,7 @@ import { AnuncioService } from 'src/app/services/anuncio.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-form-anuncio',
   templateUrl: './form-anuncio.component.html',
@@ -29,7 +30,7 @@ export class FormAnuncioComponent implements OnInit {
    arch!:Blob
    fecha !:Date 
    can!:string
-   constructor(private anuncioService: AnuncioService,private route :Router,private storageService: StorageService,private activatedRoute: ActivatedRoute,private pd:DatePipe) { 
+   constructor(private anuncioService: AnuncioService,private route :Router,private storageService: StorageService,private activatedRoute: ActivatedRoute,private pd:DatePipe,private toastr:ToastrService) { 
     this.anuncio= new Anuncio()
     this.nextbutton = "guardar"
     this.controlador = "caja1"
@@ -112,7 +113,6 @@ export class FormAnuncioComponent implements OnInit {
         result => {
           console.log(result);
           if (result.status == 1) {
-            alert(result.msg);
             this.controlador="caja2"
             this.can="no"
           }
@@ -161,7 +161,7 @@ if(this.tipo == "url"){
     result => {
       console.log(result);
       if (result.status == 1) {
-        alert(result.msg);
+        this.toastr.success('Recurso agregado correctamente','Recurso Agregado')
         this.anuncioService.getAnuncioId(this.id).subscribe(
 
           result=>{
@@ -239,7 +239,7 @@ subirFirebase(){
             result => {
               console.log(result);
               if (result.status == 1) {
-                alert(result.msg);
+                this.toastr.success('Recurso agregado correctamente','Recurso Agregado')
                 this.anuncioService.getAnuncioId(this.id).subscribe(
         
                   result=>{
@@ -276,7 +276,7 @@ eliminarRecurso(recurso1: Recurso){
       result => {
         console.log(result);
         if (result.status == 1) {
-          alert(result.msg);
+          this.toastr.success('Recurso eliminado correctamente','Recurso Eliminado')
           this.anuncioService.getAnuncioId(this.id).subscribe(
 
             result=>{
@@ -303,7 +303,7 @@ eliminarRecurso(recurso1: Recurso){
       result => {
         console.log(result);
         if (result.status == 1) {
-          alert(result.msg);
+          this.toastr.success('Recurso eliminado correctamente','Recurso eliminado')
           this.anuncioService.getAnuncioId(this.id).subscribe(
 
             result=>{
@@ -320,7 +320,7 @@ eliminarRecurso(recurso1: Recurso){
       },
       error => {
         console.log(error);
-        alert(error.msg);
+       
       }
     )
   }
@@ -334,6 +334,7 @@ volver(){
 }
 finalizar(){
  this.route.navigate(['list-anuncio'])
+ this.toastr.success('Accion realizada correctamente')
 }
 
 
