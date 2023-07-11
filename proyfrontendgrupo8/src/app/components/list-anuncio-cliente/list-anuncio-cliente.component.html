@@ -1,32 +1,90 @@
-<br><br><br><br><br>
-<div class="container">
-<div class="card">
-    <div class="card-header">
-      !!NUEVO!!
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{anuncio.titulo}}</h5>
-      <p class="card-text">{{anuncio.descripcion}}</p>
-      <button class="btn btn-primary" (click)="verAnuncion(anuncio._id)">ver anuncio </button>
+<br><br><br><br>
 
+<div class="container">
+<div class="card mb-3" style="max-width: 1000px;">
+  <div class="card-headerv text-dark text-center bg-warning ">
+    !!NUEVO!!
+  </div>
+  <div class="row g-0">
+    <div class="col-md-6 mb-md-0 p-md-4">
+      <div *ngIf="valor == 'no'">
+          <div  *ngIf="recurso.tipo == 'imagen'">
+            <img [src]="recurso.url" class="w-100" alt="...">
+          </div>
+          <div *ngIf="recurso.tipo == 'video'">
+            <video id="singleVideo" preload="auto"  class="w-100" controls> <source [src]="recurso.url" type="video/mp4"></video>
+           </div>
+      </div>
+      <div *ngIf="valor == 'nulo' || rec == 'no'">
+        
+          <img src="https://i.pinimg.com/550x/eb/63/56/eb6356b6bd93b584117979e6488349b7.jpg" class="w-100" alt="..."> 
+      
+      </div>
     </div>
+      
+    
+     
+    <div class="col-md-6 ">
+      <div class="card-body">
+        <h3 class="blog-card-caption card-title">{{anuncio.titulo}}</h3>
+        <p class="card-text">{{anuncio.descripcion}} </p>
+        <p class="card-text"><small class="text-muted">Fecha disponible: {{anuncio.fechaHasta}}</small></p>
+        <button class="btn btn-primary" (click)="verAnuncion1()" >ver anuncio </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+   
+    <div class="col-md-4" *ngFor=" let  a  of anuncios">
+       
+       <div class="blog-card blog-card-blog">
+        
+           <div *ngIf="a.recursos[0] != null">
+               <div *ngIf="a.recursos[0].tipo == 'imagen'">
+                    <div class="blog-card-image">
+                     <img class="img" [src]="a.recursos[0].url">
+               </div>
+               </div>
+                <div *ngIf="a.recursos[0].tipo == 'video'">
+               <video id="singleVideo" preload="auto"  class="video" > <source [src]="a.recursos[0].url" type="video/mp4"></video>
+               </div> 
+                <div *ngIf="a.recursos[0].tipo != 'imagen' &&  a.recursos[0].tipo != 'video'">
+              <div class="blog-card-image">
+                <img class="img" src="https://i.pinimg.com/550x/eb/63/56/eb6356b6bd93b584117979e6488349b7.jpg"> 
+              </div>
+            </div>
+           </div>
+            <div *ngIf="a.recursos[0] == null">
+              <div class="blog-card-image">
+                <img class="img" src="https://i.pinimg.com/550x/eb/63/56/eb6356b6bd93b584117979e6488349b7.jpg"> 
+          </div>
+            </div>
+          
+            
+        
+
+
+
+          
+    <div class="blog-table">
+        <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> Anuncio</h6>
+        <h4 class="blog-card-caption">
+            <h3>{{a.titulo}}</h3>
+        </h4>
+        <p class="blog-card-description">{{a.descripcion}}</p>
+        <p class="card-text"><small class="text-muted">Disponible Hasta: {{a.fechaHasta}}</small></p>
+        <button class="btn btn-primary" (click)="verAnuncion(a._id)" >ver anuncio </button>
+    </div>
+   </div>
+</div>
   </div>
 </div>
 
 
-<br><br>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6" *ngFor=" let  a  of anuncios">
-          <div class="card" >
-            <div class="card-body">
-              <h5 class="card-title">{{a.titulo}}</h5>
-              <p class="card-text">{{a.descripcion}}</p>
-              <button class="btn btn-primary" (click)="verAnuncion(a._id)">ver anuncio </button>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
-<br><br>

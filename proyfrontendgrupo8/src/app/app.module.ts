@@ -43,6 +43,15 @@ import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
 import { CalendarclienteComponent } from './components/calendarcliente/calendarcliente.component';
 
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+
+import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
+
+//datatable
+//import { DataTablesModule } from "angular-datatables";
+
+
 
 
 registerLocaleData(localeEsAr);
@@ -75,7 +84,11 @@ registerLocaleData(localeEsAr);
     EspecialistaFormComponent,
     TurnoComponent,
     TurnoFormComponent,
-    CalendarclienteComponent
+    CalendarclienteComponent,
+
+    ContactoComponent,
+    TurnosDisponiblesComponent
+
   ],
   imports:[
     BrowserModule,
@@ -88,13 +101,12 @@ registerLocaleData(localeEsAr);
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule,
-
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
-    })
-    // ,
+    }),
     // //datatable
-    // DataTablesModule  
+    // DataTablesModule 
+    NgxDocViewerModule
   ],
 
   providers:
@@ -105,4 +117,4 @@ registerLocaleData(localeEsAr);
 
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

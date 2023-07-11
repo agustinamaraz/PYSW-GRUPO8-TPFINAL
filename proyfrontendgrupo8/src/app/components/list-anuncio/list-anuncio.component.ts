@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
 import { observable } from 'rxjs';
 import { Anuncio } from 'src/app/models/anuncio';
 import { Recurso } from 'src/app/models/recurso';
@@ -16,7 +17,7 @@ export class ListAnuncioComponent implements OnInit {
   ancuncios : Array<Anuncio>
   listRecurso: Array<Recurso>
   listRecrso!:Array<Recurso>
-  constructor(private anuncioService:AnuncioService ,private route:Router,  private storageService: StorageService ) { 
+  constructor(private anuncioService:AnuncioService ,private route:Router,  private storageService: StorageService,private toastr:ToastrService ) { 
     this.ancuncios= new Array<Anuncio>()
     this.listRecurso= new Array<Recurso>()
   
@@ -64,6 +65,7 @@ export class ListAnuncioComponent implements OnInit {
               this.elimarArchivo(this.listRecrso[i].referencia)
              }
           }
+        
       },
       error=>{
         console.log
@@ -73,7 +75,8 @@ export class ListAnuncioComponent implements OnInit {
       result=>{
         console.log(result)
         if (result.status == 1) {
-          alert(result.msg);
+          this.toastr.success('Anuncio eliminado correctamente','Anuncio Eliminado')
+
          this.getAnucios()
         }
 

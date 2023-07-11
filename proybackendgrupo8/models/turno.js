@@ -5,11 +5,11 @@ const Especialista = require('./especialista');
 const Paciente = require('./paciente');
 
 const TurnoSchema = new Schema({
-    fecha: {type:String},
-    hora : {type :String },
+    fecha: {type:String, required:true},
+    hora : {type :String, required:true },
     especialista: { type: Schema.Types.ObjectId, ref: Especialista, required: true },
-    paciente: { type: Schema.Types.ObjectId, ref: Paciente, required: true },
-    estado: {type :String }
+    paciente: { type: Schema.Types.ObjectId, ref: Paciente },
+    estado: {type :String, required:true}
 })
 
                           

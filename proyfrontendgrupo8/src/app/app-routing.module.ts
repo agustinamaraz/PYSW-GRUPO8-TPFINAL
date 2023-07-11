@@ -21,6 +21,9 @@ import { ListContactoComponent } from './components/list-contacto/list-contacto.
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { EspecialistaComponent } from './components/especialista/especialista.component';
 import { CalendarclienteComponent } from './components/calendarcliente/calendarcliente.component';
+import { TurnoComponent } from './components/turno/turno.component';
+import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
 const routes: Routes = [
 {
     path:'login',
@@ -145,6 +148,23 @@ const routes: Routes = [
       rol: 'administrador'
     },
     canActivate:[VigilanteGuard]
+  },
+  {
+    path:'turno',component:TurnoComponent,
+    // data:{
+    //   rol: 'administrador'
+    // },
+    // canActivate:[VigilanteGuard]
+  },
+  {
+    path:'turno-form/:id',component:TurnoFormComponent,
+    data:{
+      rol: 'administrador'
+    },
+    canActivate:[VigilanteGuard]
+  },
+  {
+    path:'turnos-disponibles',component:TurnosDisponiblesComponent,
   },
   //lo siguiente siempre va al final
   {
