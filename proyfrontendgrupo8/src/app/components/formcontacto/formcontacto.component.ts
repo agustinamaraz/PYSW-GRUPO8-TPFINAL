@@ -91,19 +91,20 @@ export class FormcontactoComponent implements OnInit {
      }
   }
   cancelar(){
-
+    this.route.navigate(['list-contacto'])
   }
   validarContacto():boolean{
     if(this.contacto.descripcion == null){
-      alert("Ingrse Descriopcion")
+      this.toastr.error("Ingrese Descripcion")
       return false
     }
     if(this.contacto.tipo == null){
-      alert("Elija el tipo Contacto")
+      this.toastr.error("Elija un contacto")
        return false
      }
      if(this.contacto.valor == null){
-      alert("Ingrese un valor")
+      this.toastr.error("Ingrese un valor")
+      
       return false
      }
      return true;

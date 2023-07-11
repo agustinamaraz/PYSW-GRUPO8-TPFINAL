@@ -41,7 +41,12 @@ import { EspecialistaComponent } from './components/especialista/especialista.co
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+
 import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
+
 
 
 
@@ -75,7 +80,11 @@ registerLocaleData(localeEsAr);
     EspecialistaFormComponent,
     TurnoComponent,
     TurnoFormComponent,
+
+    ContactoComponent
+
     TurnosDisponiblesComponent
+
   ],
   imports:[
     BrowserModule,
@@ -91,10 +100,11 @@ registerLocaleData(localeEsAr);
 
     ToastrModule.forRoot({ //agregado 4/7/2023
       positionClass :'toast-bottom-right'
-    })
+    }),
     // ,
     // //datatable
-    // DataTablesModule  
+    // DataTablesModule 
+    NgxDocViewerModule
   ],
 
   providers:

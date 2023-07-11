@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'console';
 import { Anuncio } from 'src/app/models/anuncio';
+import { Recurso } from 'src/app/models/recurso';
 import { AnuncioService } from 'src/app/services/anuncio.service';
 
 @Component({
@@ -13,11 +14,25 @@ import { AnuncioService } from 'src/app/services/anuncio.service';
 export class ListAnuncioClienteComponent implements OnInit {
   anuncio : Anuncio
   anuncios :Array<Anuncio>
+  recurso:Recurso
+  recurso2!:Array<Recurso>
+  ListR:Array<Recurso>
+  l:Number
+  //urlR:string
   fecha:string
+  valor :string
+  rec:string
   constructor(private  anuncioServcice:AnuncioService,private pd:DatePipe,private route:Router) { 
     this.anuncio=new Anuncio()
     this.anuncios= new Array<Anuncio>()
     this.fecha = ""
+    this.recurso= new Recurso()
+    //this.urlR=""
+    this.ListR= new Array<Recurso>()
+    this.l= 0
+    this.valor="nulo"
+    this.rec="no"
+    ///this.recurso2=new Array<Recurso>()
   }
 
   ngOnInit(): void {
@@ -25,6 +40,21 @@ export class ListAnuncioClienteComponent implements OnInit {
       result=>{
         let i= result.length - 1
         this.anuncio = result[i] ;
+         
+        if(this.anuncio.recursos[0] != null){
+          for(let j =0 ; j< this.anuncio.recursos.length;j++){
+          if(this.anuncio.recursos[j].tipo=="imagen"){
+            this.recurso=this.anuncio.recursos[j]
+            this.rec="yes"
+          }
+          if(this.anuncio.recursos[j].tipo=="video"){
+            this.recurso=this.anuncio.recursos[j]
+            this.rec="yes"
+          }
+        }
+        this.valor="no"
+        }
+        
       }
     )
     this.fecha=String(new Date().toLocaleDateString('es-ar'))
@@ -35,12 +65,42 @@ export class ListAnuncioClienteComponent implements OnInit {
         console.log(resul)
         this.anuncios=resul
         this.invertir(this.anuncios)
+        
+        for(let i = 0; i > this.anuncios.length;i++ ){
+          if( this.anuncios[i].recursos != null){
+            for(let j =0 ;j > this.anuncios[i].recursos.length;j++){
+               
+                if(this.anuncios[i].recursos[j].tipo=="imagen"){
+                  this.anuncios[i].recursos[0]=this.anuncios[i].recursos[j]
+              }
+              else{
+                if(this.anuncios[i].recursos[j].tipo === "video"){
+                  this.anuncios[i].recursos[0]=this.anuncios[i].recursos[j]
+                }
+              }
+            } 
+          }
+            
+                 
+          }
+      
       },
        error=>{
           console.log(error)
        }
     )
 
+  }
+  buscar(tipo : string):Boolean{
+      if(tipo == "video"){
+        return true
+      }
+    
+        if(tipo == "imagen"){
+          return true
+        }
+      
+     return false
   }
   invertir(anuncio:  Array<Anuncio>){
     let ar = new Array<Anuncio>()
@@ -51,5 +111,8 @@ export class ListAnuncioClienteComponent implements OnInit {
   } 
   verAnuncion(id:string){
     this.route.navigate(['anuncio',id])
+  }
+  verAnuncion1(){
+    this.route.navigate(['anuncio',this.anuncio._id])
   }
 }
