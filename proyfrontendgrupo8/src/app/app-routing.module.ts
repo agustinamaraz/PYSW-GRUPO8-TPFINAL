@@ -22,6 +22,7 @@ import { EspecialistaFormComponent } from './components/especialista-form/especi
 import { EspecialistaComponent } from './components/especialista/especialista.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
 const routes: Routes = [
 {
     path:'login',
@@ -145,10 +146,10 @@ const routes: Routes = [
   },
   {
     path:'turno',component:TurnoComponent,
-    data:{
-      rol: 'administrador'
-    },
-    canActivate:[VigilanteGuard]
+    // data:{
+    //   rol: 'administrador'
+    // },
+    // canActivate:[VigilanteGuard]
   },
   {
     path:'turno-form/:id',component:TurnoFormComponent,
@@ -156,6 +157,9 @@ const routes: Routes = [
       rol: 'administrador'
     },
     canActivate:[VigilanteGuard]
+  },
+  {
+    path:'turnos-disponibles',component:TurnosDisponiblesComponent,
   },
   //lo siguiente siempre va al final
   {
