@@ -7,7 +7,7 @@ import { Recurso } from '../models/recurso';
   providedIn: 'root'
 })
 export class AnuncioService {
-  urlBase: string = "http://localhost:3000/api/anuncio/"
+  urlBase: string = "http://3.82.255.160:3000/api/anuncio/"
   constructor(private _http: HttpClient) { }
   addAnuncio(anuncio: Anuncio): Observable<any> {
 
@@ -52,7 +52,7 @@ export class AnuncioService {
     return this._http.get(this.urlBase + id, httpOptions);
   }
   deleteAnuncio(id:string):Observable<any>{
-    
+
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -84,7 +84,7 @@ export class AnuncioService {
     return this._http.delete(this.urlBase +idanuncio+"/recurso/" + idrecurso, httpOptions);
 
   }
-  ////Anuncio Con fecha 
+  ////Anuncio Con fecha
   getFechaAnuncios(fecha:string):Observable<any>{
 
     const httpOptions = {

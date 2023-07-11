@@ -9,7 +9,7 @@ import { Turno } from '../models/turno';
 export class TurnoService {
   hostBase: string;
   constructor(private http: HttpClient) {
-    this.hostBase = "http://localhost:3000/api/turno/";
+    this.hostBase = "http://3.82.255.160:3000/api/turno/";
   }
 
   getTurno(id: string): Observable<any> {

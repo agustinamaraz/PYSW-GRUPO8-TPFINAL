@@ -8,8 +8,8 @@ import { Contacto } from '../models/contacto';
 })
 export class ContactoService {
   urlBase:string
-  constructor(private http:HttpClient) { 
-    this.urlBase = "http://localhost:3000/api/contacto/";
+  constructor(private http:HttpClient) {
+    this.urlBase = "http://3.82.255.160:3000/api/contacto/";
   }
   getContactos():Observable<any>{
     let httpOptions={
