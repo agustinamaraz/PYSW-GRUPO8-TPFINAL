@@ -41,6 +41,7 @@ import { EspecialistaComponent } from './components/especialista/especialista.co
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+import { CalendarclienteComponent } from './components/calendarcliente/calendarcliente.component';
 
 
 
@@ -73,7 +74,8 @@ registerLocaleData(localeEsAr);
     EspecialistaComponent,
     EspecialistaFormComponent,
     TurnoComponent,
-    TurnoFormComponent
+    TurnoFormComponent,
+    CalendarclienteComponent
   ],
   imports:[
     BrowserModule,
