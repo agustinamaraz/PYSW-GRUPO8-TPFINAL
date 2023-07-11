@@ -2,8 +2,8 @@
 
     <!--FORM-->
     <form class="m-5 w-50 formulario-azul text-white p-3" #ticketForm="ngForm">
-        <h3 class="text-center bg-primary bg-opacity-75 p-2">Formulario Turno</h3>
-        <div class="mb-3">
+        <h3 class="text-center bg-primary bg-opacity-75 p-2">Dar de Alta un  Turno</h3>
+        <!-- <div class="mb-3">
             <label for="espectador" class="form-label text-white">Paciente:</label>
             <select class="form-select" id="paciente" name="paciente" [(ngModel)]="turno.paciente" required
                 #paciente="ngModel">
@@ -16,7 +16,7 @@
                     Debe seleccionar un paciente.
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="mb-3">
             <label for="espectador" class="form-label text-white">Especialista:</label>
             <select class="form-select" id="especialista" name="especialista" [(ngModel)]="turno.especialista" required
@@ -55,7 +55,7 @@
         </div>
         <div class="mb-3">
             <label for="precio" class="form-label">Estado: </label>
-            <input type="text" class="form-control" id="estado" required name="estado" [(ngModel)]="turno.estado" #precio="ngModel" disabled>
+            <input type="text" class="form-control" id="estado" required name="estado" [(ngModel)]="turno.estado" #precio="ngModel">
         </div>
         
 

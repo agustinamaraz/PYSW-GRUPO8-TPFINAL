@@ -27,8 +27,7 @@ export class TurnoService {
 
   }
 
-
-  getTurnos(): Observable<any> {
+  getTurnosDisponibles(): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders(
         {
@@ -36,13 +35,39 @@ export class TurnoService {
         }
       ),
       params: new HttpParams()
+        .append("estado", "libre")
 
     }
 
-    return this.http.get(this.hostBase, httpOptions);
+    return this.http.get(this.hostBase + "turnosDisponibles", httpOptions);
 
   }
-  
+
+
+  getTurnos(): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders(
+        {
+        }
+      ),
+      params: new HttpParams()
+
+    }
+    return this.http.get(this.hostBase, httpOptions);
+  }
+
+  getMisTurnos(dni:string): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders(
+        {
+        }
+      ),
+      params: new HttpParams()
+        .append("dni",dni)
+    }
+    return this.http.get(this.hostBase+"misTurnos", httpOptions);
+  }
+
   createTurno(t: Turno): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders(
