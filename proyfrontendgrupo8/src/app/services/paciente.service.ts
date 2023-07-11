@@ -46,7 +46,7 @@ export class PacienteService {
 
   }
   //paciente por dni
-  getPacienteDni(dni:string):Observable<any>{
+  getPacienteDni(dni:string){
     let httpOptions={
       headers: new HttpHeaders(
         {
@@ -56,11 +56,9 @@ export class PacienteService {
       params: new HttpParams()
       .append("dniP",dni)
     }
-
-
     return this.http.get(this.hostBase+"dni",httpOptions);
-
   }
+  
   getOnePacienteByDni(dni:string):Observable<any>{
     let httpOptions={
       headers: new HttpHeaders(

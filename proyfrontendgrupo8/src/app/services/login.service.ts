@@ -109,7 +109,7 @@ export class LoginService {
     let isAdmin = sessionStorage.getItem("usuario");
     const parsedAdmin = isAdmin ? JSON.stringify(isAdmin) : null;
 
-    return parsedAdmin;
+    return JSON.parse(parsedAdmin); //cambio agus 10/7/2023
   }
 
   public esAdmin(){ //funciona

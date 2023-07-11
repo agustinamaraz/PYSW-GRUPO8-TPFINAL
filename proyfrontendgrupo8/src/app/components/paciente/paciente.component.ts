@@ -112,8 +112,9 @@ export class PacienteComponent implements OnInit {
     console.log("ENTRANDO A PACIENTE POR DNI");
     this.pacientes=new Array<Paciente>();
     this.pacienteService.getPacienteDni(this.dni).subscribe(
-      result=>{
+      (result:any)=>{
         this.pacienteDni=result;
+        
         let unPaciente = new Paciente();
         result.forEach((element:any) => {
           Object.assign(unPaciente,element);

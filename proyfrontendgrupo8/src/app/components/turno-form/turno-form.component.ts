@@ -33,7 +33,6 @@ export class TurnoFormComponent implements OnInit {
         if (params['id'] == 0) {
           this.accion = "new";
           this.turno.estado = "libre";
-          this.turno.paciente = null;
         } else {
           this.accion = "update";
           this.cargarTurno(params['id']);
@@ -83,8 +82,6 @@ export class TurnoFormComponent implements OnInit {
         Object.assign(this.turno, result); //en paciente va a tener null
         this.turno.especialista = this.especialistas.find((item) => (item._id == this.turno.especialista._id))!;
         this.turno.paciente = this.pacientes.find((item) => (item._id == this.turno.paciente._id))!;
-        // console.log(this.ticket.espectador);
-        // console.log(this.espectadores);
       },
       error => {
         console.log(error);
@@ -93,20 +90,29 @@ export class TurnoFormComponent implements OnInit {
   }
 
   guardarTurno() {
-    //console.log(this.turno);
+    console.log(this.turno);
+
+    // this.turno.paciente={
+    //   nombre: "",
+    //   apellido: "",
+    //   dni: "",
+    //   _id: "",
+    //   fechaNac:""
+    // };
+
+    this.turno.paciente = null;
+
     this.turnoService.createTurno(this.turno).subscribe(
       result => {
         if (result.status == 1) {
           alert(result.msg);
-          this.router.navigate(["turno"])
+          this.router.navigate(["turnos-disponibles"])
         }
       },
       error => {
         alert(error.msg);
       }
     )
-
-
   }
 
   modificarTurno() {
