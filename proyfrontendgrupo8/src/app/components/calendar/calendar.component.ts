@@ -43,7 +43,7 @@ export class CalendarComponent implements OnInit {
 
 
   constructor(private gooService: GooService, private toastr: ToastrService,
-    private readonly oAuthService: OAuthService,) {
+    private readonly oAuthService: OAuthService) {
     this.event = new Evento();
     this.event.kind = 'calendar@event';
     this.event.status = 'confirmed';
@@ -57,7 +57,7 @@ export class CalendarComponent implements OnInit {
     console.log(this.oAuthService.hasValidAccessToken())
     if (isLoggedIn === 'true') {
       this.logged = true
-    console.log(this.oAuthService.hasValidAccessToken())
+      console.log(this.logged)
     this.gooService.checkIfGoogleAccountLinked()
     } else {
       this.logged=false

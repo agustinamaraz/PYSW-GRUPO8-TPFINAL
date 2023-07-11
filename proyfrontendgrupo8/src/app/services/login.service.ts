@@ -46,7 +46,7 @@ export class LoginService {
       })
     }
     let body = JSON.stringify({email:email});
-    return this.http.post(this.hostBase +'gmail/', body, httpOption);
+    return this.http.post(this.hostBase +'gmail', body, httpOption);
   }
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
@@ -77,6 +77,8 @@ export class LoginService {
     sessionStorage.removeItem("userid");
     //borro el token almacenado mediante el storage
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userDni");
+    sessionStorage.clear()
   }
 
   public userLoggedIn() {
@@ -104,7 +106,10 @@ export class LoginService {
     var usuario = sessionStorage.getItem("username");
     return usuario;
   }
-
+  public getEmailGoogle():string{
+    let email = sessionStorage.getItem("emailGmail")
+    return email;
+  }
   public getUser(){
     let isAdmin = sessionStorage.getItem("usuario");
     const parsedAdmin = isAdmin ? JSON.stringify(isAdmin) : null;
@@ -183,7 +188,7 @@ export class LoginService {
   }
 
   userLoggedDNI(){ //nose quien lo puso en el menu asi q lo tuve q poner aca
-
+    var dni = sessionStorage.getItem("userDni");
+    return dni;
   }
-
 }

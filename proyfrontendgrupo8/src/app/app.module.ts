@@ -41,6 +41,7 @@ import { EspecialistaComponent } from './components/especialista/especialista.co
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+import { CalendarclienteComponent } from './components/calendarcliente/calendarcliente.component';
 
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
@@ -83,6 +84,7 @@ registerLocaleData(localeEsAr);
     EspecialistaFormComponent,
     TurnoComponent,
     TurnoFormComponent,
+    CalendarclienteComponent,
 
     ContactoComponent,
     TurnosDisponiblesComponent
