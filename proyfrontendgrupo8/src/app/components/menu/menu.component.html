@@ -38,10 +38,11 @@
         <li><a class="dropdown-item" [routerLink]="'paciente'">Listado de Pacientes</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos-form/0'">Formulario datos medicos</a></li>
         <li><a class="dropdown-item" [routerLink]="'datosMedicos'">Datos medicos</a></li>
-        <li><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
+        <li><a class="dropdown-item" [routerLink]="'/datosMedicosHome/'">Mis Controles</a></li>
       </ul>
     </li>
 
+    <li  *ngIf="esPaciente()"><a [routerLink]="'/datosMedicosHome/'+loginService.userLoggedDNI()">Mis Controles</a></li>
     <li *ngIf="esAdministrador()==true">
       <a href="#">
         Gestionar Anuncios
@@ -50,15 +51,17 @@
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/contacto">Contacto</a></li>
       </ul>
     </li>
+    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
+    <li *ngIf="esVisitante()==true || esPaciente()"><a routerLink="/calendarVisitante">Calendario Cliente</a></li>
   </ul>
   <div class="nav-icons">
-    <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn() || !loginService.userLoggedInGoogle()">LOGIN</a>
-    <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}} LogOut</a>
-      <a (click)="logout()" class="login" *ngIf="esVisitante()">User:{{loginService.userLoggedGoogle()}}
-      LogOut</a>
+    <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn() && !esLoggedGoogle() && !bothLogin ">Login</a>
+    <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn() && !bothLogin">User:{{loginService.userLogged()}} LogOut</a>
+    <a (click)="logoutGoogle()" class="login" *ngIf="esLoggedGoogle()  && !bothLogin">User:{{loginService.userLoggedGoogle()}} LogOut</a>
+      <a (click)="bothLogOut()" class="login" *ngIf="bothLogin">User:{{loginService.userLoggedGoogle()}} LogOut</a>
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
-
   </div>
 </nav>

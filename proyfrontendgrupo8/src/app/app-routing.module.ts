@@ -20,6 +20,7 @@ import { FormcontactoComponent } from './components/formcontacto/formcontacto.co
 import { ListContactoComponent } from './components/list-contacto/list-contacto.component';
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { EspecialistaComponent } from './components/especialista/especialista.component';
+import { CalendarclienteComponent } from './components/calendarcliente/calendarcliente.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
 import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
@@ -87,6 +88,10 @@ const routes: Routes = [
       rol: 'administrador'
     },
     //canActivate:[VigilanteGuard]
+  },
+  {
+    path:'calendarVisitante',
+    component:CalendarclienteComponent
   },
   {
     path:'form-anuncio/:id',component:FormAnuncioComponent,
