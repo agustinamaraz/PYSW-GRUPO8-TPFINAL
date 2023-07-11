@@ -38,7 +38,8 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
 
 pacienteCtrl.getOnePacienteDni = async (req,res)=>{
     const paciente = await Paciente.findOne({ dni: req.params.dni })
-    res.json(paciente)
+    res.json(paciente);
+}
 
 //create
 pacienteCtrl.createPaciente = async (req, res) => {
@@ -93,4 +94,4 @@ pacienteCtrl.deletePaciente = async (req, res) => {
         })
     }
 }
-module.exports = pacienteCtrl; 
+module.exports = pacienteCtrl;

@@ -41,6 +41,7 @@ import { EspecialistaComponent } from './components/especialista/especialista.co
 import { EspecialistaFormComponent } from './components/especialista-form/especialista-form.component';
 import { TurnoComponent } from './components/turno/turno.component';
 import { TurnoFormComponent } from './components/turno-form/turno-form.component';
+import { TurnosDisponiblesComponent } from './components/turnos-disponibles/turnos-disponibles.component';
 
 //datatable
 //import { DataTablesModule } from "angular-datatables";
