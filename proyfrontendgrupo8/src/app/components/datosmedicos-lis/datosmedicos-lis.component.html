@@ -1,6 +1,10 @@
 <br><br><br>
-<p>datosmedicos-lis works!</p>
-<input class="form-control" type="text" placeholder="Buscar" [(ngModel)]="searchText">
+<div class="container">
+<input class="form-control ms-2 mt-4 mb-4" type="text" placeholder="Buscar" [(ngModel)]="searchText">
+<div class="buttons">
+    <a [routerLink]="'/datosMedicos-form/0'" class="btnAgregar mt-4 ms-2">Agregar Control</a>
+    <button class="btnExcel ms-2" (click)="excelTable()">Descargar Excel <i class='bx bx-table bx-flip-horizontal' ></i></button>
+</div>
 <div style="padding: 3%;">
     <table class="table table-bordered table-hover border-primary mt-5" >
         <thead class="table-primary">
@@ -23,8 +27,10 @@
                 <td>
                     <button type="button" class="btn btn-warning" (click)="modificarDatoMedico(d)">Modificar</button>
                     <button type="button" class="btn btn-danger" (click)="eliminarDatoMedico(d)">Eliminar</button>
+                    <button type="button" class="btn btn-danger" (click)="verControl(d.pacienteObj.dni)">Controles Medicos</button>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>

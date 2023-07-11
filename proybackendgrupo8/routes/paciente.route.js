@@ -7,6 +7,8 @@ const pacienteCtrl = require('./../controllers/paciente.controller');
 // definiendo rutas
 router.get('/', pacienteCtrl.getPacientes);
 router.get('/dni', pacienteCtrl.getPacienteDni);//agregado 23/06
+router.get('/busquedaPaciente', pacienteCtrl.busquedaPaciente);//agregado 10/07
+router.get('/dniOne/:dni', pacienteCtrl.getOnePacienteDni);
 router.get('/:id', pacienteCtrl.getPacientebyId);
 router.post('/', pacienteCtrl.createPaciente);
 router.put('/:id', pacienteCtrl.editPaciente);

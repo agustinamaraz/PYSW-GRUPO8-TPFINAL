@@ -18,13 +18,13 @@ export class VigilanteGuard implements CanActivate {
   checkUserRol(route:ActivatedRouteSnapshot):boolean{
     const scopes:any = this.login.getUser()!;
 
-    console.log("vigilanteeeee: "+ scopes);
+    //console.log("vigilanteeeee: "+ scopes);
 
     if(scopes.includes(route.data["rol"])){
       return true;
     }else{
       alert("no tienes lo permisos para acceder a esta seccion")
-      this.router.navigate(["home"])
+      this.router.navigate(["/home"])
       return false;
     }
   }

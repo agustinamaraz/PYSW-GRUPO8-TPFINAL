@@ -45,7 +45,6 @@ p {
     color: #d2715a;
     font-weight: 600;
 }
-
 a {
 	color: #333;
 	font-size: 14px;
@@ -107,8 +106,8 @@ input {
 }
 
 .container {
-	margin-top: 10%;
-    margin-bottom: 10%;
+	margin-top: 25%;
+    margin-bottom: 25%;
 	background-color: #fff;
 	border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25),
@@ -212,3 +211,38 @@ input {
 	transform: translateX(20%);
 }
 
+.login-google{
+	margin-top: 2vh;
+	font-size: 12px;
+	width: auto;
+	white-space: nowrap;
+	height: auto;
+}
+.login-google i{
+	align-items: baseline;
+	justify-self: baseline;
+	text-align:end;
+	font-size: 16px;
+}
+@media(max-width:705px){
+	.container{
+		min-height: 620px;
+	}
+	.overlay-container{
+		width: 0;
+		display: none;
+	}
+	.sign-in-container{
+		width: 100%;
+	}
+
+}	.btnRegistrarse{
+	margin-top: 2%;
+	width: auto;
+	height: auto;
+}
+@media(min-width:706px){
+	.btnRegistrarse{
+		display: none;
+	}
+}

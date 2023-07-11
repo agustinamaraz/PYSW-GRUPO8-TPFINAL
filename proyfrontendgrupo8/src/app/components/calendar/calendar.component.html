@@ -1,11 +1,12 @@
-<section>
-  <button type="button" (click)="login()">01 login</button>
-  <button type="button" (click)="token()">02 Token</button>
-  <button type="button" (click)="verEventos()">03 Eventos</button>
-  <form class="border border-1 m-3 p-3 bg-secondary-subtle">
+
+<section class="container">
+  <div class="buttons">
+    <button type="button" *ngIf="!logged" (click)="login()">01 login</button>
+  </div>
+  <form class="containerForm m-3 p-3 e">
     <div class="form-group">
       <div class="mb-3">
-        <label for="my-input">Descripción:</label>
+        <label for="my-input">Descripcion del Evento:</label>
         <input id="sumary" class="form-control" type="text" [(ngModel)]="event.summary" name="sumary" />
       </div>
       <div class="mb-3">
@@ -19,12 +20,10 @@
     </div>
     <button class="btn btn-primary m-3" type="button" (click)="crearEvento()">04 Crear Evento</button>
   </form>
-  <button type="button" (click)="logout()">05 logout</button>
 
-  <div class="d-flex justify-content-center align-items-center mb-4">
-    <iframe
-    src="https://calendar.google.com/calendar/embed?src=a2240f8dc916721874235dcab6ef8783ac658708a70e722f95bede9c8c979422%40group.calendar.google.com&ctz=America%2FArgentina%2FJujuy"
-    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  <div class="d-flex justify-content-center align-items-center mb-4 calendar-Box">
+<iframe src="https://embed.styledcalendar.com/#bPpcDptFtq2u3Mm4rk32" title="Styled Calendar" class="styled-calendar-container" style="width: 100%; border: none;" style="border: 0" width="1200" height="900" frameborder="0" scrolling="no" data-cy="calendar-embed-iframe"></iframe>
+<script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
   </div>
 
   

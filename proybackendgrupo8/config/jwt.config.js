@@ -5,6 +5,11 @@ const getToken = (payload) => {
         data: payload
     }, 'SECRET', { expiresIn: '1h' });
 }
+const getTokenConfirm = (payload) => {
+    return jwt.sign({
+        data: payload
+    }, 'SECRET', { expiresIn: '76h' });
+}
 const getTokenPassword = (payload) => {
     return jwt.sign({
         data: payload
@@ -25,6 +30,7 @@ const getTokenData = (token) => {
 
 module.exports = {
     getToken,
+    getTokenConfirm,
     getTokenData,
     getTokenPassword
 }

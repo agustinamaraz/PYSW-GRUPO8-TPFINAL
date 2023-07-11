@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from 'src/app/models/evento';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { GooService } from 'src/app/services/goo.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,7 +13,7 @@ export class CalendarComponent implements OnInit {
   calendarioGoogle: any = null;
   idCalendario: string = 'a2240f8dc916721874235dcab6ef8783ac658708a70e722f95bede9c8c979422@group.calendar.google.com';
 
-
+  logged:boolean=false;
   fromDate: string = '';
   toDate: string = '';
 
@@ -41,20 +42,35 @@ export class CalendarComponent implements OnInit {
 
 
 
-  constructor(private gooService: GooService, private toastr: ToastrService) {
+  constructor(private gooService: GooService, private toastr: ToastrService,
+    private readonly oAuthService: OAuthService) {
     this.event = new Evento();
     this.event.kind = 'calendar@event';
     this.event.status = 'confirmed';
     const creador = { email: 'centroSaludJujuy@gmail.com' }
     this.event.creator = creador;
   }
-  ngOnInit(): void {
-    this.gooService.configureSingleSignOne();
+  ngOnInit() {
+    this.gooService.configureSingleSignOne();  
+    const isLoggedIn = sessionStorage.getItem('googleIsLoggedIn');
+    console.log(isLoggedIn)
+    console.log(this.oAuthService.hasValidAccessToken())
+    if (isLoggedIn === 'true') {
+      this.logged = true
+      console.log(this.logged)
+    this.gooService.checkIfGoogleAccountLinked()
+    } else {
+      this.logged=false
+      // El usuario aún no ha iniciado sesión, redirígelos a la página de inicio de sesión
+      // o muestra un mensaje para que inicien sesión
+    }
   }
 
 
   login() {
     this.gooService.login();
+    
+    console.log(this.oAuthService.loadUserProfile());
   }
   logout() {
     this.gooService.logout();

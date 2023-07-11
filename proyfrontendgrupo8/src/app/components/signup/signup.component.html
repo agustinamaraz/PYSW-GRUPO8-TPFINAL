@@ -19,6 +19,18 @@
         </div>
     </div>
     <div class="mb-3 ms-2">
+        <label for="dni" class="form-label">Dni</label>
+        <input type="text" class="form-control form" [(ngModel)]="usuario.dni" id="dni" min="0.01" name="udni" required #dniInput="ngModel" placeholder="Ingrese su dni">
+        <div *ngIf="dniInput.invalid && (dniInput.dirty || dniInput.touched)" class="alert alert-danger my-1 p-1">
+            <div *ngIf="dniInput.errors?.['required']">
+                El nombre de usuario es requerida
+            </div>
+            <div *ngIf="dniInput.errors?.['min']">
+                El nombre de usuario debe ser mayor a 0
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 ms-2">
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" class="form-control form" [(ngModel)]="usuario.password" id="password" min="0.01" name="password" required #passwordInput="ngModel" placeholder="Ingrese una contraseña">
         <div *ngIf="passwordInput.invalid && !loadPassword && (passwordInput.dirty || passwordInput.touched)" class="alert alert-danger my-1 p-1">
@@ -42,7 +54,7 @@
             Ya existe una cuenta con ese email
         </div>
     </div>
-    <div *ngIf="!modifica" class="mb-3 ms-2" [ngClass]="{'is-invalid': rolInput.invalid && (rolInput.dirty || rolInput.touched)}">
+    <div *ngIf="!modifica && esAdministrador()" class="mb-3 ms-2" [ngClass]="{'is-invalid': rolInput.invalid && (rolInput.dirty || rolInput.touched)}">
         <label for="rol" class="form-label">Rol</label>
         <select name="rol" id="rol" aria-label="select rol" [(ngModel)]="usuario.rol._id" class="form-select select-scrollable" style="max-height: 200px;" required #rolInput="ngModel">
             <option value="" disabled selected>Seleccione un rol</option>
@@ -56,6 +68,7 @@
     </div>
     <button type="submit" *ngIf="!modifica" [disabled]="signUpForm.invalid" (click)="createUser()" class=" ms-2">Enviar</button>
     <button type="submit" *ngIf="modifica" [disabled]="signUpForm.invalid" class="ms-2">Modificar</button>
+    <button (click)="loginGo()" class="btnLogin">Iniciar sesion</button>
 </form>
 <div class="overlay-container">
     <div class="overlay">

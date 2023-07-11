@@ -2,3 +2,39 @@
     max-height: 200px;
     overflow-y: auto;
 }
+
+.btnCopy{
+    padding: 0.8%;
+    border: #f7d9ab 0.1em solid;
+    border-radius: 12px;
+    background-color: #f7d9ab;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}
+.btnVolver{
+    margin-top: 2%;
+    padding: 0.8%;
+    border: #f2715a 0.1em solid;
+    border-radius: 12px;
+    background-color: #f2715a;
+    font-weight: 600;
+    color: #fefeff;
+    text-decoration: none;
+}
+.btnEnviar{
+    margin-top: 2%;
+    padding: 0.8%;
+    border: #3da9b8 0.1em solid;
+    border-radius: 12px;
+    background-color: #3da9b8;
+    font-weight: 600;
+    color: #fefeff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.container{
+    margin-bottom: 30vh;
+    height: 100%;
+    margin-top: 8vh;
+}

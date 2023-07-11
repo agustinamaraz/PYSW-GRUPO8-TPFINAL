@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const { getToken, getTokenData, getTokenPassword } = require('../config/jwt.config');
 const Usuario = require('./../models/usuario');
 const { v4: uuidv4 } = require('uuid');
-const { getTemplate, sendEmail, sendEmailPassword, getTemplatePassword } = require('../config/email.config');
+const { getTemplate, sendEmail, sendEmailPassword, getTemplatePassword, getTokenConfirm } = require('../config/email.config');
+const rolCtrl = require('./rol.controller');
 const usuarioCtrl = {}
 
 usuarioCtrl.createUsuario = async (req, res) => {
@@ -40,7 +41,8 @@ usuarioCtrl.createUsuario = async (req, res) => {
         email: req.body.email,
         code: code,
         status: 'UNVERIFIED',
-        rol: req.body.rol
+        rol: req.body.rol,
+        dni: req.body.dni
     });
     email = req.body.email
     username= req.body.username
@@ -129,16 +131,28 @@ usuarioCtrl.askReset = async (req, res) => {
     try {
         const user = await Usuario.findOne({ email });
         if (!user) {
-        return res.json({
+        return res.status(499).json({
             success: false,
-            msg: 'Usuario no encontrado'
+            message: 'Usuario no encontrado'
         });
     }
-    if(user){
+    console.log("AAAAAAAAAAAAAAAAAAAAAA")
+    if(user)
+    {if (!user.isVerified()) {
+        console.log("AAAAAAAAAAAAAAAAAAAAAANO")
+        return res.status(498).json({
+            success: false,
+            message: 'Usuario no verificado'
+        });
+        
+    }
+    
+    console.log("AAAAAAAAAAAAAAAAAAAAAA2")
         const code = uuidv4();
         const token = getTokenPassword({ email});
         const emailSubject = 'Recuperación de Contraseña';
         const emailHtml = getTemplatePassword(user.username, token);
+        console.log(emailHtml)
         sendEmailPassword(user.email, emailSubject, emailHtml);
         return res.json({
             success: true,
@@ -147,6 +161,7 @@ usuarioCtrl.askReset = async (req, res) => {
     }
     } catch (error) {
         console.log(error);
+        console.log("AAAAAAAAAAAAAAAAAAAAAA")
         return res.status(500).json({
         success: false,
         msg: 'Error al solicitar restablecimiento de contraseña'
@@ -173,7 +188,7 @@ usuarioCtrl.resetPassword = async (req, res) => {
         const { email } = data.data;
         const user = await Usuario.findOne({ email });
         if (!user) {
-            return res.json({
+            return res.json.status(499)({
             success: false,
             msg: 'Usuario no encontrado'
             });
@@ -239,6 +254,7 @@ usuarioCtrl.loginUsuario = async (req, res) => {
         username: req.body.username
     }
 
+    console.log(req.body.username + ' aaaaaa')
     try {
         const user = await Usuario.findOne(criteria).populate("rol");
 
@@ -276,7 +292,81 @@ usuarioCtrl.loginUsuario = async (req, res) => {
     //el método findOne retorna un objeto que cumpla con los criterios de busqueda
 
 }
+usuarioCtrl.loginUsuarioEmail= async (req, res) => {
+    //en req.body se espera que vengan las credenciales de login
+    //defino los criterios de busqueda en base al username y password recibidos
+    const criteria = {
+        email: req.body.email
+    }
+    try {
+        const user = await Usuario.findOne(criteria).populate("rol");
 
+        console.log(req.body.email +'  ' +user + ' aaaaaaa')
+        if (!user) {
+            res.json({
+                status: 0,
+                msg: "not found"
+            })
+        } else {
+            console.log(user.password + req.body.password)
+            const passwordMatch = await bcrypt.compare(
+                req.body.password,
+                user.password
+            );
+            console.log(passwordMatch + ' HOLAAAAAAA')
+            if (passwordMatch) {
+              // Las contraseñas coinciden, generando el token de autenticación
+                const unToken = jwt.sign({ id: user._id }, 'secretkey');
+
+            res.json({
+                status: 1,
+                msg: "success",
+                usuario:user,
+                username: user.username, //retorno información útil para el frontend
+                rol: user.rol, //retorno información útil para el frontend
+                userid: user._id, //retorno información útil para el frontend
+                token: unToken
+            })
+        }
+    }
+    } catch (error) {
+        console.log(error);
+    }
+    //el método findOne retorna un objeto que cumpla con los criterios de busqueda
+
+}
+usuarioCtrl.googleLoggedIn = async (req,res) => {
+    const criteria = {
+        email: req.body.email
+    }
+    
+    try {
+        const user = await Usuario.findOne(criteria).populate("rol");
+
+    console.log(criteria)
+    console.log(req.body.email +'  ' +user + ' aaaaaaa')
+    if (!user  || req.body.email === null) {
+        console.log('No Comprobado')
+        res.json({
+            status: 0,
+            msg: "not found"
+        })
+    } else if(user  && req.body.email != null) {
+        console.log('Comprobado')
+      // Generar un token de autenticación
+    return res.status(487).json({
+        msg: "success",
+        usuario: user,
+        rol:user.rol
+    });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(499).json({
+        msg: "Error"
+        });
+    }
+};
 usuarioCtrl.getUsuarios = async (req, res) => {
     var usuarios = await Usuario.find().populate("rol");
     res.json(usuarios);
