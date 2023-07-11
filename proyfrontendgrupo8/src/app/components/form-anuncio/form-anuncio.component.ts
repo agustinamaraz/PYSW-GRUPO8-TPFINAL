@@ -8,6 +8,7 @@ import { AnuncioService } from 'src/app/services/anuncio.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-form-anuncio',
   templateUrl: './form-anuncio.component.html',
@@ -29,7 +30,7 @@ export class FormAnuncioComponent implements OnInit {
    arch!:Blob
    fecha !:Date 
    can!:string
-   constructor(private anuncioService: AnuncioService,private route :Router,private storageService: StorageService,private activatedRoute: ActivatedRoute,private pd:DatePipe) { 
+   constructor(private anuncioService: AnuncioService,private route :Router,private storageService: StorageService,private activatedRoute: ActivatedRoute,private pd:DatePipe,private toastr:ToastrService) { 
     this.anuncio= new Anuncio()
     this.nextbutton = "guardar"
     this.controlador = "caja1"
@@ -67,7 +68,7 @@ export class FormAnuncioComponent implements OnInit {
   }
   verificar(){
     if(this.fechaStrMin + 1 >= this.anuncio.fechaHasta){
-        alert("Tienes   que ingresar una fecha mayor a la fecha Desde")
+      this.toastr.warning("la fecha Hasta debe ser mayor a la fecha Desde")
         this.anuncio.fechaHasta=""
     }
   }
@@ -86,7 +87,6 @@ export class FormAnuncioComponent implements OnInit {
         result => {
           console.log(result);
           if (result.status == 1) {
-            alert(result.msg);
               this.controlador="caja2"
               this.can="no"
               this.anuncioService.getAnuncios().subscribe(
@@ -102,7 +102,7 @@ export class FormAnuncioComponent implements OnInit {
         },
         error => {
           console.log(error);
-          alert(error.msg);
+          this.toastr.error("Llene todos los campos")
         }
       )
     }
@@ -113,7 +113,6 @@ export class FormAnuncioComponent implements OnInit {
         result => {
           console.log(result);
           if (result.status == 1) {
-            alert(result.msg);
             this.controlador="caja2"
             this.can="no"
           }
@@ -162,7 +161,7 @@ if(this.tipo == "url"){
     result => {
       console.log(result);
       if (result.status == 1) {
-        alert(result.msg);
+        this.toastr.success('Recurso agregado correctamente','Recurso Agregado')
         this.anuncioService.getAnuncioId(this.id).subscribe(
 
           result=>{
@@ -240,7 +239,7 @@ subirFirebase(){
             result => {
               console.log(result);
               if (result.status == 1) {
-                alert(result.msg);
+                this.toastr.success('Recurso agregado correctamente','Recurso Agregado')
                 this.anuncioService.getAnuncioId(this.id).subscribe(
         
                   result=>{
@@ -277,7 +276,7 @@ eliminarRecurso(recurso1: Recurso){
       result => {
         console.log(result);
         if (result.status == 1) {
-          alert(result.msg);
+          this.toastr.success('Recurso eliminado correctamente','Recurso Eliminado')
           this.anuncioService.getAnuncioId(this.id).subscribe(
 
             result=>{
@@ -304,7 +303,7 @@ eliminarRecurso(recurso1: Recurso){
       result => {
         console.log(result);
         if (result.status == 1) {
-          alert(result.msg);
+          this.toastr.success('Recurso eliminado correctamente','Recurso eliminado')
           this.anuncioService.getAnuncioId(this.id).subscribe(
 
             result=>{
@@ -321,7 +320,7 @@ eliminarRecurso(recurso1: Recurso){
       },
       error => {
         console.log(error);
-        alert(error.msg);
+       
       }
     )
   }
@@ -335,21 +334,22 @@ volver(){
 }
 finalizar(){
  this.route.navigate(['list-anuncio'])
+ this.toastr.success('Accion realizada correctamente')
 }
 
 
 
   validarAnuncio():boolean{
     if(this.anuncio.titulo == null){
-       alert("Ingrese Titulo")
+      this.toastr.error("Ingrese Titulo")
        return false
       }
     if(this.anuncio.descripcion == null){
-      alert("Ingrse Descriopcion")
+      this.toastr.error("Ingrese Descripcion")
       return false
     }
     if(this.anuncio.fechaHasta == null){
-      alert("Ingrese Fecha")
+      this.toastr.warning("Ingrese fecha")
       return false
     }
   
@@ -357,26 +357,26 @@ finalizar(){
   }
   validarRecurso():boolean{
     if(this.recurso.titulo== null){
-      alert("Ingrese Titulo")
+      this.toastr.error("Ingrese un Titulo")
       return false
      }
    if(this.recurso.descripcion == null){
-     alert("Ingrse Descriopcion")
+    this.toastr.error("Ingrese Descripcion")
      return false
    }
    if(this.recurso.tipo == null){
-    alert("Elija el tipo de Archivo")
+    this.toastr.warning("Elija un Archivo")
      return false
    }
    if(this.recurso.tipo != "url"){
      if(this.arch == null){
-     alert("Suba un arhivo")
+      this.toastr.error("suba un Archivo")
      return false
      }
    }
   if(this.recurso.tipo == "url"){
     if(this.recurso.url == null){
-      alert("Ingrese una url")
+       this.toastr.error("Ingrese url")
      return false
     }
   }

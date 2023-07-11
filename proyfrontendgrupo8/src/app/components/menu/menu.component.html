@@ -50,14 +50,13 @@
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio">Lista de Anuncio</a></li>
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-anuncio-cliente">Anuncio</a></li>
         <li *ngIf="esAdministrador()==true"><a routerLink="/list-contacto">Lista Contacto</a></li>
+        <li *ngIf="esAdministrador()==true"><a routerLink="/contacto">Contacto</a></li>
       </ul>
     </li>
   </ul>
   <div class="nav-icons">
     <a routerLink="/login" class="login" *ngIf="!loginService.userLoggedIn() || !loginService.userLoggedInGoogle()">LOGIN</a>
     <a (click)="logout()" class="login" *ngIf="loginService.userLoggedIn()">User:{{loginService.userLogged()}} LogOut</a>
-      <a (click)="logout()" class="login" *ngIf="esVisitante()">User:{{loginService.userLoggedGoogle()}}
-      LogOut</a>
     <button id="menu-icon" class="menu-icon" #menuIcon (click)="toggleMenu()"><i class='bx bx-menu'></i></button>
 
   </div>
