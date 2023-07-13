@@ -1,4 +1,5 @@
 const Especialista = require('./../models/especialista')
+const Turno = require ('../models/turno')
 const especialistaCtrl = {}
 
 especialistaCtrl.createEspecialista = async (req, res) => {
@@ -49,6 +50,7 @@ especialistaCtrl.editEspecialista = async (req, res) => {
 especialistaCtrl.deleteEspecialista = async (req, res) => {
     try {
         await Especialista.deleteOne({ _id: req.params.id });
+        await Turno.deleteMany({especialista:req.params.id})
         res.json({
             status: '1',
             msg: 'Especialista removed'
