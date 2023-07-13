@@ -21,11 +21,12 @@ export class EspecialistaFormComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       params => {
 
-        if (params['id'] == '0') {
+        if (params['id'] == 0) {
           this.accion = "new";
         } else {
           this.accion = "update";
           this.cargarEspecialista(params['id']);
+          console.log("IDDDDDDDDDDDDDDDD: "+ params['id'])
         }
       }
     )
@@ -35,7 +36,7 @@ export class EspecialistaFormComponent implements OnInit {
     this.especialistaService.getEspecialista(id).subscribe(
       (result) => {
         Object.assign(this.especialista, result);
-        //console.log(result);
+        console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaaa", this.especialista);
       },
       error => {
         console.log(error);
@@ -71,7 +72,7 @@ export class EspecialistaFormComponent implements OnInit {
         }
       },
       error => {
-        this.toastr.error(error.msg)
+        this.toastr.error(error.msg);
       }
     )
   }

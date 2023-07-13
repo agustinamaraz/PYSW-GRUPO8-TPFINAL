@@ -29,7 +29,7 @@ export class PacienteFormComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       params => {
         
-        if (params['id'] == '0') {
+        if (params['id'] == 0) {
           this.accion = "new";
            
             this.contactoCel.tipo ="celular"
