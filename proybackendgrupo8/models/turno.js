@@ -8,7 +8,7 @@ const TurnoSchema = new Schema({
     fecha: {type:String, required:true},
     hora : {type :String, required:true },
     especialista: { type: Schema.Types.ObjectId, ref: Especialista, required: true },
-    paciente: { type: Schema.Types.ObjectId, ref: Paciente },
+    paciente: { type: Schema.Types.ObjectId, ref: Paciente || null },
     estado: {type :String, required:true}
 })
 
