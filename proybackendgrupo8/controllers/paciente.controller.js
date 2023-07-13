@@ -50,6 +50,13 @@ pacienteCtrl.getOnePacienteDni = async (req,res)=>{
 pacienteCtrl.createPaciente = async (req, res) => {
     console.log("Entrando a create")
     console.log(req.body);
+    const isNewDni = await Paciente.isThisDniInUse(req.body.dni)
+    if (!isNewDni) {
+        return res.status(449).json({
+            success: false,
+            message: 'Este dni ya esta en uso',
+        });
+    }
     var paciente = new Paciente(req.body);
     try {
         await paciente.save();
