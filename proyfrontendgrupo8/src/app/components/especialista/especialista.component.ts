@@ -62,7 +62,7 @@ export class EspecialistaComponent implements OnInit {
     this.especialistaService.deleteEspecialista(e._id).subscribe(
       result => {
         if (result.status == 1) {
-          this.toastr.warning('Especialista eliminado correctamente', 'Especialista Eliminado')
+          this.toastr.success('Especialista eliminado correctamente', 'Especialista Eliminado')
           window.location.reload();
         }
       },

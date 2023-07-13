@@ -7,7 +7,7 @@ import { Recurso } from '../models/recurso';
   providedIn: 'root'
 })
 export class AnuncioService {
-  urlBase: string = "http://3.82.255.160:3000/api/anuncio/"
+  urlBase: string = "http://localhost:3000/api/anuncio/"
   constructor(private _http: HttpClient) { }
   addAnuncio(anuncio: Anuncio): Observable<any> {
 

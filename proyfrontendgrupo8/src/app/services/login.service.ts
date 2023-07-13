@@ -11,14 +11,15 @@ export class LoginService {
   hostBase: string;
 
   constructor(private http: HttpClient, private gooService:GooService) {
-    this.hostBase = "http://3.82.255.160:3000/api/usuario/"
+    //seleccionar lo que se quiera reemplazar en todas las coincidencias, escribir y ctrl+shift+l
+    this.hostBase = "http://localhost:3000/api/usuario/"
   }
   public getRoles():Observable<any>{
     const httpOption = {
       headers: new HttpHeaders({
       })
     }
-    return this.http.get('http://3.82.255.160:3000/api/rol/', httpOption)
+    return this.http.get('http://localhost:3000/api/rol/', httpOption)
   }
   public signUp(username:string, password:string, email:string, rol:string, dni:string):Observable<any>{
     const httpOption = {
@@ -36,7 +37,7 @@ export class LoginService {
       })
     }
 
-    return this.http.get('http://3.82.255.160:3000/api/usuario/confirm/'+token, httpOption)
+    return this.http.get('http://localhost:3000/api/usuario/confirm/'+token, httpOption)
 
   }
   loginEmailGoogle(email:string):Observable<any>{
@@ -51,7 +52,7 @@ export class LoginService {
   public login(username: string, password: string): Observable<any> {
     const httpOption = {
       headers: new HttpHeaders({
-        'access-control-allow-origin': 'http://localhost:4200',
+        //'access-control-allow-origin': 'http://localhost:4200',
         'Content-Type': 'application/json'
       })
     }

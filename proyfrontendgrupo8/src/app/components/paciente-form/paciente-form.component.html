@@ -63,7 +63,36 @@
                 </div>
           </div>
       </div>
+      <div class="mb-3">
+        <label for="cel" class="form-label">Celular</label>
+        <input type="number" class="form-control" id="cel" name="cel" required
+            placeholder="Ingrese numero de celular" [(ngModel)]="contactoCel.valor" required #cel="ngModel">
 
+            <div *ngIf="cel.invalid && (cel.dirty || cel.touched)"
+            class="row alert alert-danger">
+              <div *ngIf=" cel.errors?.['required']">
+                Numero de Celular requerido
+              </div>
+              <div *ngIf=" cel.errors?.['minlength']">
+                Celular no puede tener menos de 7 numeros
+              </div>
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="idemail" class="form-label">Gmail</label>
+      <input name="email" type="email" class="form-control" id="idemail" 
+      placeholder="Ingrese gmail" required #email="ngModel" [(ngModel)]="contactoGmail.valor">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                  class="row alert alert-danger">
+                    <div *ngIf=" email.errors?.['required']">
+                      email Requerido.
+                    </div>
+                    <div *ngIf=" email.errors?.['minlength']">
+                      email, no menos de 4 caracteres.
+                    </div>
+              </div>
+       </div>
+    
           
         <button *ngIf="accion=='new'" type="submit" class="btn btn-success" (click)="guardarPaciente()">Registrar Paciente</button>
           <button *ngIf="accion=='update'" type="submit" class="btn btn-warning" (click)="modificarPaciente()">Modificar Paciente</button>  
