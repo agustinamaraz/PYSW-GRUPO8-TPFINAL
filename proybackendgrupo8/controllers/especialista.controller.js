@@ -3,7 +3,7 @@ const especialistaCtrl = {}
 
 especialistaCtrl.createEspecialista = async (req, res) => {
     //en req.body se espera que vengan los datos de usuario a crear
-    console.log("entrando a crear un especialista...");
+    //console.log("entrando a crear un especialista...");
     const especialista = new Especialista(req.body);
     try {
         await especialista.save();
@@ -20,11 +20,13 @@ especialistaCtrl.createEspecialista = async (req, res) => {
 }
 
 especialistaCtrl.getEspecialistas = async (req, res) => {
+    
     var esp = await Especialista.find();
     res.json(esp);
 }
 
 especialistaCtrl.getEspecialista = async (req, res) => {
+    console.log("entrando al meotod GET ESPECIALISTAAAAAAAA POR IDDDDDDD:::: ")
     const e = await Especialista.findById(req.params.id);
     res.json(e);
 }
@@ -60,7 +62,7 @@ especialistaCtrl.deleteEspecialista = async (req, res) => {
 }
 
 especialistaCtrl.getEspecialistaDni = async (req, res) => {
-    console.log("ENTRANDO A ESPECIALISTAS POR  dni");
+    //console.log("ENTRANDO A ESPECIALISTAS POR  dni");
     criteria = {};
     if (req.query.dniP != null && req.query.dniP!= "") {
       criteria.dni = {$regex: req.query.dniP, $options:""};
