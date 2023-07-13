@@ -92,7 +92,7 @@ export class CalendarComponent implements OnInit {
     let fechato: Date = new Date(this.toDate);
 
     const comienzo = { dateTime: this.toIsoString(fechafrom), timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone };
-    const final = { dateTime: this.toIsoString(fechato), timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }; 4
+    const final = { dateTime: this.toIsoString(fechato), timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone };
 
     //this.event.start.dateTime = this.toIsoString(fechafrom);
     //this.event.end.dateTime = this.toIsoString(fechato);

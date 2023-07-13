@@ -57,3 +57,21 @@ ul{
     border-radius: 0 0 20px 20px;
   }
 }
+
+.mapas{
+  margin:50px auto;
+  width: 80%;
+  padding: 50px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #3da9b8;
+}
+.mapas iframe{
+  border-radius: 20px;
+  height: 500px;
+  width: 500px;
+}
