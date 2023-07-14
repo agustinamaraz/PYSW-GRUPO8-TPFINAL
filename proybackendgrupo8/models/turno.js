@@ -11,7 +11,8 @@ const TurnoSchema = new Schema({
     lapso:{type:String,required:true},
     especialista: { type: Schema.Types.ObjectId, ref: Especialista, required: true },
     paciente: { type: Schema.Types.ObjectId, ref: Paciente || null },
-    estado: {type :String, required:true}
+    estado: {type :String, required:true},
+    centroSalud:{type:String, required:true}
 })
 
                           
