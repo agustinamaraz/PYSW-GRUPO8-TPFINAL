@@ -3,7 +3,7 @@ const Paciente = require('../models/paciente');
 const Contacto = require('../models/contacto');
 
 const DatosMedicos = require ('../models/datosMedicos')
-
+const Turno = require ('../models/turno')
 const pacienteCtrl = {}
 
 //get todos
@@ -29,16 +29,18 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
     res.json(pacientes);
 }
   pacienteCtrl.busquedaPaciente = async (req, res) => {
-        var paciente = await Paciente.find({
-          $or: [
-            { nombre: { $regex: req.query.dato, $options: "i" } },
-            { apellido: { $regex: req.query.dato, $options: "i"} }
-          ],
-        });
+    console.log("BUSCANDO PACIENTE NOMBRE")
+    criteria = {};
+    if (req.query.nombrE != null && req.query.nombrE != "") {
+        criteria.nombre = req.query.nombrE;
+    }
+    if (req.query.apellidoE != null && req.query.apellidoE != "") {
+        criteria.apellido = req.query.apellidoE;
+    }
 
-        res.json(paciente);
-        console.log(res.json);
-      };
+    var pacientes = await Paciente.find(criteria);
+    res.json(pacientes);
+}
   
 
 pacienteCtrl.getOnePacienteDni = async (req,res)=>{
@@ -95,7 +97,7 @@ pacienteCtrl.deletePaciente = async (req, res) => {
     try {
         await Paciente.deleteOne({ _id: req.params.id });
         await DatosMedicos.deleteMany({ paciente: req.params.id });
-
+        await Turno.deleteMany({paciente: req.params.id})
         res.status(200).json({
             status: '1',
             msg: 'Paciente removed'

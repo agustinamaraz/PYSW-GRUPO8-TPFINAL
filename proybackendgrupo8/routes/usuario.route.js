@@ -5,6 +5,7 @@ const router = express.Router();
 const usuarioCtrl = require('./../controllers/usuario.controller');
 const autCtrl = require('./../controllers/auth.controller');
 // definiendo rutas
+router.get('/', usuarioCtrl.getTodosUsuarios);
 router.post('/login', usuarioCtrl.loginUsuario);
 router.post('/login-email', usuarioCtrl.loginUsuarioEmail); //auth estaba en todos mennos este creo
 router.get('/confirm/:token',[],usuarioCtrl.confirm);
