@@ -1,9 +1,10 @@
 const Especialista = require('./../models/especialista')
+const Turno = require ('../models/turno')
 const especialistaCtrl = {}
 
 especialistaCtrl.createEspecialista = async (req, res) => {
     //en req.body se espera que vengan los datos de usuario a crear
-    console.log("entrando a crear un especialista...");
+    //console.log("entrando a crear un especialista...");
     const especialista = new Especialista(req.body);
     try {
         await especialista.save();
@@ -34,11 +35,13 @@ especialistaCtrl.busquedaEspecialista = async (req, res) => {
       };*/
 
 especialistaCtrl.getEspecialistas = async (req, res) => {
+    
     var esp = await Especialista.find();
     res.json(esp);
 }
 
 especialistaCtrl.getEspecialista = async (req, res) => {
+    console.log("entrando al meotod GET ESPECIALISTAAAAAAAA POR IDDDDDDD:::: ")
     const e = await Especialista.findById(req.params.id);
     res.json(e);
 }
@@ -74,6 +77,7 @@ especialistaCtrl.editEspecialista = async (req, res) => {
 especialistaCtrl.deleteEspecialista = async (req, res) => {
     try {
         await Especialista.deleteOne({ _id: req.params.id });
+        await Turno.deleteMany({especialista:req.params.id})
         res.json({
             status: '1',
             msg: 'Especialista removed'
@@ -87,7 +91,7 @@ especialistaCtrl.deleteEspecialista = async (req, res) => {
 }
 
 especialistaCtrl.getEspecialistaDni = async (req, res) => {
-    console.log("ENTRANDO A ESPECIALISTAS POR  dni");
+    //console.log("ENTRANDO A ESPECIALISTAS POR  dni");
     criteria = {};
     if (req.query.dniP != null && req.query.dniP!= "") {
       criteria.dni = {$regex: req.query.dniP, $options:""};

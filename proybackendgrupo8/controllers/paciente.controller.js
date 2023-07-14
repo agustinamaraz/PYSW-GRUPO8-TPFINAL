@@ -3,7 +3,7 @@ const Paciente = require('../models/paciente');
 const Contacto = require('../models/contacto');
 
 const DatosMedicos = require ('../models/datosMedicos')
-
+const Turno = require ('../models/turno')
 const pacienteCtrl = {}
 
 //get todos
@@ -98,7 +98,7 @@ pacienteCtrl.deletePaciente = async (req, res) => {
     try {
         await Paciente.deleteOne({ _id: req.params.id });
         await DatosMedicos.deleteMany({ paciente: req.params.id });
-
+        await Turno.deleteMany({paciente: req.params.id})
         res.status(200).json({
             status: '1',
             msg: 'Paciente removed'

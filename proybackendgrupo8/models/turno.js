@@ -10,7 +10,7 @@ const TurnoSchema = new Schema({
     hora:{type:String, required:true},
     lapso:{type:String,required:true},
     especialista: { type: Schema.Types.ObjectId, ref: Especialista, required: true },
-    paciente: { type: Schema.Types.ObjectId, ref: Paciente },
+    paciente: { type: Schema.Types.ObjectId, ref: Paciente || null },
     estado: {type :String, required:true}
 })
 
