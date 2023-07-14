@@ -7,6 +7,7 @@ const PacienteSchema = new Schema({
     apellido: {type:String,required:true},
     fechaNac: { type: String, required: true },
     dni:{ type:String, required: true},
+    genero:{type:String, required:true},
     contactos:[{type:Contacto.schema}]
 })
 

@@ -8,8 +8,11 @@ const DatosMedicosSchema = new Schema({
     peso: { type: Number, required: true },
     imc: {type: Number, required: true },
     talla: { type: Number, required: true },
-    tension_arterial:{ type: Number, required: true },
-    diagnostico:{ type:String, required: true }
+    tension_arterial:{ type: String, required: true },
+    diagnostico:{ type:String, required: true },
+    temperatura:{type:Number, required:true},
+    fechaMenstruacion:{type:String, required:true},
+    centroSalud:{type:String, required:true}
 })
 
 module.exports = mongoose.models.DatosMedicos || mongoose.model('DatosMedicos', DatosMedicosSchema);
