@@ -4,8 +4,19 @@ const turnoCtrl = {}
 
 turnoCtrl.createTurno = async (req, res) => {
     console.log("turno controller" + req.body)
+    const { fecha, hora, especialista } = req.body;
+    console.log("turno controller" + req.body.hora + req.body.fecha + req.body.especialista.id)
     const turno = new Turno(req.body);
     try {
+        const existingTurno = await Turno.findOne({ fecha, hora, especialista });
+        console.log(existingTurno);
+
+        if (existingTurno) {
+            return res.status(400).json({
+                status: '3',
+                msg: 'Ya existe un turno con la misma fecha, hora y especialista.'
+            });
+        }
         await turno.save();
         res.status(200).json({
             'status': '1',
