@@ -7,12 +7,11 @@ const Paciente = require('./paciente');
 const TurnoSchema = new Schema({
     fecha: {type:String},
     cantidadTurnos:{type:Number},
-    hora:{type:String, required:true},
-    lapso:{type:String,required:true},
+    hora:{type:String},
+    lapso:{type:String},
     especialista: { type: Schema.Types.ObjectId, ref: Especialista},
     paciente: { type: Schema.Types.ObjectId, ref: Paciente || null },
     estado: {type :String},
-
     centroSalud:{ type:String}
 
 })
