@@ -19,6 +19,20 @@ especialistaCtrl.createEspecialista = async (req, res) => {
         })
     }
 }
+/*
+especialistaCtrl.busquedaEspecialista = async (req, res) => {
+    console.log("BUSCANDO ESPECIALISTA NOMBRE")
+        var especialista = await Especialista.find({
+          $or: [
+            { nombre: { $regex: req.query.dato, $options: "i" } },
+            { apellido: { $regex: req.query.dato, $options: "i"} }
+          ],
+
+        });
+        
+
+        res.json(especialista);
+      };*/
 
 especialistaCtrl.getEspecialistas = async (req, res) => {
     
@@ -30,6 +44,19 @@ especialistaCtrl.getEspecialista = async (req, res) => {
     console.log("entrando al meotod GET ESPECIALISTAAAAAAAA POR IDDDDDDD:::: ")
     const e = await Especialista.findById(req.params.id);
     res.json(e);
+}
+
+especialistaCtrl.busquedaEspecialista = async (req, res) => {
+    criteria = {};
+    if (req.query.nombrE != null && req.query.nombrE != "") {
+        criteria.nombre = req.query.nombrE;
+    }
+    if (req.query.apellidoE != null && req.query.apellidoE != "") {
+        criteria.apellido = req.query.apellidoE;
+    }
+
+    var especialistas = await Especialista.find(criteria);
+    res.json(especialistas);
 }
 
 especialistaCtrl.editEspecialista = async (req, res) => {
