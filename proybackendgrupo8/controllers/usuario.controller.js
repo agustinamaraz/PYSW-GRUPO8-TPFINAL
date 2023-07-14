@@ -9,7 +9,7 @@ const usuarioCtrl = {}
 
 usuarioCtrl.getTodosUsuarios = async (req, res) => {
     console.log("Entrando a get todosssssss")
-       var usuarios = await Usuario.find(); 
+       var usuarios = await Usuario.find().populate("rol"); 
     res.json(usuarios);
  }
 
