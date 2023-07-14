@@ -29,12 +29,15 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
     res.json(pacientes);
 }
   pacienteCtrl.busquedaPaciente = async (req, res) => {
+    console.log("BUSCANDO PACIENTE NOMBRE")
         var paciente = await Paciente.find({
           $or: [
             { nombre: { $regex: req.query.dato, $options: "i" } },
             { apellido: { $regex: req.query.dato, $options: "i"} }
           ],
+
         });
+        
 
         res.json(paciente);
         console.log(res.json);

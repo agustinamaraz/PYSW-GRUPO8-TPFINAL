@@ -7,6 +7,12 @@ const { getTemplate, sendEmail, sendEmailPassword, getTemplatePassword, getToken
 const rolCtrl = require('./rol.controller');
 const usuarioCtrl = {}
 
+usuarioCtrl.getTodosUsuarios = async (req, res) => {
+    console.log("Entrando a get todosssssss")
+       var usuarios = await Usuario.find(); 
+    res.json(usuarios);
+ }
+
 usuarioCtrl.createUsuario = async (req, res) => {
     console.log("create usuario");
     const [isNewUsername, isNewUser] = await Promise.all([

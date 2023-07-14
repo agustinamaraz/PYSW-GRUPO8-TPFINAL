@@ -7,6 +7,7 @@ import { EspecialistaService } from 'src/app/services/especialista.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { TurnoService } from 'src/app/services/turno.service';
 
+
 @Component({
   selector: 'app-turno-form',
   templateUrl: './turno-form.component.html',
@@ -17,6 +18,8 @@ export class TurnoFormComponent implements OnInit {
   especialistas:Array<Especialista>;
   accion: string="";
   pacientes:Array<Paciente>;
+  cantidadTurnos: number = 1;
+
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private turnoService:TurnoService, private especialistaService:EspecialistaService, private pacienteService:PacienteService) {
     this.turno = new Turno();
     this.especialistas = new Array<Especialista>();
@@ -92,27 +95,21 @@ export class TurnoFormComponent implements OnInit {
   guardarTurno() {
     console.log(this.turno);
 
-    // this.turno.paciente={
-    //   nombre: "",
-    //   apellido: "",
-    //   dni: "",
-    //   _id: "",
-    //   fechaNac:""
-    // };
+  this.turno.paciente = null;
 
-    this.turno.paciente = null;
-
+  for (let i = 0; i < this.cantidadTurnos; i++) {
     this.turnoService.createTurno(this.turno).subscribe(
       result => {
         if (result.status == 1) {
           alert(result.msg);
-          this.router.navigate(["turnos-disponibles"])
+          this.router.navigate(["turnos-disponibles"]);
         }
       },
       error => {
         alert(error.msg);
       }
-    )
+    );
+  }
   }
 
   modificarTurno() {

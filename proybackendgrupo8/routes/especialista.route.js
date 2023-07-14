@@ -4,6 +4,7 @@ const router = express.Router();
 const especialistaCtrl = require('./../controllers/especialista.controller.js');
 // definiendo rutas
 router.get('/', especialistaCtrl.getEspecialistas);
+router.get('/busquedaEspecialista', especialistaCtrl.busquedaEspecialista);//agregado 13/07
 router.post('/', especialistaCtrl.createEspecialista);
 router.get('/:dni', especialistaCtrl.getEspecialistaDni);
 router.put('/:id', especialistaCtrl.editEspecialista);
