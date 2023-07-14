@@ -30,18 +30,17 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
 }
   pacienteCtrl.busquedaPaciente = async (req, res) => {
     console.log("BUSCANDO PACIENTE NOMBRE")
-        var paciente = await Paciente.find({
-          $or: [
-            { nombre: { $regex: req.query.dato, $options: "i" } },
-            { apellido: { $regex: req.query.dato, $options: "i"} }
-          ],
+    criteria = {};
+    if (req.query.nombrE != null && req.query.nombrE != "") {
+        criteria.nombre = req.query.nombrE;
+    }
+    if (req.query.apellidoE != null && req.query.apellidoE != "") {
+        criteria.apellido = req.query.apellidoE;
+    }
 
-        });
-        
-
-        res.json(paciente);
-        console.log(res.json);
-      };
+    var pacientes = await Paciente.find(criteria);
+    res.json(pacientes);
+}
   
 
 pacienteCtrl.getOnePacienteDni = async (req,res)=>{
