@@ -64,6 +64,7 @@ turnoCtrl.getTurno = async (req, res) => {
 
 turnoCtrl.editTurno = async (req, res) => {
     const vturno = new Turno(req.body);
+    console.log(vturno.ce)
     try {
         await Turno.updateOne({ _id: req.body._id }, vturno);
         res.json({
