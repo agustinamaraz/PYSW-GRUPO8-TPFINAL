@@ -13,7 +13,7 @@ const TurnoSchema = new Schema({
     paciente: { type: Schema.Types.ObjectId, ref: Paciente || null },
     estado: {type :String, required:true},
 
-    centroSalud:{ type:String, required: true}
+    centroSalud:{ type:String}
 
 })
 
