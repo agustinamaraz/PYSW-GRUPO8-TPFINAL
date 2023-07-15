@@ -413,5 +413,15 @@ usuarioCtrl.deleteUsuario = async (req, res) => {
     }
 }
 
+usuarioCtrl.getUsuarioPorDni = async (req, res) =>{
+     console.log("ENTRANDO A USUARIOS POR  dni");
+     criteria = {};
+     if (req.query.dniU != null && req.query.dniU!= "") {
+       criteria.dni = {$regex: req.query.dniU, $options:""};
+     }
+     var users = await Usuario.find(criteria);
+     res.json(users);
+}
+
 //exportacion del modulo controlador
 module.exports = usuarioCtrl;

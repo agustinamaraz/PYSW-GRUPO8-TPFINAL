@@ -57,12 +57,14 @@ turnoCtrl.getTurnosPaciente = async (req, res) => {
         const paciente = await Paciente.findOne({ dni });
         if (!paciente) {
             return res.status(404).json({ mensaje: 'Paciente no encontrado' });
+        } else {
+            // Buscar los turnos del paciente por su ID
+            const turnos = await Turno.find({ paciente: paciente._id }).populate("especialista").populate("paciente");
+
+            return res.json(turnos);
         }
 
-        // Buscar los turnos del paciente por su ID
-        const turnos = await Turno.find({ paciente: paciente._id }).populate("especialista").populate("paciente");
 
-        return res.json(turnos);
     } catch (error) {
         console.error('Error al obtener los turnos del paciente:', error);
         return res.status(500).json({ mensaje: 'Error al obtener los turnos del paciente' });
@@ -90,13 +92,13 @@ turnoCtrl.editTurno = async (req, res) => {
                 msg: 'Ya existe un turno con el mismo paciente, fecha y especialista'
             });
         } else {
-        await Turno.updateOne({ _id: req.body._id }, vturno);
-        res.json({
-            'status': '1',
-            'msg': 'Turno updated'
-        })
-    }
-    }catch (error) {
+            await Turno.updateOne({ _id: req.body._id }, vturno);
+            res.json({
+                'status': '1',
+                'msg': 'Turno updated'
+            })
+        }
+    } catch (error) {
         res.status(400).json({
             'status': '0',
             'msg': 'Error procesando la operacion'
