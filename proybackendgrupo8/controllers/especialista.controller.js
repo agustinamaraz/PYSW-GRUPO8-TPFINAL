@@ -46,13 +46,20 @@ especialistaCtrl.getEspecialista = async (req, res) => {
     res.json(e);
 }
 
-especialistaCtrl.busquedaEspecialista = async (req, res) => {
+especialistaCtrl.getEspecialistaNombre = async (req, res) => {
     criteria = {};
     if (req.query.nombrE != null && req.query.nombrE != "") {
-        criteria.nombre = req.query.nombrE;
+        criteria.nombre = {$regex: req.query.nombrE, $options:""};
     }
+
+    var especialistas = await Especialista.find(criteria);
+    res.json(especialistas);
+}
+
+especialistaCtrl.getEspecialistaApellido = async (req, res) => {
+    criteria = {};
     if (req.query.apellidoE != null && req.query.apellidoE != "") {
-        criteria.apellido = req.query.apellidoE;
+        criteria.apellido = {$regex: req.query.apellidoE, $options:""};
     }
 
     var especialistas = await Especialista.find(criteria);
@@ -96,8 +103,8 @@ especialistaCtrl.getEspecialistaDni = async (req, res) => {
     if (req.query.dniP != null && req.query.dniP!= "") {
       criteria.dni = {$regex: req.query.dniP, $options:""};
     }
-    var pacientes = await Especialista.find(criteria);
-    res.json(pacientes);
+    var especialistas = await Especialista.find(criteria);
+    res.json(especialistas);
 }
 
 //exportacion del modulo controlador
