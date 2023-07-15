@@ -76,6 +76,7 @@ turnoCtrl.getTurno = async (req, res) => {
 
 turnoCtrl.editTurno = async (req, res) => {
     const vturno = new Turno(req.body);
+    console.log(vturno.ce)
     try {
         const existingTurno = await Turno.findOne({
             _id: { $ne: req.body._id }, // Exclude the current turno from the check
