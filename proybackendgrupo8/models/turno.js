@@ -12,7 +12,6 @@ const TurnoSchema = new Schema({
     especialista: { type: Schema.Types.ObjectId, ref: Especialista},
     paciente: { type: Schema.Types.ObjectId, ref: Paciente || null },
     estado: {type :String},
-
     centroSalud:{ type:String}
 
 })
