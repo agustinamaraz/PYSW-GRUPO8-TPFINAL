@@ -49,7 +49,7 @@ especialistaCtrl.getEspecialista = async (req, res) => {
 especialistaCtrl.getEspecialistaNombre = async (req, res) => {
     criteria = {};
     if (req.query.nombrE != null && req.query.nombrE != "") {
-        criteria.nombre = {$regex: req.query.nombrE, $options:""};
+        criteria.nombre = {$regex: req.query.nombrE, $options:"i"};
     }
 
     var especialistas = await Especialista.find(criteria);
@@ -59,7 +59,7 @@ especialistaCtrl.getEspecialistaNombre = async (req, res) => {
 especialistaCtrl.getEspecialistaApellido = async (req, res) => {
     criteria = {};
     if (req.query.apellidoE != null && req.query.apellidoE != "") {
-        criteria.apellido = {$regex: req.query.apellidoE, $options:""};
+        criteria.apellido = {$regex: req.query.apellidoE, $options:"i"};
     }
 
     var especialistas = await Especialista.find(criteria);

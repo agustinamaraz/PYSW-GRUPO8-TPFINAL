@@ -32,7 +32,7 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
     console.log("BUSCANDO PACIENTE NOMBRE")
     criteria = {};
     if (req.query.nombrE != null && req.query.nombrE != "") {
-        criteria.nombre = {$regex: req.query.nombrE, $options:""};
+        criteria.nombre = {$regex: req.query.nombrE, $options:"i"};
     }
     var pacientes = await Paciente.find(criteria);
     res.json(pacientes);
@@ -42,7 +42,7 @@ pacienteCtrl.getPacienteApellido = async (req, res) => {
     console.log("BUSCANDO PACIENTE APELLIDO")
     criteria = {};
     if (req.query.apellidoE != null && req.query.apellidoE != "") {
-        criteria.apellido = {$regex: req.query.apellidoE, $options:""};
+        criteria.apellido = {$regex: req.query.apellidoE, $options:"i"};
     }
 
     var pacientes = await Paciente.find(criteria);
