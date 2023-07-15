@@ -28,14 +28,21 @@ pacienteCtrl.getPacienteDni = async (req, res) => {
     var pacientes = await Paciente.find(criteria);
     res.json(pacientes);
 }
-  pacienteCtrl.busquedaPaciente = async (req, res) => {
+  pacienteCtrl.getPacienteNombre = async (req, res) => {
     console.log("BUSCANDO PACIENTE NOMBRE")
     criteria = {};
     if (req.query.nombrE != null && req.query.nombrE != "") {
-        criteria.nombre = req.query.nombrE;
+        criteria.nombre = {$regex: req.query.nombrE, $options:""};
     }
+    var pacientes = await Paciente.find(criteria);
+    res.json(pacientes);
+}
+
+pacienteCtrl.getPacienteApellido = async (req, res) => {
+    console.log("BUSCANDO PACIENTE APELLIDO")
+    criteria = {};
     if (req.query.apellidoE != null && req.query.apellidoE != "") {
-        criteria.apellido = req.query.apellidoE;
+        criteria.apellido = {$regex: req.query.apellidoE, $options:""};
     }
 
     var pacientes = await Paciente.find(criteria);
