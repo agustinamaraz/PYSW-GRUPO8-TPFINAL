@@ -5,15 +5,15 @@ const Especialista = require('./especialista');
 const Paciente = require('./paciente');
 
 const TurnoSchema = new Schema({
-    fecha: {type:String, required:true},
-    cantidadTurnos:{type:Number, required:true},
-    hora:{type:String, required:true},
-    lapso:{type:String,required:true},
-    especialista: { type: Schema.Types.ObjectId, ref: Especialista, required: true },
+    fecha: {type:String},
+    cantidadTurnos:{type:Number},
+    hora:{type:String},
+    lapso:{type:String},
+    especialista: { type: Schema.Types.ObjectId, ref: Especialista},
     paciente: { type: Schema.Types.ObjectId, ref: Paciente || null },
-    estado: {type :String, required:true},
-  //  centroSalud:{ type:String},
-    centroSalud:{ type:String, required: true}
+    estado: {type :String},
+    centroSalud:{ type:String}
+
 })
 
                           

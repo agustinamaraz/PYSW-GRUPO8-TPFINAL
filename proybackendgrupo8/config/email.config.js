@@ -65,7 +65,7 @@ const getTemplate = (username, token) => {
         <div class="text-container">
             <p>Para confirmar tu cuenta, ingresa al siguiente enlace</p>
             <a
-                href="http://localhost:4200/confirm/${ token }"
+                href="http://3.82.255.160/confirm/${ token }"
                 target="_blank"
             >Confirmar Cuenta</a>
             </div>
@@ -93,7 +93,7 @@ const getTemplatePassword = (username, token) => {
         <div class="card">
             <p>Para restablecer su contraseña, ingrese al siguiente enlace</p>
             <a
-                href="http://localhost:4200/reset/${ token }"
+                href="http://3.82.255.160/reset/${ token }"
                 target="_blank"
             >Restablecer contraseña</a>
             </div>
