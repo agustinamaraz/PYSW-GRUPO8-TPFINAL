@@ -7,6 +7,7 @@ turnoCtrl.createTurno = async (req, res) => {
     const { fecha, hora, especialista } = req.body;
     console.log("turno controller" + req.body.hora + req.body.fecha + req.body.especialista.id)
     const turno = new Turno(req.body);
+    console.log(turno)
     try {
         const existingTurno = await Turno.findOne({ fecha, hora, especialista });
         console.log(existingTurno);
@@ -76,12 +77,25 @@ turnoCtrl.getTurno = async (req, res) => {
 turnoCtrl.editTurno = async (req, res) => {
     const vturno = new Turno(req.body);
     try {
+        const existingTurno = await Turno.findOne({
+            _id: { $ne: req.body._id }, // Exclude the current turno from the check
+            paciente: req.body.paciente,
+            fecha: req.body.fecha,
+            especialista: req.body.especialista
+        });
+        if (existingTurno) {
+            res.status(400).json({
+                status: '0',
+                msg: 'Ya existe un turno con el mismo paciente, fecha y especialista'
+            });
+        } else {
         await Turno.updateOne({ _id: req.body._id }, vturno);
         res.json({
             'status': '1',
             'msg': 'Turno updated'
         })
-    } catch (error) {
+    }
+    }catch (error) {
         res.status(400).json({
             'status': '0',
             'msg': 'Error procesando la operacion'
